@@ -4,7 +4,7 @@
 
 namespace sfui
 {
-	UIVisualContainer::UIVisualContainer() : UIElement()
+	UIVisualContainer::UIVisualContainer() : UIElement("UIVisualContainer")
 	{
 		Initialize();
 	}

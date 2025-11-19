@@ -68,6 +68,11 @@ namespace sfui
 		return m_children;
 	}
 
+	const UIElement* UIElement::getParent() const
+	{
+		return m_parent;
+	}
+
 	sf::Vector2f UIElement::getRenderSize() const
 	{
 		return m_renderSize;
@@ -151,62 +156,55 @@ namespace sfui
 			}
 		}
 
-		if (m_parent)
-		{
-			sf::Vector2f parentPos = m_parent->getRenderPosition();
-			posX += parentPos.x;
-			posY += parentPos.y;
-		}
-
 		m_renderPosition = sf::Vector2f(posX, posY);
+	}
+
+	void UIElement::computeTransformations(const sf::FloatRect& _bounds)
+	{
+		m_transform.setCalculatedOriginPixels(m_transform.getOrigin().toVector2f(_bounds.size.x, _bounds.size.y));
+
+		m_transform.setCalculatedTranslatePixels(m_renderPosition + m_transform.getTranslate().toVector2f(_bounds.size.x, _bounds.size.y));
+
+		m_transform.setCalculatedScale(m_transform.getScale().toVector2f());
+
+		m_transform.setRotate(UIPropUtils::normalizedAngle(m_transform.getRotate()));
+		m_transform.setCalculatedRotateAngle(m_transform.getRotate().resolveToSfAngle());
 	}
 
 	void UIElement::applyTransformations(const sf::Vector2f& _targetSize, sf::Sprite& _sprite)
 	{
-		sf::Vector2f origin(
-			m_transform.getOrigin().x.resolveToPixels(_sprite.getGlobalBounds().size.x),
-			m_transform.getOrigin().y.resolveToPixels(_sprite.getGlobalBounds().size.y)
-		);
-		_sprite.setOrigin(origin);
+		// Compute transformations based on current bounds
+		computeTransformations(_sprite.getGlobalBounds());
 
-		_sprite.move(origin);
+		sf::Transform world = m_transform.getWorldTransform(this);
 
-		sf::Vector2f translation(
-			m_transform.getTranslate().x.resolveToPixels(_targetSize.x),
-			m_transform.getTranslate().y.resolveToPixels(_targetSize.y)
-		);
-		_sprite.move(translation);
+		_sprite.setPosition(world.transformPoint({ 0.f, 0.f }));
 
-		sf::Vector2f scale(m_transform.getScale().x, m_transform.getScale().y);
-		_sprite.setScale(scale);
+		const float* m = world.getMatrix();
+		float angleRad = std::atan2(m[1], m[0]);
+		_sprite.setRotation(sf::radians(angleRad));
 
-		m_transform.setRotate(UIPropUtils::normalizedAngle(m_transform.getRotate()));
-		sf::Angle rotation = m_transform.getRotate().resolveToSfAngle();
-		_sprite.setRotation(rotation);
+		float scaleX = std::sqrt(m[0] * m[0] + m[1] * m[1]);
+		float scaleY = std::sqrt(m[4] * m[4] + m[5] * m[5]);
+		_sprite.setScale({ scaleX, scaleY });
 	}
 
 	void UIElement::applyTransformations(const sf::Vector2f& _targetSize, sf::Shape& _shape)
 	{
-		sf::Vector2f origin(
-			m_transform.getOrigin().x.resolveToPixels(_shape.getGlobalBounds().size.x),
-			m_transform.getOrigin().y.resolveToPixels(_shape.getGlobalBounds().size.y)
-		);
-		_shape.setOrigin(origin);
+		// Compute transformations based on current bounds
+		computeTransformations(_shape.getGlobalBounds());
 
-		_shape.move(origin);
+		sf::Transform world = m_transform.getWorldTransform(this);
 
-		sf::Vector2f translation(
-			m_transform.getTranslate().x.resolveToPixels(_targetSize.x),
-			m_transform.getTranslate().y.resolveToPixels(_targetSize.y)
-		);
-		_shape.move(translation);
+		_shape.setPosition(world.transformPoint({ 0.f, 0.f }));
 
-		sf::Vector2f scale(m_transform.getScale().x, m_transform.getScale().y);
-		_shape.setScale(scale);
+		const float* m = world.getMatrix();
+		float angleRad = std::atan2(m[1], m[0]);
+		_shape.setRotation(sf::radians(angleRad));
 
-		m_transform.setRotate(UIPropUtils::normalizedAngle(m_transform.getRotate()));
-		sf::Angle rotation = m_transform.getRotate().resolveToSfAngle();
-		_shape.setRotation(rotation);
+		float scaleX = std::sqrt(m[0] * m[0] + m[1] * m[1]);
+		float scaleY = std::sqrt(m[4] * m[4] + m[5] * m[5]);
+		_shape.setScale({ scaleX, scaleY });
 	}
 
 	void UIElement::drawBackground(sf::RenderTexture& _target, const sf::Vector2f& _targetSize)
@@ -222,7 +220,6 @@ namespace sfui
 			backgroundShape.setOutlineColor(m_border.getColor());
 
 			computePosition(_targetSize, backgroundShape.getGlobalBounds());
-			backgroundShape.setPosition(m_renderPosition);
 			applyTransformations(_targetSize, backgroundShape);
 
 			_target.draw(backgroundShape);
@@ -238,8 +235,8 @@ namespace sfui
 			backgroundShape.setPointsPerCorner(pointsPerCorner);
 
 			computePosition(_targetSize, backgroundShape.getGlobalBounds());
-			backgroundShape.setPosition(m_renderPosition);
 			applyTransformations(_targetSize, backgroundShape);
+			backgroundShape.move(m_renderPosition);
 
 			_target.draw(backgroundShape);
 		}

@@ -1,4 +1,5 @@
 #include "Headers/SFUIL/System/UIElementProperty.hpp"
+#include "Headers/SFUIL/UIElement.hpp"
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <cmath>
@@ -14,6 +15,19 @@ namespace sfui
 	{
 		// Clamp the value between 0.0f and 1.0f
 		m_opacity = UIPropUtils::clampFloat(_opacity, 0.0f, 1.0f);
+	}
+
+	float OpacityProperty::resolveFinalOpacity(const UIElement* _element) const
+	{
+		if (_element->getParent())
+		{
+			const float parentOpacity = _element->getParent()->getConstProperty<OpacityProperty>().resolveFinalOpacity(_element->getParent());
+			return m_opacity * parentOpacity;
+		}
+		else
+		{
+			return m_opacity;
+		}
 	}
 
 	DisplayProperty::Type DisplayProperty::getDisplay() const
@@ -835,27 +849,27 @@ namespace sfui
 	{
 		switch (_rotate.type)
 		{
-			case TransformProperty::RotateType::Degrees:
-			{
-				float degrees = std::fmod(_rotate.value, 360.f);
-				if (degrees > 180.f)
-					degrees -= 360.f;
-				else if (degrees < -180.f)
-					degrees += 360.f;
-				return TransformProperty::Rotate{ degrees, TransformProperty::RotateType::Degrees };
-			}
-			case TransformProperty::RotateType::Radians:
-			{
-				const float twoPi = static_cast<float>(2 * M_PI);
-				float radians = std::fmod(_rotate.value, twoPi);
-				if (radians > static_cast<float>(M_PI))
-					radians -= twoPi;
-				else if (radians < -static_cast<float>(M_PI))
-					radians += twoPi;
-				return TransformProperty::Rotate{ radians, TransformProperty::RotateType::Radians };
-			}
-			default:
-				return _rotate;
+		case TransformProperty::RotateType::Degrees:
+		{
+			float degrees = std::fmod(_rotate.value, 360.f);
+			if (degrees > 180.f)
+				degrees -= 360.f;
+			else if (degrees < -180.f)
+				degrees += 360.f;
+			return TransformProperty::Rotate{ degrees, TransformProperty::RotateType::Degrees };
+		}
+		case TransformProperty::RotateType::Radians:
+		{
+			const float twoPi = static_cast<float>(2 * M_PI);
+			float radians = std::fmod(_rotate.value, twoPi);
+			if (radians > static_cast<float>(M_PI))
+				radians -= twoPi;
+			else if (radians < -static_cast<float>(M_PI))
+				radians += twoPi;
+			return TransformProperty::Rotate{ radians, TransformProperty::RotateType::Radians };
+		}
+		default:
+			return _rotate;
 		}
 	}
 
@@ -955,6 +969,373 @@ namespace sfui
 		default:
 			return 0.f;
 		}
+	}
+
+	ImageProperty::Repeat ImageProperty::getRepeat() const
+	{
+		return m_repeat;
+	}
+
+	void ImageProperty::setRepeat(Repeat _repeat)
+	{
+		m_repeat = _repeat;
+	}
+
+	ImageProperty::Smooth ImageProperty::getSmooth() const
+	{
+		return m_smooth;
+	}
+
+	void ImageProperty::setSmooth(Smooth _smooth)
+	{
+		m_smooth = _smooth;
+	}
+
+	const char* ImageProperty::getImagePath() const
+	{
+		return m_imagePath;
+	}
+
+	void ImageProperty::setImagePath(const char* _imagePath)
+	{
+		m_imagePath = _imagePath;
+	}
+
+	const sf::Color& ImageProperty::getTintColor() const
+	{
+		return m_tintColor;
+	}
+
+	void ImageProperty::setTintColor(const sf::Color& _color)
+	{
+		m_tintColor = _color;
+	}
+
+	void ImageProperty::setTintColor(std::uint8_t _r, std::uint8_t _g, std::uint8_t _b, std::uint8_t _a)
+	{
+		m_tintColor.r = _r;
+		m_tintColor.g = _g;
+		m_tintColor.b = _b;
+		m_tintColor.a = _a;
+	}
+
+	const sf::Image& ImageProperty::getImage() const
+	{
+		return m_image;
+	}
+
+	bool ImageProperty::loadImage()
+	{
+		if (m_imagePath != nullptr)
+		{
+			return m_image.loadFromFile(m_imagePath);
+		}
+		return false;
+	}
+
+	float ImageProperty::SizeValue::resolveToPixels(float _relativeTo) const
+	{
+		switch (type)
+		{
+		case SizeType::Pixels:
+			return value;
+		case SizeType::Percentage:
+			return (value / 100.f) * _relativeTo;
+		case SizeType::Cover:
+			return _relativeTo;
+		case SizeType::Contain:
+			return _relativeTo;
+		default:
+			return 0.f;
+		}
+	}
+
+	const ImageProperty::Size& ImageProperty::getSize() const
+	{
+		return m_size;
+	}
+
+	void ImageProperty::setSize(const Size& _size)
+	{
+		m_size = _size;
+	}
+
+	void ImageProperty::setWidth(float _value, SizeType _type)
+	{
+		m_size.width.value = _value;
+		m_size.width.type = _type;
+	}
+
+	void ImageProperty::setWidth(float _value)
+	{
+		m_size.width.value = _value;
+	}
+
+	void ImageProperty::setHeight(float _value, SizeType _type)
+	{
+		m_size.height.value = _value;
+		m_size.height.type = _type;
+	}
+
+	void ImageProperty::setHeight(float _value)
+	{
+		m_size.height.value = _value;
+	}
+
+	float ImageProperty::PositionX::resolveToPixels(float _relativeTo) const
+	{
+		if (position == PositionXPositionType::Center)
+		{
+			return (_relativeTo / 2.f) + resolveToPixels(_relativeTo);
+		}
+		else if (position == PositionXPositionType::Right)
+		{
+			switch (offsetType)
+			{
+			case PositionOffsetType::Pixels:
+				return _relativeTo - offsetValue;
+			case PositionOffsetType::Percentage:
+				return _relativeTo - ((offsetValue / 100.f) * _relativeTo);
+			default:
+				return _relativeTo;
+			}
+		}
+		else // Left
+		{
+			switch (offsetType)
+			{
+			case PositionOffsetType::Pixels:
+				return offsetValue;
+			case PositionOffsetType::Percentage:
+				return (offsetValue / 100.f) * _relativeTo;
+			default:
+				return 0.f;
+			}
+		}
+	}
+
+	float ImageProperty::PositionY::resolveToPixels(float _relativeTo) const
+	{
+		if (position == PositionYPositionType::Center)
+		{
+			return (_relativeTo / 2.f) + resolveToPixels(_relativeTo);
+		}
+		else if (position == PositionYPositionType::Bottom)
+		{
+			switch (offsetType)
+			{
+			case PositionOffsetType::Pixels:
+				return _relativeTo - offsetValue;
+			case PositionOffsetType::Percentage:
+				return _relativeTo - ((offsetValue / 100.f) * _relativeTo);
+			default:
+				return _relativeTo;
+			}
+		}
+		else // Top
+		{
+			switch (offsetType)
+			{
+			case PositionOffsetType::Pixels:
+				return offsetValue;
+			case PositionOffsetType::Percentage:
+				return (offsetValue / 100.f) * _relativeTo;
+			default:
+				return 0.f;
+			}
+		}
+	}
+
+	const ImageProperty::PositionX& ImageProperty::getPositionX() const
+	{
+		return m_positionX;
+	}
+
+	void ImageProperty::setPositionX(const PositionX& _positionX)
+	{
+		m_positionX = _positionX;
+	}
+
+	void ImageProperty::setPositionX(PositionXPositionType _position, float _offsetValue, PositionOffsetType _offsetType)
+	{
+		m_positionX.position = _position;
+		m_positionX.offsetValue = _offsetValue;
+		m_positionX.offsetType = _offsetType;
+	}
+
+	void ImageProperty::setPositionX(PositionXPositionType _position, float _offsetValue)
+	{
+		m_positionX.position = _position;
+		m_positionX.offsetValue = _offsetValue;
+	}
+
+	void ImageProperty::setPositionX(float _offsetValue, PositionOffsetType _offsetType)
+	{
+		m_positionX.offsetValue = _offsetValue;
+		m_positionX.offsetType = _offsetType;
+	}
+
+	void ImageProperty::setPositionX(float _offsetValue)
+	{
+		m_positionX.offsetValue = _offsetValue;
+	}
+
+	void ImageProperty::setPositionX(PositionXPositionType _position)
+	{
+		m_positionX.position = _position;
+	}
+
+	const ImageProperty::PositionY& ImageProperty::getPositionY() const
+	{
+		return m_positionY;
+	}
+
+	void ImageProperty::setPositionY(const PositionY& _positionY)
+	{
+		m_positionY = _positionY;
+	}
+
+	void ImageProperty::setPositionY(PositionYPositionType _position, float _offsetValue, PositionOffsetType _offsetType)
+	{
+		m_positionY.position = _position;
+		m_positionY.offsetValue = _offsetValue;
+		m_positionY.offsetType = _offsetType;
+	}
+
+	void ImageProperty::setPositionY(PositionYPositionType _position, float _offsetValue)
+	{
+		m_positionY.position = _position;
+		m_positionY.offsetValue = _offsetValue;
+	}
+
+	void ImageProperty::setPositionY(float _offsetValue, PositionOffsetType _offsetType)
+	{
+		m_positionY.offsetValue = _offsetValue;
+		m_positionY.offsetType = _offsetType;
+	}
+
+	void ImageProperty::setPositionY(float _offsetValue)
+	{
+		m_positionY.offsetValue = _offsetValue;
+	}
+
+	void ImageProperty::setPositionY(PositionYPositionType _position)
+	{
+		m_positionY.position = _position;
+	}
+
+	ImageProperty::ScaleMode ImageProperty::getScaleMode() const
+	{
+		return m_scaleMode;
+	}
+
+	void ImageProperty::setScaleMode(ScaleMode _mode)
+	{
+		m_scaleMode = _mode;
+	}
+
+	const sf::Vector2f& TransformProperty::getCalculatedOriginPixels() const
+	{
+		return m_calculatedOriginPixels;
+	}
+
+	void TransformProperty::setCalculatedOriginPixels(const sf::Vector2f& _pixels)
+	{
+		m_calculatedOriginPixels = _pixels;
+	}
+
+	void TransformProperty::setCalculatedOriginPixels(float _xPixels, float _yPixels)
+	{
+		m_calculatedOriginPixels.x = _xPixels;
+		m_calculatedOriginPixels.y = _yPixels;
+	}
+
+	const sf::Vector2f& TransformProperty::getCalculatedTranslatePixels() const
+	{
+		return m_calculatedTranslatePixels;
+	}
+
+	void TransformProperty::setCalculatedTranslatePixels(const sf::Vector2f& _pixels)
+	{
+		m_calculatedTranslatePixels = _pixels;
+	}
+
+	void TransformProperty::setCalculatedTranslatePixels(float _xPixels, float _yPixels)
+	{
+		m_calculatedTranslatePixels.x = _xPixels;
+		m_calculatedTranslatePixels.y = _yPixels;
+	}
+
+	const sf::Vector2f& TransformProperty::getCalculatedScale() const
+	{
+		return m_calculatedScale;
+	}
+
+	void TransformProperty::setCalculatedScale(const sf::Vector2f& _scale)
+	{
+		m_calculatedScale = _scale;
+	}
+
+	void TransformProperty::setCalculatedScale(float _xScale, float _yScale)
+	{
+		m_calculatedScale.x = _xScale;
+		m_calculatedScale.y = _yScale;
+	}
+
+	const sf::Angle& TransformProperty::getCalculatedRotateAngle() const
+	{
+		return m_calculatedRotateAngle;
+	}
+
+	void TransformProperty::setCalculatedRotateAngle(const sf::Angle& _angle)
+	{
+		m_calculatedRotateAngle = _angle;
+	}
+
+	sf::Transform TransformProperty::getLocalTransform() const
+	{
+		sf::Transform t;
+
+		t.translate(m_calculatedTranslatePixels);
+		t.translate(m_calculatedOriginPixels);
+		t.rotate(m_calculatedRotateAngle);
+		t.scale(m_calculatedScale);
+		t.translate(-m_calculatedOriginPixels);
+
+		return t;
+	}
+
+	sf::Transform TransformProperty::getWorldTransform(const UIElement* _element) const
+	{
+		sf::Transform local = getLocalTransform();
+
+		if (_element->getParent())
+		{
+			local = _element->getParent()->getConstProperty<TransformProperty>().getWorldTransform(_element->getParent()) * local;
+		}
+
+		return local;
+	}
+
+	sf::Vector2f TransformProperty::Scale::toVector2f() const
+	{
+		return sf::Vector2f(x, y);
+	}
+
+	sf::Vector2f TransformProperty::Translate::toVector2f(float _relativeToX, float _relativeToY) const
+	{
+		return sf::Vector2f(
+			x.resolveToPixels(_relativeToX),
+			y.resolveToPixels(_relativeToY)
+		);
+	}
+
+	sf::Vector2f TransformProperty::Origin::toVector2f(float _relativeToX, float _relativeToY) const
+	{
+		return sf::Vector2f(
+			x.resolveToPixels(_relativeToX),
+			y.resolveToPixels(_relativeToY)
+		);
 	}
 
 }

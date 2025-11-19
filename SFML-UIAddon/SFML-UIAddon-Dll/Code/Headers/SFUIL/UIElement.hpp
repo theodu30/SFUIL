@@ -153,6 +153,8 @@ namespace sfui
 
 		std::vector<UIElement*>& getChildren();
 
+		const UIElement* getParent() const;
+
 		sf::Vector2f getRenderSize() const;
 
 		sf::Vector2f getRenderPosition() const;
@@ -267,6 +269,8 @@ namespace sfui
 		virtual void reRenderIfDirty(sf::RenderTexture& _texture) = 0;
 
 		void computePosition(const sf::Vector2f& _targetSize, const sf::FloatRect& _bounds);
+
+		void computeTransformations(const sf::FloatRect& _bounds);
 
 		void applyTransformations(const sf::Vector2f& _targetSize, sf::Sprite& _sprite);
 

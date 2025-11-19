@@ -1,11 +1,15 @@
 #pragma once
 
 #include "Exports.hpp"
-#include "Anchor.hpp"
 #include <SFML/Graphics/Color.hpp>
+#include <SFML/Graphics/Image.hpp>
+#include <SFML/Graphics/Transform.hpp>
 
 namespace sfui
 {
+	// Forward declaration
+	class UIElement;
+
 	class SFUIL_API Property {};
 
 	class SFUIL_API OpacityProperty : public Property
@@ -15,6 +19,9 @@ namespace sfui
 		void setOpacity(float _opacity);
 	private:
 		float m_opacity = 1.f;
+
+	public: // Utility functions for final computations
+		float resolveFinalOpacity(const UIElement* _element) const;
 	};
 
 	class SFUIL_API DisplayProperty : public Property
@@ -447,6 +454,8 @@ namespace sfui
 		{
 			OriginValue x;
 			OriginValue y;
+
+			sf::Vector2f toVector2f(float _relativeToX, float _relativeToY) const;
 		};
 
 		[[nodiscard]] const Origin& getOrigin() const;
@@ -474,6 +483,8 @@ namespace sfui
 		{
 			TranslateValue x;
 			TranslateValue y;
+
+			sf::Vector2f toVector2f(float _relativeToX, float _relativeToY) const;
 		};
 
 		[[nodiscard]] const Translate& getTranslate() const;
@@ -487,6 +498,8 @@ namespace sfui
 		{
 			float x = 1.f;
 			float y = 1.f;
+
+			sf::Vector2f toVector2f() const;
 		};
 
 		[[nodiscard]] const Scale& getScale() const;;
@@ -520,6 +533,164 @@ namespace sfui
 		Translate m_translate;
 		Scale m_scale;
 		Rotate m_rotate;
+
+	public:
+		const sf::Vector2f& getCalculatedOriginPixels() const;
+		void setCalculatedOriginPixels(const sf::Vector2f& _pixels);
+		void setCalculatedOriginPixels(float _xPixels, float _yPixels);
+		const sf::Vector2f& getCalculatedTranslatePixels() const;
+		void setCalculatedTranslatePixels(const sf::Vector2f& _pixels);
+		void setCalculatedTranslatePixels(float _xPixels, float _yPixels);
+		const sf::Vector2f& getCalculatedScale() const;
+		void setCalculatedScale(const sf::Vector2f& _scale);
+		void setCalculatedScale(float _xScale, float _yScale);
+		const sf::Angle& getCalculatedRotateAngle() const;
+		void setCalculatedRotateAngle(const sf::Angle& _angle);
+
+		sf::Transform getLocalTransform() const;
+		sf::Transform getWorldTransform(const UIElement* _element) const;
+		
+	private:
+		sf::Vector2f m_calculatedOriginPixels;
+		sf::Vector2f m_calculatedTranslatePixels;
+		sf::Vector2f m_calculatedScale;
+		sf::Angle m_calculatedRotateAngle;
+	};
+
+	class SFUIL_API ImageProperty : public Property
+	{
+	public:
+		enum class Repeat : char
+		{
+			NoRepeat,
+			Repeat
+		};
+
+		[[nodiscard]] Repeat getRepeat() const;
+		void setRepeat(Repeat _repeat);
+
+		enum class Smooth : char
+		{
+			Pixelated,
+			Smooth
+		};
+
+		[[nodiscard]] Smooth getSmooth() const;
+		void setSmooth(Smooth _smooth);
+
+		[[nodiscard]] const char* getImagePath() const;
+		void setImagePath(const char* _imagePath);
+
+		[[nodiscard]] const sf::Color& getTintColor() const;
+		void setTintColor(const sf::Color& _color);
+		void setTintColor(std::uint8_t _r, std::uint8_t _g, std::uint8_t _b, std::uint8_t _a = 255);
+
+		[[nodiscard]] const sf::Image& getImage() const;
+		bool loadImage();
+
+		enum class SizeType : char
+		{
+			Pixels,
+			Percentage,
+			Cover,
+			Contain
+		};
+
+		struct SizeValue
+		{
+			float value = 100.f;
+			SizeType type = SizeType::Percentage;
+
+			float resolveToPixels(float _relativeTo) const;
+		};
+
+		struct Size
+		{
+			SizeValue width;
+			SizeValue height;
+		};
+
+		[[nodiscard]] const Size& getSize() const;
+		void setSize(const Size& _size);
+		void setWidth(float _value, SizeType _type);
+		void setWidth(float _value);
+		void setHeight(float _value, SizeType _type);
+		void setHeight(float _value);
+
+		enum class PositionXPositionType : char
+		{
+			Left,
+			Center,
+			Right
+		};
+
+		enum class PositionYPositionType : char
+		{
+			Top,
+			Center,
+			Bottom
+		};
+
+		enum class PositionOffsetType : char
+		{
+			Pixels,
+			Percentage
+		};
+
+		struct PositionX
+		{
+			PositionXPositionType position = PositionXPositionType::Left;
+			float offsetValue = 0.f;
+			PositionOffsetType offsetType = PositionOffsetType::Pixels;
+
+			float resolveToPixels(float _relativeTo) const;
+		};
+
+		struct PositionY
+		{
+			PositionYPositionType position = PositionYPositionType::Top;
+			float offsetValue = 0.f;
+			PositionOffsetType offsetType = PositionOffsetType::Pixels;
+
+			float resolveToPixels(float _relativeTo) const;
+		};
+
+		[[nodiscard]] const PositionX& getPositionX() const;
+		void setPositionX(const PositionX& _positionX);
+		void setPositionX(PositionXPositionType _position, float _offsetValue, PositionOffsetType _offsetType);
+		void setPositionX(PositionXPositionType _position, float _offsetValue);
+		void setPositionX(float _offsetValue, PositionOffsetType _offsetType);
+		void setPositionX(float _offsetValue);
+		void setPositionX(PositionXPositionType _position);
+
+		[[nodiscard]] const PositionY& getPositionY() const;
+		void setPositionY(const PositionY& _positionY);
+		void setPositionY(PositionYPositionType _position, float _offsetValue, PositionOffsetType _offsetType);
+		void setPositionY(PositionYPositionType _position, float _offsetValue);
+		void setPositionY(float _offsetValue, PositionOffsetType _offsetType);
+		void setPositionY(float _offsetValue);
+		void setPositionY(PositionYPositionType _position);
+
+		enum class ScaleMode : char
+		{
+			StretchToFill,
+			ScaleAndCrop,
+			ScaleToFit
+		};
+
+		[[nodiscard]] ScaleMode getScaleMode() const;
+		void setScaleMode(ScaleMode _mode);
+
+	private:
+		const char* m_imagePath = nullptr;
+		sf::Image m_image;
+		sf::Color m_tintColor = sf::Color::White;
+		Repeat m_repeat = Repeat::NoRepeat;
+		Smooth m_smooth = Smooth::Pixelated;
+		Size m_size;
+		PositionX m_positionX;
+		PositionY m_positionY;
+		ScaleMode m_scaleMode = ScaleMode::StretchToFill;
 	};
 
 	class SFUIL_API UIPropUtils

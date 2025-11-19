@@ -54,8 +54,8 @@ namespace sfui
 				point.y = m_size.y - finalRadius;
 				angle += 90;
 			}
-			point.x += cosf(angle * M_PI / 180) * finalRadius;
-			point.y += sinf(angle * M_PI / 180) * finalRadius;
+			point.x += cosf(angle * static_cast<float>(M_PI) / 180) * finalRadius;
+			point.y += sinf(angle * static_cast<float>(M_PI) / 180) * finalRadius;
 			return point;
 		}
 	}

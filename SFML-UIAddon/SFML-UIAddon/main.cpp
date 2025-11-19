@@ -3,6 +3,7 @@
 #include <SFUIL/Containers/UIVisualContainer.hpp>
 #include <SFUIL/Graphics/RoundedRectangle.hpp>
 #include <SFUIL/System/UIElementProperty.hpp>
+#include <SFUIL/Containers/UIImage.hpp>
 
 #include <iostream>
 
@@ -26,9 +27,16 @@ int main()
 	container1->getProperty<sfui::BackgroundProperty>().setColor(255ui8, 0ui8, 0ui8, 127ui8); // Semi-transparent red
 	container3->getProperty<sfui::BackgroundProperty>().setColor(0ui8, 0ui8, 255ui8, 127ui8); // Semi-transparent blue
 	container4->getProperty<sfui::BackgroundProperty>().setColor(0ui8, 255ui8, 0ui8, 127ui8); // Semi-transparent green
+	container1->getProperty<sfui::FlexProperty>().setFlexDirection(sfui::FlexProperty::Direction::Row);
 	container2->getProperty<sfui::FlexProperty>().setFlexDirection(sfui::FlexProperty::Direction::Row);
 	container1->getProperty<sfui::TransformProperty>().setOriginX(50.f, sfui::TransformProperty::OriginType::Percentage);
 	container1->getProperty<sfui::TransformProperty>().setOriginY(100.f, sfui::TransformProperty::OriginType::Percentage);
+	container2->getProperty<sfui::TransformProperty>().setOriginX(50.f, sfui::TransformProperty::OriginType::Percentage);
+	container2->getProperty<sfui::TransformProperty>().setOriginY(50.f, sfui::TransformProperty::OriginType::Percentage);
+	container3->getProperty<sfui::TransformProperty>().setOriginX(0.f, sfui::TransformProperty::OriginType::Percentage);
+	container3->getProperty<sfui::TransformProperty>().setOriginY(100.f, sfui::TransformProperty::OriginType::Percentage);
+	container4->getProperty<sfui::TransformProperty>().setOriginX(50.f, sfui::TransformProperty::OriginType::Percentage);
+	container4->getProperty<sfui::TransformProperty>().setOriginY(0.f, sfui::TransformProperty::OriginType::Percentage);
 	container1->getProperty<sfui::BorderProperty>().setRadius(20.f);
 	container1->getProperty<sfui::BorderProperty>().setWidth(5.f);
 	container1->getProperty<sfui::BorderProperty>().setColor(255ui8, 0ui8, 0ui8, 191ui8);
@@ -37,7 +45,18 @@ int main()
 	container2->addChild(container3);
 	container2->addChild(container4);
 
+	sfui::UIImage* img1 = new sfui::UIImage("Image1");
+	sfui::ImageProperty& imgProp = img1->getProperty<sfui::ImageProperty>();
+	imgProp.setImagePath("kirbo_sunset_wallpaper.png");
+	imgProp.loadImage();
+	imgProp.setScaleMode(sfui::ImageProperty::ScaleMode::ScaleToFit);
+	imgProp.setSmooth(sfui::ImageProperty::Smooth::Smooth);
+	img1->getProperty<sfui::TransformProperty>().setOriginX(50.f, sfui::TransformProperty::OriginType::Percentage);
+	img1->getProperty<sfui::TransformProperty>().setOriginY(50.f, sfui::TransformProperty::OriginType::Percentage);
+	container1->addChild(img1);
+
 	bool rotating = false;
+	float rotationSpeed = 0.5f; // degrees per frame
 
 	while (window.isOpen())
 	{
@@ -58,24 +77,28 @@ int main()
 				if (key == sf::Keyboard::Key::R)
 				{
 					rotating = !rotating;
-					if (!rotating)
-					{
-						if (sfui::UIVisualContainer* c = panel.getRootElement()->query<sfui::UIVisualContainer>("Container 1"))
-						{
-							const sfui::TransformProperty& transform = c->getConstProperty<sfui::TransformProperty>();
-							std::cout << "Stopped rotating. Final angle: " << transform.getRotate().value << " degrees." << std::endl;
-						}
-					}
 				}
 			}
 		}
 
 		if (rotating)
 		{
-			if (sfui::UIVisualContainer* c = panel.getRootElement()->query<sfui::UIVisualContainer>("Container 1"))
+			bool single = false;
+			if (single)
 			{
-				sfui::TransformProperty& transform = c->getProperty<sfui::TransformProperty>();
-				transform.setRotate(transform.getRotate().value + 15.f);
+				if (sfui::UIVisualContainer* c = panel.getRootElement()->query<sfui::UIVisualContainer>("Container 2"))
+				{
+					sfui::TransformProperty& transform = c->getProperty<sfui::TransformProperty>();
+					transform.setRotate(transform.getRotate().value + rotationSpeed);
+				}
+			}
+			else
+			{
+				for (sfui::UIVisualContainer* c : panel.getRootElement()->queryAll<sfui::UIVisualContainer>())
+				{
+					sfui::TransformProperty& transform = c->getProperty<sfui::TransformProperty>();
+					transform.setRotate(transform.getRotate().value + rotationSpeed);
+				}
 			}
 		}
 
