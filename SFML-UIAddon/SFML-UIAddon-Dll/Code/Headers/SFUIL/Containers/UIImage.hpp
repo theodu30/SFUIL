@@ -52,5 +52,9 @@ namespace sfui
 		ImageProperty m_image;
 
 		void renderImage(sf::RenderTexture& _texture, sf::Vector2f _targetSize);
+
+		sf::Vector2f m_imgRenderSize;
+		sf::Vector2f m_imgRenderPosition;
+		sf::Vector2f m_imgScaleFactors;
 	};
 }

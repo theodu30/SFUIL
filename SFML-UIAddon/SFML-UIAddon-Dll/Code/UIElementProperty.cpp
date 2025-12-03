@@ -971,6 +971,19 @@ namespace sfui
 		}
 	}
 
+	void UIPropUtils::applyWorldTransform(sf::Transformable& _transformable, const sf::Transform& _transform)
+	{
+		_transformable.setPosition(_transform.transformPoint({ 0.f, 0.f }));
+
+		const float* m = _transform.getMatrix();
+		float angleRad = std::atan2(m[1], m[0]);
+		_transformable.setRotation(sf::radians(angleRad));
+
+		float scaleX = std::sqrt(m[0] * m[0] + m[1] * m[1]);
+		float scaleY = std::sqrt(m[4] * m[4] + m[5] * m[5]);
+		_transformable.setScale({ scaleX, scaleY });
+	}
+
 	ImageProperty::Repeat ImageProperty::getRepeat() const
 	{
 		return m_repeat;
@@ -1041,10 +1054,6 @@ namespace sfui
 			return value;
 		case SizeType::Percentage:
 			return (value / 100.f) * _relativeTo;
-		case SizeType::Cover:
-			return _relativeTo;
-		case SizeType::Contain:
-			return _relativeTo;
 		default:
 			return 0.f;
 		}
@@ -1082,20 +1091,20 @@ namespace sfui
 		m_size.height.value = _value;
 	}
 
-	float ImageProperty::PositionX::resolveToPixels(float _relativeTo) const
+	float ImageProperty::PositionX::resolveToPixels(float _relativeSize, float _relativeTo) const
 	{
 		if (position == PositionXPositionType::Center)
 		{
-			return (_relativeTo / 2.f);
+			return (_relativeTo / 2.f) - (_relativeSize / 2.f);
 		}
 		else if (position == PositionXPositionType::Right)
 		{
 			switch (offsetType)
 			{
 			case PositionOffsetType::Pixels:
-				return - offsetValue;
+				return _relativeTo - _relativeSize - offsetValue;
 			case PositionOffsetType::Percentage:
-				return - ((offsetValue / 100.f) * _relativeTo);
+				return _relativeTo - _relativeSize - ((offsetValue / 100.f) * _relativeTo);
 			default:
 				return 0.f;
 			}
@@ -1114,22 +1123,22 @@ namespace sfui
 		}
 	}
 
-	float ImageProperty::PositionY::resolveToPixels(float _relativeTo) const
+	float ImageProperty::PositionY::resolveToPixels(float _relativeSize, float _relativeTo) const
 	{
 		if (position == PositionYPositionType::Center)
 		{
-			return (_relativeTo / 2.f);
+			return (_relativeTo / 2.f) - (_relativeSize / 2.f);
 		}
 		else if (position == PositionYPositionType::Bottom)
 		{
 			switch (offsetType)
 			{
 			case PositionOffsetType::Pixels:
-				return _relativeTo - offsetValue;
+				return _relativeTo - _relativeSize - offsetValue;
 			case PositionOffsetType::Percentage:
-				return _relativeTo - ((offsetValue / 100.f) * _relativeTo);
+				return _relativeTo - _relativeSize - ((offsetValue / 100.f) * _relativeTo);
 			default:
-				return _relativeTo;
+				return 0.f;
 			}
 		}
 		else // Top

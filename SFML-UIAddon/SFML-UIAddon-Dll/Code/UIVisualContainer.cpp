@@ -128,6 +128,10 @@ namespace sfui
 				float totalBasic = 0.f;
 				for (const auto& sibling : m_parent->getChildren())
 				{
+					if (UIPropUtils::isPositionAbsolute(sibling->getConstProperty<PositionProperty>()))
+					{
+						continue;
+					}
 					const FlexProperty& siblingFlex = sibling->getConstProperty<FlexProperty>();
 					totalFlexGrow += siblingFlex.getFlexGrow();
 
@@ -164,6 +168,10 @@ namespace sfui
 				float totalBasic = 0.f;
 				for (const auto& sibling : m_parent->getChildren())
 				{
+					if (UIPropUtils::isPositionAbsolute(sibling->getConstProperty<PositionProperty>()))
+					{
+						continue;
+					}
 					const FlexProperty& siblingFlex = sibling->getConstProperty<FlexProperty>();
 					totalFlexGrow += siblingFlex.getFlexGrow();
 
@@ -203,21 +211,25 @@ namespace sfui
 		maxSize.y = static_cast<unsigned int>(maxProp.height.resolveToPixels(static_cast<float>(_parentSize.y)));
 	}
 
-	void UIVisualContainer::calculateContentSize(sf::Vector2u& contentSize) const
+	void UIVisualContainer::calculateContentSize(sf::Vector2u& _contentSize) const
 	{
 		if (m_children.empty())
 		{
-			contentSize = sf::Vector2u(0u, 0u);
+			_contentSize = sf::Vector2u(0u, 0u);
 			return;
 		}
 		else
 		{
 			for (const auto& child : m_children)
 			{
+				if (UIPropUtils::isPositionAbsolute(child->getConstProperty<PositionProperty>()))
+				{
+					continue;
+				}
 				sf::Vector2u childSize;
-				child->as<UIVisualContainer>()->calculateContentSize(childSize);
-				contentSize.x += childSize.x;
-				contentSize.y += childSize.y;
+				child->calculateContentSize(childSize);
+				_contentSize.x += childSize.x;
+				_contentSize.y += childSize.y;
 			}
 		}
 

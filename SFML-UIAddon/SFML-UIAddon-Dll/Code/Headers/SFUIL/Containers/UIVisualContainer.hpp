@@ -16,6 +16,8 @@ namespace sfui
 
 		void drawToTarget(sf::RenderTexture& _target) override;
 
+		virtual void calculateContentSize(sf::Vector2u& _contentSize) const;
+
 	protected:
 		void reRenderIfDirty(sf::RenderTexture& _texture) override;
 
@@ -29,8 +31,6 @@ namespace sfui
 		void calculateNewSizeInRelative(sf::Vector2u& newSize, const sf::Vector2u& _parentSize, const FlexProperty& _parentFlex);
 
 		void calculateFinalMinMaxSizes(sf::Vector2u& minSize, sf::Vector2u& maxSize, const sf::Vector2u& _parentSize, const FlexProperty& _parentFlex) const;
-
-		void calculateContentSize(sf::Vector2u& contentSize) const;
 
 		float resolveFinalBasicWidth(const UIVisualContainer& _child, const float& _parentWidth) const;
 

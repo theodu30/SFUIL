@@ -243,6 +243,8 @@ namespace sfui
 			return results;
 		}
 
+		virtual void calculateContentSize(sf::Vector2u& _contentSize) const = 0;
+
 	protected:
 		const char* m_name = "UIElement";
 		std::vector<UIElement*> m_children;

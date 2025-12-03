@@ -33,31 +33,31 @@ namespace sfui
 
 	bool UIElement::removeFromParent()
 	{
-		if (m_parent == nullptr)
+		if (m_parent)
 		{
-			return false;
-		}
-		auto& siblings = m_parent->m_children;
-		auto it = std::find(siblings.begin(), siblings.end(), this);
-		if (it != siblings.end())
-		{
-			siblings.erase(it);
-			m_parent = nullptr;
-			return true;
+			auto& siblings = m_parent->m_children;
+			auto it = std::find(siblings.begin(), siblings.end(), this);
+			if (it != siblings.end())
+			{
+				siblings.erase(it);
+				m_parent = nullptr;
+				return true;
+			}
 		}
 		return false;
 	}
 
 	bool UIElement::removeFromHierarchy()
 	{
-		removeFromParent();
-		for (UIElement* child : m_children)
+		// Remove from parent first if exists
+		if (m_parent)
 		{
-			if (child != nullptr)
-			{
-				child->removeFromHierarchy();
-				delete child;
-			}
+			m_parent->removeFromParent();
+		}
+		// Recursively remove all children
+		for (auto& child : m_children)
+		{
+			child->removeFromHierarchy();
 		}
 		m_children.clear();
 		return true;
@@ -127,16 +127,28 @@ namespace sfui
 				const FlexProperty& parentFlex = m_parent->getConstProperty<FlexProperty>();
 
 				size_t siblingCount = m_parent->getChildCount();
+				size_t trueSiblingCount = siblingCount;
 
 				size_t siblingIndex = 0;
+				size_t offsetIndex = 0;
 				for (size_t i = 0; i < siblingCount; ++i)
 				{
 					if (m_parent->getChildren()[i] == this)
 					{
-						siblingIndex = i;
-						break;
+						siblingIndex = i - offsetIndex;
+					}
+					else if (m_parent->getChildren()[i]->getConstProperty<DisplayProperty>().getDisplay() == DisplayProperty::Type::None)
+					{
+						--trueSiblingCount;
+						++offsetIndex;
+					}
+					else if (UIPropUtils::isPositionAbsolute(m_parent->getChildren()[i]->getConstProperty<PositionProperty>()))
+					{
+						--trueSiblingCount;
+						++offsetIndex;
 					}
 				}
+				siblingCount = trueSiblingCount;
 
 				if (UIPropUtils::isFlexDirectionRowType(parentFlex))
 				{
@@ -176,19 +188,8 @@ namespace sfui
 		// Compute transformations based on current bounds
 		computeTransformations(_sprite.getGlobalBounds());
 
-		sf::Transform world = UIPropUtils::isPositionRelative(m_position)
-			? m_transform.getWorldTransform(this)
-			: m_transform.getLocalTransform();
-
-		_sprite.setPosition(world.transformPoint({ 0.f, 0.f }));
-
-		const float* m = world.getMatrix();
-		float angleRad = std::atan2(m[1], m[0]);
-		_sprite.setRotation(sf::radians(angleRad));
-
-		float scaleX = std::sqrt(m[0] * m[0] + m[1] * m[1]);
-		float scaleY = std::sqrt(m[4] * m[4] + m[5] * m[5]);
-		_sprite.setScale({ scaleX, scaleY });
+		// Apply world transform
+		UIPropUtils::applyWorldTransform(_sprite, m_transform.getWorldTransform(this));
 	}
 
 	void UIElement::applyTransformations(const sf::Vector2f& _targetSize, sf::Shape& _shape)
@@ -196,19 +197,8 @@ namespace sfui
 		// Compute transformations based on current bounds
 		computeTransformations(_shape.getGlobalBounds());
 
-		sf::Transform world = UIPropUtils::isPositionRelative(m_position)
-			? m_transform.getWorldTransform(this)
-			: m_transform.getLocalTransform();
-
-		_shape.setPosition(world.transformPoint({ 0.f, 0.f }));
-
-		const float* m = world.getMatrix();
-		float angleRad = std::atan2(m[1], m[0]);
-		_shape.setRotation(sf::radians(angleRad));
-
-		float scaleX = std::sqrt(m[0] * m[0] + m[1] * m[1]);
-		float scaleY = std::sqrt(m[4] * m[4] + m[5] * m[5]);
-		_shape.setScale({ scaleX, scaleY });
+		// Apply world transform
+		UIPropUtils::applyWorldTransform(_shape, m_transform.getWorldTransform(this));
 	}
 
 	void UIElement::drawBackground(sf::RenderTexture& _target, const sf::Vector2f& _targetSize)
@@ -220,7 +210,7 @@ namespace sfui
 			sf::RectangleShape backgroundShape;
 			backgroundShape.setSize(m_renderSize);
 			backgroundShape.setFillColor(m_background.getColor());
-			backgroundShape.setOutlineThickness(m_border.getWidth());
+			backgroundShape.setOutlineThickness(-std::fabs(m_border.getWidth()));
 			backgroundShape.setOutlineColor(m_border.getColor());
 
 			computePosition(_targetSize, backgroundShape.getGlobalBounds());
@@ -233,14 +223,13 @@ namespace sfui
 			RoundedRectangle backgroundShape;
 			backgroundShape.setSize(m_renderSize);
 			backgroundShape.setFillColor(m_background.getColor());
-			backgroundShape.setOutlineThickness(-m_border.getWidth());
+			backgroundShape.setOutlineThickness(-std::fabs(m_border.getWidth()));
 			backgroundShape.setOutlineColor(m_border.getColor());
 			backgroundShape.setRadius(m_border.getRadius());
 			backgroundShape.setPointsPerCorner(pointsPerCorner);
 
 			computePosition(_targetSize, backgroundShape.getGlobalBounds());
 			applyTransformations(_targetSize, backgroundShape);
-			backgroundShape.move(m_renderPosition);
 
 			_target.draw(backgroundShape);
 		}

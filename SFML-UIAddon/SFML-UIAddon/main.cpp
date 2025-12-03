@@ -42,27 +42,38 @@ int main()
 	container1->getProperty<sfui::BorderProperty>().setColor(255ui8, 0ui8, 0ui8, 191ui8);
 	panel.getRootElement()->addChild(container1);
 	panel.getRootElement()->addChild(container2);
-	container2->addChild(container3);
-	container2->addChild(container4);
 
 	sfui::UIImage* img1 = new sfui::UIImage("Image1");
 	sfui::ImageProperty& imgProp = img1->getProperty<sfui::ImageProperty>();
+	img1->getProperty<sfui::BackgroundProperty>().setColor(255ui8, 255ui8, 255ui8, 127ui8); // Semi-transparent white
+	img1->getProperty<sfui::BorderProperty>().setRadius(10.f);
+	img1->getProperty<sfui::BorderProperty>().setWidth(3.f);
+	img1->getProperty<sfui::BorderProperty>().setColor(255ui8, 255ui8, 255ui8, 255ui8);
 	imgProp.setImagePath("kirbo_sunset_wallpaper.png");
+	//imgProp.setImagePath("circle.png");
 	imgProp.loadImage();
-	imgProp.setScaleMode(sfui::ImageProperty::ScaleMode::StretchToFill);
+	imgProp.setWidth(100.f, sfui::ImageProperty::SizeType::Percentage);
+	imgProp.setHeight(100.f, sfui::ImageProperty::SizeType::Percentage);
+	imgProp.setScaleMode(sfui::ImageProperty::ScaleMode::ScaleToFit);
 	imgProp.setSmooth(sfui::ImageProperty::Smooth::Smooth);
-	imgProp.setPositionX(sfui::ImageProperty::PositionXPositionType::Right);
-	imgProp.setPositionY(sfui::ImageProperty::PositionYPositionType::Bottom);
+	imgProp.setPositionX(sfui::ImageProperty::PositionXPositionType::Center, 0.f);
+	imgProp.setPositionY(sfui::ImageProperty::PositionYPositionType::Bottom, 100.f, sfui::ImageProperty::PositionOffsetType::Percentage);
 	img1->getProperty<sfui::TransformProperty>().setOriginX(50.f, sfui::TransformProperty::OriginType::Percentage);
 	img1->getProperty<sfui::TransformProperty>().setOriginY(50.f, sfui::TransformProperty::OriginType::Percentage);
-	img1->getProperty<sfui::PositionProperty>().setMode(sfui::PositionProperty::Mode::Absolute);
-	container1->addChild(img1);
+	img1->getProperty<sfui::PositionProperty>().setMode(sfui::PositionProperty::Mode::Relative);
+	container2->addChild(container3);
+	container2->addChild(img1);
+	container2->addChild(container4);
 
 	bool rotating = false;
-	float rotationSpeed = 0.5f; // degrees per frame
+	float rotationSpeed = 50.f; // degrees per frame
+
+	sf::Clock frameClock;
 
 	while (window.isOpen())
 	{
+		float dt = frameClock.restart().asSeconds();
+
 		while (const std::optional event = window.pollEvent())
 		{
 			if (event->is<sf::Event::Closed>())
@@ -89,10 +100,10 @@ int main()
 			bool single = true;
 			if (single)
 			{
-				if (sfui::UIVisualContainer* c = panel.getRootElement()->query<sfui::UIVisualContainer>("Container 1"))
+				if (sfui::UIVisualContainer* c = panel.getRootElement()->query<sfui::UIVisualContainer>("Container 2"))
 				{
 					sfui::TransformProperty& transform = c->getProperty<sfui::TransformProperty>();
-					transform.setRotate(transform.getRotate().value + rotationSpeed);
+					transform.setRotate(transform.getRotate().value + rotationSpeed * dt);
 				}
 			}
 			else
@@ -100,7 +111,7 @@ int main()
 				for (sfui::UIVisualContainer* c : panel.getRootElement()->queryAll<sfui::UIVisualContainer>())
 				{
 					sfui::TransformProperty& transform = c->getProperty<sfui::TransformProperty>();
-					transform.setRotate(transform.getRotate().value + rotationSpeed);
+					transform.setRotate(transform.getRotate().value + rotationSpeed * dt);
 				}
 			}
 		}

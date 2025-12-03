@@ -4,6 +4,7 @@
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/Image.hpp>
 #include <SFML/Graphics/Transform.hpp>
+#include <SFML/Graphics/Transformable.hpp>
 
 namespace sfui
 {
@@ -591,9 +592,7 @@ namespace sfui
 		enum class SizeType : char
 		{
 			Pixels,
-			Percentage,
-			Cover,
-			Contain
+			Percentage
 		};
 
 		struct SizeValue
@@ -643,7 +642,7 @@ namespace sfui
 			float offsetValue = 0.f;
 			PositionOffsetType offsetType = PositionOffsetType::Pixels;
 
-			float resolveToPixels(float _relativeTo) const;
+			float resolveToPixels(float _relativeSize, float _relativeTo) const;
 		};
 
 		struct PositionY
@@ -652,7 +651,7 @@ namespace sfui
 			float offsetValue = 0.f;
 			PositionOffsetType offsetType = PositionOffsetType::Pixels;
 
-			float resolveToPixels(float _relativeTo) const;
+			float resolveToPixels(float _relativeSize, float _relativeTo) const;
 		};
 
 		[[nodiscard]] const PositionX& getPositionX() const;
@@ -717,5 +716,7 @@ namespace sfui
 		static float calculateJustifyContentOffset(const AlignProperty& _justifyContent, size_t _siblingIndex, size_t _siblingCount, float _elementSize, float _parentSize);
 
 		static float calculateAlignItemsOffset(const AlignProperty& _alignItems, float _elementSize, float _parentSize);
+
+		static void applyWorldTransform(sf::Transformable& _transformable, const sf::Transform& _transform);
 	};
 }
