@@ -67,8 +67,8 @@ namespace sfui
 			sf::Sprite sprite(texture);
 			sprite.setColor(m_image.getTintColor());
 
-			float posX = m_image.getPositionX().resolveToPixels(imageWidth);
-			float posY = m_image.getPositionY().resolveToPixels(imageHeight);
+			float posX = m_image.getPositionX().resolveToPixels(m_renderSize.x);
+			float posY = m_image.getPositionY().resolveToPixels(m_renderSize.y);
 			
 			sf::Vector2f renderPos = getRenderPosition() + sf::Vector2f(posX, posY);
 			
@@ -98,9 +98,13 @@ namespace sfui
 			sf::Transform local;
 
 			local.translate(renderPos);
+			local.translate(sf::Vector2f(posX, posY));
 			local.scale(renderScale);
+			local.translate(-sf::Vector2f(posX, posY));
 
-			sf::Transform world = getConstProperty<TransformProperty>().getWorldTransform(this);
+			sf::Transform world = UIPropUtils::isPositionRelative(m_position)
+				? m_transform.getWorldTransform(this)
+				: m_transform.getLocalTransform();
 
 			local = world * local;
 

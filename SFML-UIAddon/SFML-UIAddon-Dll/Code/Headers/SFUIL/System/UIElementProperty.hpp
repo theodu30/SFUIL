@@ -639,7 +639,7 @@ namespace sfui
 
 		struct PositionX
 		{
-			PositionXPositionType position = PositionXPositionType::Left;
+			PositionXPositionType position = PositionXPositionType::Center;
 			float offsetValue = 0.f;
 			PositionOffsetType offsetType = PositionOffsetType::Pixels;
 
@@ -648,7 +648,7 @@ namespace sfui
 
 		struct PositionY
 		{
-			PositionYPositionType position = PositionYPositionType::Top;
+			PositionYPositionType position = PositionYPositionType::Center;
 			float offsetValue = 0.f;
 			PositionOffsetType offsetType = PositionOffsetType::Pixels;
 

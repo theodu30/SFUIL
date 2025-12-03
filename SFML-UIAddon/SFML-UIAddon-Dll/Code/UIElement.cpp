@@ -176,7 +176,9 @@ namespace sfui
 		// Compute transformations based on current bounds
 		computeTransformations(_sprite.getGlobalBounds());
 
-		sf::Transform world = m_transform.getWorldTransform(this);
+		sf::Transform world = UIPropUtils::isPositionRelative(m_position)
+			? m_transform.getWorldTransform(this)
+			: m_transform.getLocalTransform();
 
 		_sprite.setPosition(world.transformPoint({ 0.f, 0.f }));
 
@@ -194,7 +196,9 @@ namespace sfui
 		// Compute transformations based on current bounds
 		computeTransformations(_shape.getGlobalBounds());
 
-		sf::Transform world = m_transform.getWorldTransform(this);
+		sf::Transform world = UIPropUtils::isPositionRelative(m_position)
+			? m_transform.getWorldTransform(this)
+			: m_transform.getLocalTransform();
 
 		_shape.setPosition(world.transformPoint({ 0.f, 0.f }));
 

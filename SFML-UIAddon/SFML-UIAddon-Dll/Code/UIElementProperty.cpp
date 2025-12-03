@@ -1086,18 +1086,18 @@ namespace sfui
 	{
 		if (position == PositionXPositionType::Center)
 		{
-			return (_relativeTo / 2.f) + resolveToPixels(_relativeTo);
+			return (_relativeTo / 2.f);
 		}
 		else if (position == PositionXPositionType::Right)
 		{
 			switch (offsetType)
 			{
 			case PositionOffsetType::Pixels:
-				return _relativeTo - offsetValue;
+				return - offsetValue;
 			case PositionOffsetType::Percentage:
-				return _relativeTo - ((offsetValue / 100.f) * _relativeTo);
+				return - ((offsetValue / 100.f) * _relativeTo);
 			default:
-				return _relativeTo;
+				return 0.f;
 			}
 		}
 		else // Left
@@ -1118,7 +1118,7 @@ namespace sfui
 	{
 		if (position == PositionYPositionType::Center)
 		{
-			return (_relativeTo / 2.f) + resolveToPixels(_relativeTo);
+			return (_relativeTo / 2.f);
 		}
 		else if (position == PositionYPositionType::Bottom)
 		{

@@ -49,10 +49,13 @@ int main()
 	sfui::ImageProperty& imgProp = img1->getProperty<sfui::ImageProperty>();
 	imgProp.setImagePath("kirbo_sunset_wallpaper.png");
 	imgProp.loadImage();
-	imgProp.setScaleMode(sfui::ImageProperty::ScaleMode::ScaleToFit);
+	imgProp.setScaleMode(sfui::ImageProperty::ScaleMode::StretchToFill);
 	imgProp.setSmooth(sfui::ImageProperty::Smooth::Smooth);
+	imgProp.setPositionX(sfui::ImageProperty::PositionXPositionType::Right);
+	imgProp.setPositionY(sfui::ImageProperty::PositionYPositionType::Bottom);
 	img1->getProperty<sfui::TransformProperty>().setOriginX(50.f, sfui::TransformProperty::OriginType::Percentage);
 	img1->getProperty<sfui::TransformProperty>().setOriginY(50.f, sfui::TransformProperty::OriginType::Percentage);
+	img1->getProperty<sfui::PositionProperty>().setMode(sfui::PositionProperty::Mode::Absolute);
 	container1->addChild(img1);
 
 	bool rotating = false;
@@ -83,10 +86,10 @@ int main()
 
 		if (rotating)
 		{
-			bool single = false;
+			bool single = true;
 			if (single)
 			{
-				if (sfui::UIVisualContainer* c = panel.getRootElement()->query<sfui::UIVisualContainer>("Container 2"))
+				if (sfui::UIVisualContainer* c = panel.getRootElement()->query<sfui::UIVisualContainer>("Container 1"))
 				{
 					sfui::TransformProperty& transform = c->getProperty<sfui::TransformProperty>();
 					transform.setRotate(transform.getRotate().value + rotationSpeed);
