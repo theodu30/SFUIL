@@ -18,8 +18,11 @@ namespace sfui
 	public:
 		[[nodiscard]] const float& getOpacity() const;
 		void setOpacity(float _opacity);
+		void resetOpacity();
+
 	private:
 		float m_opacity = 1.f;
+		bool m_opacityDirty = false;
 
 	public: // Utility functions for final computations
 		float resolveFinalOpacity(const UIElement* _element) const;
@@ -36,8 +39,11 @@ namespace sfui
 
 		[[nodiscard]] Type getDisplay() const;
 		void setDisplay(Type _type);
+		void resetDisplay();
+
 	private:
 		Type m_display = Type::Flex;
+		bool m_displayDirty = false;
 	};
 
 	class SFUIL_API VisibilityProperty : public Property
@@ -50,9 +56,11 @@ namespace sfui
 		};
 		[[nodiscard]] Type getVisibility() const;
 		void setVisibility(Type _type);
+		void resetVisibility();
 
 	private:
 		Type m_visibility = Type::Visible;
+		bool m_visibilityDirty = false;
 	};
 
 	class SFUIL_API PositionProperty : public Property
@@ -66,6 +74,7 @@ namespace sfui
 
 		[[nodiscard]] Mode getMode() const;
 		void setMode(Mode _mode);
+		void resetMode();
 
 		enum class ValueType : char
 		{
@@ -86,28 +95,37 @@ namespace sfui
 		void setTop(const Value& _value);
 		void setTop(float _value, ValueType _type);
 		void setTop(float _value);
+		void resetTop();
 
 		[[nodiscard]] const Value& getRight() const;
 		void setRight(const Value& _value);
 		void setRight(float _value, ValueType _type);
 		void setRight(float _value);
+		void resetRight();
 
 		[[nodiscard]] const Value& getBottom() const;
 		void setBottom(const Value& _value);
 		void setBottom(float _value, ValueType _type);
 		void setBottom(float _value);
+		void resetBottom();
 
 		[[nodiscard]] const Value& getLeft() const;
 		void setLeft(const Value& _value);
 		void setLeft(float _value, ValueType _type);
 		void setLeft(float _value);
+		void resetLeft();
 
 	private:
 		Mode m_mode = Mode::Relative;
+		bool m_modeDirty = false;
 		Value m_top;
+		bool m_topDirty = false;
 		Value m_right;
+		bool m_rightDirty = false;
 		Value m_bottom;
+		bool m_bottomDirty = false;
 		Value m_left;
+		bool m_leftDirty = false;
 	};
 
 	class SFUIL_API FlexProperty : public Property
@@ -132,12 +150,15 @@ namespace sfui
 		void setFlexBasic(const Basic& _value);
 		void setFlexBasic(float _value, BasicType _type);
 		void setFlexBasic(float _value);
+		void resetFlexBasic();
 
 		[[nodiscard]] const float& getFlexShrink() const;
 		void setFlexShrink(float _value);
+		void resetFlexShrink();
 
 		[[nodiscard]] const float& getFlexGrow() const;
 		void setFlexGrow(float _value);
+		void resetFlexGrow();
 
 		enum class Direction : char
 		{
@@ -149,6 +170,7 @@ namespace sfui
 
 		[[nodiscard]] Direction getFlexDirection() const;
 		void setFlexDirection(Direction _direction);
+		void resetFlexDirection();
 
 		enum class Warp : char
 		{
@@ -159,13 +181,19 @@ namespace sfui
 
 		[[nodiscard]] Warp getFlexWrap() const;
 		void setFlexWrap(Warp _warp);
+		void resetFlexWrap();
 
 	private:
 		Basic m_flexBasis;
+		bool m_flexBasisDirty = false;
 		float m_flexShrink = 1.f;
+		bool m_flexShrinkDirty = false;
 		float m_flexGrow = 1.f;
+		bool m_flexGrowDirty = false;
 		Direction m_flexDirection = Direction::Column;
+		bool m_flexDirectionDirty = false;
 		Warp m_flexWrap = Warp::NoWrap;
+		bool m_flexWrapDirty = false;
 	};
 
 	class SFUIL_API AlignProperty : public Property
@@ -182,6 +210,7 @@ namespace sfui
 
 		[[nodiscard]] AlignItems getAlignItems() const;
 		void setAlignItems(AlignItems _alignItems);
+		void resetAlignItems();
 
 		enum class JustifyContent : char
 		{
@@ -195,6 +224,7 @@ namespace sfui
 
 		[[nodiscard]] JustifyContent getJustifyContent() const;
 		void setJustifyContent(JustifyContent _justifyContent);
+		void resetJustifyContent();
 
 		enum class AlignSelf : char
 		{
@@ -207,6 +237,7 @@ namespace sfui
 
 		[[nodiscard]] AlignSelf getAlignSelf() const;
 		void setAlignSelf(AlignSelf _alignSelf);
+		void resetAlignSelf();
 
 		enum class AlignContent : char
 		{
@@ -219,12 +250,17 @@ namespace sfui
 
 		[[nodiscard]] AlignContent getAlignContent() const;
 		void setAlignContent(AlignContent _alignContent);
+		void resetAlignContent();
 
 	private:
 		AlignItems m_alignItems = AlignItems::Stretch;
+		bool m_alignItemsDirty = false;
 		JustifyContent m_justifyContent = JustifyContent::FlexStart;
+		bool m_justifyContentDirty = false;
 		AlignSelf m_alignSelf = AlignSelf::Auto;
+		bool m_alignSelfDirty = false;
 		AlignContent m_alignContent = AlignContent::FlexStart;
+		bool m_alignContentDirty = false;
 	};
 
 	class SFUIL_API SizeProperty : public Property
@@ -248,7 +284,9 @@ namespace sfui
 		struct Size
 		{
 			SizeValue width;
+			bool widthDirty = false;
 			SizeValue height;
+			bool heightDirty = false;
 		};
 
 		[[nodiscard]] const Size& getSize() const;
@@ -257,6 +295,9 @@ namespace sfui
 		void setWidth(float _value);
 		void setHeight(float _value, SizeType _type);
 		void setHeight(float _value);
+		void resetSize();
+		void resetWidth();
+		void resetHeight();
 
 		enum class MinSizeType : char
 		{
@@ -276,7 +317,9 @@ namespace sfui
 		struct MinSize
 		{
 			MinSizeValue width;
+			bool widthDirty = false;
 			MinSizeValue height;
+			bool heightDirty = false;
 		};
 
 		[[nodiscard]] const MinSize& getMinSize() const;
@@ -285,6 +328,9 @@ namespace sfui
 		void setMinWidth(float _value);
 		void setMinHeight(float _value, MinSizeType _type);
 		void setMinHeight(float _value);
+		void resetMinSize();
+		void resetMinWidth();
+		void resetMinHeight();
 
 		enum class MaxSizeType : char
 		{
@@ -304,7 +350,9 @@ namespace sfui
 		struct MaxSize
 		{
 			MaxSizeValue width;
+			bool widthDirty = false;
 			MaxSizeValue height;
+			bool heightDirty = false;
 		};
 
 		[[nodiscard]] const MaxSize& getMaxSize() const;
@@ -313,6 +361,9 @@ namespace sfui
 		void setMaxWidth(float _value);
 		void setMaxHeight(float _value, MaxSizeType _type);
 		void setMaxHeight(float _value);
+		void resetMaxSize();
+		void resetMaxWidth();
+		void resetMaxHeight();
 
 	private:
 		Size m_size;
@@ -342,21 +393,25 @@ namespace sfui
 		void setMarginTop(const MarginValue& _value);
 		void setMarginTop(float _value, MarginType _type);
 		void setMarginTop(float _value);
+		void resetMarginTop();
 
 		[[nodiscard]] const MarginValue& getMarginRight() const;
 		void setMarginRight(const MarginValue& _value);
 		void setMarginRight(float _value, MarginType _type);
 		void setMarginRight(float _value);
+		void resetMarginRight();
 
 		[[nodiscard]] const MarginValue& getMarginBottom() const;
 		void setMarginBottom(const MarginValue& _value);
 		void setMarginBottom(float _value, MarginType _type);
 		void setMarginBottom(float _value);
+		void resetMarginBottom();
 
 		[[nodiscard]] const MarginValue& getMarginLeft() const;
 		void setMarginLeft(const MarginValue& _value);
 		void setMarginLeft(float _value, MarginType _type);
 		void setMarginLeft(float _value);
+		void resetMarginLeft();
 
 		enum class PaddingType : char
 		{
@@ -377,31 +432,43 @@ namespace sfui
 		void setPaddingTop(const PaddingValue& _value);
 		void setPaddingTop(float _value, PaddingType _type);
 		void setPaddingTop(float _value);
+		void resetPaddingTop();
 
 		[[nodiscard]] const PaddingValue& getPaddingRight() const;
 		void setPaddingRight(const PaddingValue& _value);
 		void setPaddingRight(float _value, PaddingType _type);
 		void setPaddingRight(float _value);
+		void resetPaddingRight();
 
 		[[nodiscard]] const PaddingValue& getPaddingBottom() const;
 		void setPaddingBottom(const PaddingValue& _value);
 		void setPaddingBottom(float _value, PaddingType _type);
 		void setPaddingBottom(float _value);
+		void resetPaddingBottom();
 
 		[[nodiscard]] const PaddingValue& getPaddingLeft() const;
 		void setPaddingLeft(const PaddingValue& _value);
 		void setPaddingLeft(float _value, PaddingType _type);
 		void setPaddingLeft(float _value);
+		void resetPaddingLeft();
 
 	private:
 		MarginValue m_marginTop;
+		bool m_marginTopDirty = false;
 		MarginValue m_marginRight;
+		bool m_marginRightDirty = false;
 		MarginValue m_marginBottom;
+		bool m_marginBottomDirty = false;
 		MarginValue m_marginLeft;
+		bool m_marginLeftDirty = false;
 		PaddingValue m_paddingTop;
+		bool m_paddingTopDirty = false;
 		PaddingValue m_paddingRight;
+		bool m_paddingRightDirty = false;
 		PaddingValue m_paddingBottom;
+		bool m_paddingBottomDirty = false;
 		PaddingValue m_paddingLeft;
+		bool m_paddingLeftDirty = false;
 	};
 
 	class SFUIL_API BackgroundProperty : public Property
@@ -410,9 +477,11 @@ namespace sfui
 		[[nodiscard]] const sf::Color& getColor() const;
 		void setColor(const sf::Color& _color);
 		void setColor(std::uint8_t _r, std::uint8_t _g, std::uint8_t _b, std::uint8_t _a = 255);
+		void resetColor();
 
 	private:
 		sf::Color m_color = sf::Color::Transparent;
+		bool m_colorDirty = false;
 	};
 
 	class SFUIL_API BorderProperty : public Property
@@ -421,17 +490,23 @@ namespace sfui
 		[[nodiscard]] const sf::Color& getColor() const;
 		void setColor(const sf::Color& _color);
 		void setColor(std::uint8_t _r, std::uint8_t _g, std::uint8_t _b, std::uint8_t _a = 255);
+		void resetColor();
 
 		[[nodiscard]] const float& getWidth() const;
 		void setWidth(float _width);
+		void resetWidth();
 
 		[[nodiscard]] const float& getRadius() const;
 		void setRadius(float _radius);
+		void resetRadius();
 
 	private:
 		sf::Color m_color = sf::Color::Black;
+		bool m_colorDirty = false;
 		float m_width = 0.f;
+		bool m_widthDirty = false;
 		float m_radius = 0.f;
+		bool m_radiusDirty = false;
 	};
 
 	class SFUIL_API TransformProperty : public Property
@@ -454,7 +529,9 @@ namespace sfui
 		struct Origin
 		{
 			OriginValue x;
+			bool xDirty = false;
 			OriginValue y;
+			bool yDirty = false;
 
 			sf::Vector2f toVector2f(float _relativeToX, float _relativeToY) const;
 		};
@@ -465,6 +542,9 @@ namespace sfui
 		void setOriginX(float _value);
 		void setOriginY(float _value, OriginType _type);
 		void setOriginY(float _value);
+		void resetOrigin();
+		void resetOriginX();
+		void resetOriginY();
 
 		enum class TranslateType : char
 		{
@@ -483,7 +563,9 @@ namespace sfui
 		struct Translate
 		{
 			TranslateValue x;
+			bool xDirty = false;
 			TranslateValue y;
+			bool yDirty = false;
 
 			sf::Vector2f toVector2f(float _relativeToX, float _relativeToY) const;
 		};
@@ -494,11 +576,16 @@ namespace sfui
 		void setTranslateX(float _value);
 		void setTranslateY(float _value, TranslateType _type);
 		void setTranslateY(float _value);
+		void resetTranslate();
+		void resetTranslateX();
+		void resetTranslateY();
 
 		struct Scale
 		{
 			float x = 1.f;
+			bool xDirty = false;
 			float y = 1.f;
+			bool yDirty = false;
 
 			sf::Vector2f toVector2f() const;
 		};
@@ -507,6 +594,9 @@ namespace sfui
 		void setScale(const Scale& _scale);
 		void setScaleX(float _value);
 		void setScaleY(float _value);
+		void resetScale();
+		void resetScaleX();
+		void resetScaleY();
 
 		enum class RotateType : char
 		{
@@ -528,12 +618,14 @@ namespace sfui
 		void setRotate(const Rotate& _rotate);
 		void setRotate(float _value, RotateType _type);
 		void setRotate(float _value);
+		void resetRotate();
 
 	private:
 		Origin m_origin;
 		Translate m_translate;
 		Scale m_scale;
 		Rotate m_rotate;
+		bool m_rotateDirty = false;
 
 	public:
 		const sf::Vector2f& getCalculatedOriginPixels() const;
@@ -569,6 +661,7 @@ namespace sfui
 
 		[[nodiscard]] Repeat getRepeat() const;
 		void setRepeat(Repeat _repeat);
+		void resetRepeat();
 
 		enum class Smooth : char
 		{
@@ -578,13 +671,16 @@ namespace sfui
 
 		[[nodiscard]] Smooth getSmooth() const;
 		void setSmooth(Smooth _smooth);
+		void resetSmooth();
 
 		[[nodiscard]] const char* getImagePath() const;
 		void setImagePath(const char* _imagePath);
+		void resetImagePath();
 
 		[[nodiscard]] const sf::Color& getTintColor() const;
 		void setTintColor(const sf::Color& _color);
 		void setTintColor(std::uint8_t _r, std::uint8_t _g, std::uint8_t _b, std::uint8_t _a = 255);
+		void resetTintColor();
 
 		[[nodiscard]] const sf::Image& getImage() const;
 		bool loadImage();
@@ -606,7 +702,9 @@ namespace sfui
 		struct Size
 		{
 			SizeValue width;
+			bool widthDirty = false;
 			SizeValue height;
+			bool heightDirty = false;
 		};
 
 		[[nodiscard]] const Size& getSize() const;
@@ -615,6 +713,9 @@ namespace sfui
 		void setWidth(float _value);
 		void setHeight(float _value, SizeType _type);
 		void setHeight(float _value);
+		void resetSize();
+		void resetWidth();
+		void resetHeight();
 
 		enum class PositionXPositionType : char
 		{
@@ -661,6 +762,7 @@ namespace sfui
 		void setPositionX(float _offsetValue, PositionOffsetType _offsetType);
 		void setPositionX(float _offsetValue);
 		void setPositionX(PositionXPositionType _position);
+		void resetPositionX();
 
 		[[nodiscard]] const PositionY& getPositionY() const;
 		void setPositionY(const PositionY& _positionY);
@@ -669,6 +771,7 @@ namespace sfui
 		void setPositionY(float _offsetValue, PositionOffsetType _offsetType);
 		void setPositionY(float _offsetValue);
 		void setPositionY(PositionYPositionType _position);
+		void resetPositionY();
 
 		enum class ScaleMode : char
 		{
@@ -679,17 +782,25 @@ namespace sfui
 
 		[[nodiscard]] ScaleMode getScaleMode() const;
 		void setScaleMode(ScaleMode _mode);
+		void resetScaleMode();
 
 	private:
 		const char* m_imagePath = nullptr;
+		bool m_imagePathDirty = false;
 		sf::Image m_image;
 		sf::Color m_tintColor = sf::Color::White;
+		bool m_tintColorDirty = false;
 		Repeat m_repeat = Repeat::NoRepeat;
+		bool m_repeatDirty = false;
 		Smooth m_smooth = Smooth::Pixelated;
+		bool m_smoothDirty = false;
 		Size m_size;
 		PositionX m_positionX;
+		bool m_positionXDirty = false;
 		PositionY m_positionY;
+		bool m_positionYDirty = false;
 		ScaleMode m_scaleMode = ScaleMode::StretchToFill;
+		bool m_scaleModeDirty = false;
 	};
 
 	class SFUIL_API UIPropUtils

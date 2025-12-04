@@ -15,6 +15,13 @@ namespace sfui
 	{
 		// Clamp the value between 0.0f and 1.0f
 		m_opacity = UIPropUtils::clampFloat(_opacity, 0.0f, 1.0f);
+		m_opacityDirty = true;
+	}
+
+	void OpacityProperty::resetOpacity()
+	{
+		m_opacity = 1.f;
+		m_opacityDirty = false;
 	}
 
 	float OpacityProperty::resolveFinalOpacity(const UIElement* _element) const
@@ -38,6 +45,13 @@ namespace sfui
 	void DisplayProperty::setDisplay(Type _type)
 	{
 		m_display = _type;
+		m_displayDirty = true;
+	}
+
+	void DisplayProperty::resetDisplay()
+	{
+		m_display = Type::Flex;
+		m_displayDirty = false;
 	}
 
 	VisibilityProperty::Type VisibilityProperty::getVisibility() const
@@ -48,6 +62,13 @@ namespace sfui
 	void VisibilityProperty::setVisibility(Type _type)
 	{
 		m_visibility = _type;
+		m_visibilityDirty = true;
+	}
+
+	void VisibilityProperty::resetVisibility()
+	{
+		m_visibility = Type::Visible;
+		m_visibilityDirty = false;
 	}
 
 	PositionProperty::Mode PositionProperty::getMode() const
@@ -58,6 +79,13 @@ namespace sfui
 	void PositionProperty::setMode(Mode _mode)
 	{
 		m_mode = _mode;
+		m_modeDirty = true;
+	}
+
+	void PositionProperty::resetMode()
+	{
+		m_mode = Mode::Relative;
+		m_modeDirty = false;
 	}
 
 	float PositionProperty::Value::resolveToPixels(float _relativeTo) const
@@ -83,17 +111,26 @@ namespace sfui
 	void PositionProperty::setTop(const Value& _value)
 	{
 		m_top = _value;
+		m_topDirty = true;
 	}
 
 	void PositionProperty::setTop(float _value, ValueType _type)
 	{
 		m_top.value = _value;
 		m_top.type = _type;
+		m_topDirty = true;
 	}
 
 	void PositionProperty::setTop(float _value)
 	{
 		m_top.value = _value;
+		m_topDirty = true;
+	}
+
+	void PositionProperty::resetTop()
+	{
+		m_top = Value();
+		m_topDirty = false;
 	}
 
 	const PositionProperty::Value& PositionProperty::getRight() const
@@ -104,17 +141,26 @@ namespace sfui
 	void PositionProperty::setRight(const Value& _value)
 	{
 		m_right = _value;
+		m_rightDirty = true;
 	}
 
 	void PositionProperty::setRight(float _value, ValueType _type)
 	{
 		m_right.value = _value;
 		m_right.type = _type;
+		m_rightDirty = true;
 	}
 
 	void PositionProperty::setRight(float _value)
 	{
 		m_right.value = _value;
+		m_rightDirty = true;
+	}
+
+	void PositionProperty::resetRight()
+	{
+		m_right = Value();
+		m_rightDirty = false;
 	}
 
 	const PositionProperty::Value& PositionProperty::getBottom() const
@@ -125,17 +171,26 @@ namespace sfui
 	void PositionProperty::setBottom(const Value& _value)
 	{
 		m_bottom = _value;
+		m_bottomDirty = true;
 	}
 
 	void PositionProperty::setBottom(float _value, ValueType _type)
 	{
 		m_bottom.value = _value;
 		m_bottom.type = _type;
+		m_bottomDirty = true;
 	}
 
 	void PositionProperty::setBottom(float _value)
 	{
 		m_bottom.value = _value;
+		m_bottomDirty = true;
+	}
+
+	void PositionProperty::resetBottom()
+	{
+		m_bottom = Value();
+		m_bottomDirty = false;
 	}
 
 	const PositionProperty::Value& PositionProperty::getLeft() const
@@ -146,17 +201,26 @@ namespace sfui
 	void PositionProperty::setLeft(const Value& _value)
 	{
 		m_left = _value;
+		m_leftDirty = true;
 	}
 
 	void PositionProperty::setLeft(float _value, ValueType _type)
 	{
 		m_left.value = _value;
 		m_left.type = _type;
+		m_leftDirty = true;
 	}
 
 	void PositionProperty::setLeft(float _value)
 	{
 		m_left.value = _value;
+		m_leftDirty = true;
+	}
+
+	void PositionProperty::resetLeft()
+	{
+		m_left = Value();
+		m_leftDirty = false;
 	}
 
 	float FlexProperty::Basic::resolveToPixels(float _relativeTo) const
@@ -182,17 +246,26 @@ namespace sfui
 	void FlexProperty::setFlexBasic(const Basic& _value)
 	{
 		m_flexBasis = _value;
+		m_flexBasisDirty = true;
 	}
 
 	void FlexProperty::setFlexBasic(float _value, BasicType _type)
 	{
 		m_flexBasis.value = _value;
 		m_flexBasis.type = _type;
+		m_flexBasisDirty = true;
 	}
 
 	void FlexProperty::setFlexBasic(float _value)
 	{
 		m_flexBasis.value = _value;
+		m_flexBasisDirty = true;
+	}
+
+	void FlexProperty::resetFlexBasic()
+	{
+		m_flexBasis = Basic();
+		m_flexBasisDirty = false;
 	}
 
 	const float& FlexProperty::getFlexShrink() const
@@ -203,6 +276,13 @@ namespace sfui
 	void FlexProperty::setFlexShrink(float _value)
 	{
 		m_flexShrink = _value;
+		m_flexShrinkDirty = true;
+	}
+
+	void FlexProperty::resetFlexShrink()
+	{
+		m_flexShrink = 1.f;
+		m_flexShrinkDirty = false;
 	}
 
 	const float& FlexProperty::getFlexGrow() const
@@ -213,6 +293,13 @@ namespace sfui
 	void FlexProperty::setFlexGrow(float _value)
 	{
 		m_flexGrow = _value;
+		m_flexGrowDirty = true;
+	}
+
+	void FlexProperty::resetFlexGrow()
+	{
+		m_flexGrow = 1.f;
+		m_flexGrowDirty = false;
 	}
 
 	FlexProperty::Direction FlexProperty::getFlexDirection() const
@@ -223,6 +310,13 @@ namespace sfui
 	void FlexProperty::setFlexDirection(Direction _direction)
 	{
 		m_flexDirection = _direction;
+		m_flexDirectionDirty = true;
+	}
+
+	void FlexProperty::resetFlexDirection()
+	{
+		m_flexDirection = Direction::Column;
+		m_flexDirectionDirty = false;
 	}
 
 	FlexProperty::Warp FlexProperty::getFlexWrap() const
@@ -233,6 +327,13 @@ namespace sfui
 	void FlexProperty::setFlexWrap(Warp _warp)
 	{
 		m_flexWrap = _warp;
+		m_flexWrapDirty = true;
+	}
+
+	void FlexProperty::resetFlexWrap()
+	{
+		m_flexWrap = Warp::NoWrap;
+		m_flexWrapDirty = false;
 	}
 
 	AlignProperty::AlignItems AlignProperty::getAlignItems() const
@@ -243,6 +344,13 @@ namespace sfui
 	void AlignProperty::setAlignItems(AlignItems _alignItems)
 	{
 		m_alignItems = _alignItems;
+		m_alignItemsDirty = true;
+	}
+
+	void AlignProperty::resetAlignItems()
+	{
+		m_alignItems = AlignItems::Stretch;
+		m_alignItemsDirty = false;
 	}
 
 	AlignProperty::JustifyContent AlignProperty::getJustifyContent() const
@@ -253,6 +361,13 @@ namespace sfui
 	void AlignProperty::setJustifyContent(JustifyContent _justifyContent)
 	{
 		m_justifyContent = _justifyContent;
+		m_justifyContentDirty = true;
+	}
+
+	void AlignProperty::resetJustifyContent()
+	{
+		m_justifyContent = JustifyContent::FlexStart;
+		m_justifyContentDirty = false;
 	}
 
 	AlignProperty::AlignSelf AlignProperty::getAlignSelf() const
@@ -263,6 +378,13 @@ namespace sfui
 	void AlignProperty::setAlignSelf(AlignSelf _alignSelf)
 	{
 		m_alignSelf = _alignSelf;
+		m_alignSelfDirty = true;
+	}
+
+	void AlignProperty::resetAlignSelf()
+	{
+		m_alignSelf = AlignSelf::Auto;
+		m_alignSelfDirty = false;
 	}
 
 	AlignProperty::AlignContent AlignProperty::getAlignContent() const
@@ -273,6 +395,13 @@ namespace sfui
 	void AlignProperty::setAlignContent(AlignContent _alignContent)
 	{
 		m_alignContent = _alignContent;
+		m_alignContentDirty = true;
+	}
+
+	void AlignProperty::resetAlignContent()
+	{
+		m_alignContent = AlignContent::FlexStart;
+		m_alignContentDirty = false;
 	}
 
 	float SizeProperty::SizeValue::resolveToPixels(float _relativeTo) const
@@ -298,28 +427,53 @@ namespace sfui
 	void SizeProperty::setSize(const Size& _size)
 	{
 		m_size = _size;
+		m_size.widthDirty = true;
+		m_size.heightDirty = true;
 	}
 
 	void SizeProperty::setWidth(float _value, SizeType _type)
 	{
 		m_size.width.value = _value;
 		m_size.width.type = _type;
+		m_size.widthDirty = true;
 	}
 
 	void SizeProperty::setWidth(float _value)
 	{
 		m_size.width.value = _value;
+		m_size.widthDirty = true;
 	}
 
 	void SizeProperty::setHeight(float _value, SizeType _type)
 	{
 		m_size.height.value = _value;
 		m_size.height.type = _type;
+		m_size.heightDirty = true;
 	}
 
 	void SizeProperty::setHeight(float _value)
 	{
 		m_size.height.value = _value;
+		m_size.heightDirty = true;
+	}
+
+	void SizeProperty::resetSize()
+	{
+		m_size = Size();
+		m_size.widthDirty = false;
+		m_size.heightDirty = false;
+	}
+
+	void SizeProperty::resetWidth()
+	{
+		m_size.width = SizeValue();
+		m_size.widthDirty = false;
+	}
+
+	void SizeProperty::resetHeight()
+	{
+		m_size.height = SizeValue();
+		m_size.heightDirty = false;
 	}
 
 	float SizeProperty::MinSizeValue::resolveToPixels(float _relativeTo) const
@@ -345,28 +499,53 @@ namespace sfui
 	void SizeProperty::setMinSize(const MinSize& _minSize)
 	{
 		m_minSize = _minSize;
+		m_minSize.widthDirty = true;
+		m_minSize.heightDirty = true;
 	}
 
 	void SizeProperty::setMinWidth(float _value, MinSizeType _type)
 	{
 		m_minSize.width.value = _value;
 		m_minSize.width.type = _type;
+		m_minSize.widthDirty = true;
 	}
 
 	void SizeProperty::setMinWidth(float _value)
 	{
 		m_minSize.width.value = _value;
+		m_minSize.widthDirty = true;
 	}
 
 	void SizeProperty::setMinHeight(float _value, MinSizeType _type)
 	{
 		m_minSize.height.value = _value;
 		m_minSize.height.type = _type;
+		m_minSize.heightDirty = true;
 	}
 
 	void SizeProperty::setMinHeight(float _value)
 	{
 		m_minSize.height.value = _value;
+		m_minSize.heightDirty = true;
+	}
+
+	void SizeProperty::resetMinSize()
+	{
+		m_minSize = MinSize();
+		m_minSize.widthDirty = false;
+		m_minSize.heightDirty = false;
+	}
+
+	void SizeProperty::resetMinWidth()
+	{
+		m_minSize.width = MinSizeValue();
+		m_minSize.widthDirty = false;
+	}
+
+	void SizeProperty::resetMinHeight()
+	{
+		m_minSize.height = MinSizeValue();
+		m_minSize.heightDirty = false;
 	}
 
 	float SizeProperty::MaxSizeValue::resolveToPixels(float _relativeTo) const
@@ -392,28 +571,53 @@ namespace sfui
 	void SizeProperty::setMaxSize(const MaxSize& _maxSize)
 	{
 		m_maxSize = _maxSize;
+		m_maxSize.widthDirty = true;
+		m_maxSize.heightDirty = true;
 	}
 
 	void SizeProperty::setMaxWidth(float _value, MaxSizeType _type)
 	{
 		m_maxSize.width.value = _value;
 		m_maxSize.width.type = _type;
+		m_maxSize.widthDirty = true;
 	}
 
 	void SizeProperty::setMaxWidth(float _value)
 	{
 		m_maxSize.width.value = _value;
+		m_maxSize.widthDirty = true;
 	}
 
 	void SizeProperty::setMaxHeight(float _value, MaxSizeType _type)
 	{
 		m_maxSize.height.value = _value;
 		m_maxSize.height.type = _type;
+		m_maxSize.heightDirty = true;
 	}
 
 	void SizeProperty::setMaxHeight(float _value)
 	{
 		m_maxSize.height.value = _value;
+		m_maxSize.heightDirty = true;
+	}
+
+	void SizeProperty::resetMaxSize()
+	{
+		m_maxSize = MaxSize();
+		m_maxSize.widthDirty = false;
+		m_maxSize.heightDirty = false;
+	}
+
+	void SizeProperty::resetMaxWidth()
+	{
+		m_maxSize.width = MaxSizeValue();
+		m_maxSize.widthDirty = false;
+	}
+
+	void SizeProperty::resetMaxHeight()
+	{
+		m_maxSize.height = MaxSizeValue();
+		m_maxSize.heightDirty = false;
 	}
 
 	float SpacingProperty::MarginValue::resolveToPixels(float _relativeTo) const
@@ -439,17 +643,26 @@ namespace sfui
 	void SpacingProperty::setMarginTop(const MarginValue& _value)
 	{
 		m_marginTop = _value;
+		m_marginTopDirty = true;
 	}
 
 	void SpacingProperty::setMarginTop(float _value, MarginType _type)
 	{
 		m_marginTop.value = _value;
 		m_marginTop.type = _type;
+		m_marginTopDirty = true;
 	}
 
 	void SpacingProperty::setMarginTop(float _value)
 	{
 		m_marginTop.value = _value;
+		m_marginTopDirty = true;
+	}
+
+	void SpacingProperty::resetMarginTop()
+	{
+		m_marginTop = MarginValue();
+		m_marginTopDirty = false;
 	}
 
 	const SpacingProperty::MarginValue& SpacingProperty::getMarginRight() const
@@ -460,17 +673,26 @@ namespace sfui
 	void SpacingProperty::setMarginRight(const MarginValue& _value)
 	{
 		m_marginRight = _value;
+		m_marginRightDirty = true;
 	}
 
 	void SpacingProperty::setMarginRight(float _value, MarginType _type)
 	{
 		m_marginRight.value = _value;
 		m_marginRight.type = _type;
+		m_marginRightDirty = true;
 	}
 
 	void SpacingProperty::setMarginRight(float _value)
 	{
 		m_marginRight.value = _value;
+		m_marginRightDirty = true;
+	}
+
+	void SpacingProperty::resetMarginRight()
+	{
+		m_marginRight = MarginValue();
+		m_marginRightDirty = false;
 	}
 
 	const SpacingProperty::MarginValue& SpacingProperty::getMarginBottom() const
@@ -481,17 +703,26 @@ namespace sfui
 	void SpacingProperty::setMarginBottom(const MarginValue& _value)
 	{
 		m_marginBottom = _value;
+		m_marginBottomDirty = true;
 	}
 
 	void SpacingProperty::setMarginBottom(float _value, MarginType _type)
 	{
 		m_marginBottom.value = _value;
 		m_marginBottom.type = _type;
+		m_marginBottomDirty = true;
 	}
 
 	void SpacingProperty::setMarginBottom(float _value)
 	{
 		m_marginBottom.value = _value;
+		m_marginBottomDirty = true;
+	}
+
+	void SpacingProperty::resetMarginBottom()
+	{
+		m_marginBottom = MarginValue();
+		m_marginBottomDirty = false;
 	}
 
 	const SpacingProperty::MarginValue& SpacingProperty::getMarginLeft() const
@@ -502,17 +733,26 @@ namespace sfui
 	void SpacingProperty::setMarginLeft(const MarginValue& _value)
 	{
 		m_marginLeft = _value;
+		m_marginLeftDirty = true;
 	}
 
 	void SpacingProperty::setMarginLeft(float _value, MarginType _type)
 	{
 		m_marginLeft.value = _value;
 		m_marginLeft.type = _type;
+		m_marginLeftDirty = true;
 	}
 
 	void SpacingProperty::setMarginLeft(float _value)
 	{
 		m_marginLeft.value = _value;
+		m_marginLeftDirty = true;
+	}
+
+	void SpacingProperty::resetMarginLeft()
+	{
+		m_marginLeft = MarginValue();
+		m_marginLeftDirty = false;
 	}
 
 	float SpacingProperty::PaddingValue::resolveToPixels(float _relativeTo) const
@@ -538,17 +778,26 @@ namespace sfui
 	void SpacingProperty::setPaddingTop(const PaddingValue& _value)
 	{
 		m_paddingTop = _value;
+		m_paddingTopDirty = false;
 	}
 
 	void SpacingProperty::setPaddingTop(float _value, PaddingType _type)
 	{
 		m_paddingTop.value = _value;
 		m_paddingTop.type = _type;
+		m_paddingTopDirty = false;
 	}
 
 	void SpacingProperty::setPaddingTop(float _value)
 	{
 		m_paddingTop.value = _value;
+		m_paddingTopDirty = false;
+	}
+
+	void SpacingProperty::resetPaddingTop()
+	{
+		m_paddingTop = PaddingValue();
+		m_paddingTopDirty = false;
 	}
 
 	const SpacingProperty::PaddingValue& SpacingProperty::getPaddingRight() const
@@ -559,17 +808,26 @@ namespace sfui
 	void SpacingProperty::setPaddingRight(const PaddingValue& _value)
 	{
 		m_paddingRight = _value;
+		m_paddingRightDirty = false;
 	}
 
 	void SpacingProperty::setPaddingRight(float _value, PaddingType _type)
 	{
 		m_paddingRight.value = _value;
 		m_paddingRight.type = _type;
+		m_paddingRightDirty = false;
 	}
 
 	void SpacingProperty::setPaddingRight(float _value)
 	{
 		m_paddingRight.value = _value;
+		m_paddingRightDirty = false;
+	}
+
+	void SpacingProperty::resetPaddingRight()
+	{
+		m_paddingRight = PaddingValue();
+		m_paddingRightDirty = false;
 	}
 
 	const SpacingProperty::PaddingValue& SpacingProperty::getPaddingBottom() const
@@ -580,17 +838,26 @@ namespace sfui
 	void SpacingProperty::setPaddingBottom(const PaddingValue& _value)
 	{
 		m_paddingBottom = _value;
+		m_paddingBottomDirty = false;
 	}
 
 	void SpacingProperty::setPaddingBottom(float _value, PaddingType _type)
 	{
 		m_paddingBottom.value = _value;
 		m_paddingBottom.type = _type;
+		m_paddingBottomDirty = false;
 	}
 
 	void SpacingProperty::setPaddingBottom(float _value)
 	{
 		m_paddingBottom.value = _value;
+		m_paddingBottomDirty = false;
+	}
+
+	void SpacingProperty::resetPaddingBottom()
+	{
+		m_paddingBottom = PaddingValue();
+		m_paddingBottomDirty = false;
 	}
 
 	const SpacingProperty::PaddingValue& SpacingProperty::getPaddingLeft() const
@@ -601,17 +868,26 @@ namespace sfui
 	void SpacingProperty::setPaddingLeft(const PaddingValue& _value)
 	{
 		m_paddingLeft = _value;
+		m_paddingLeftDirty = false;
 	}
 
 	void SpacingProperty::setPaddingLeft(float _value, PaddingType _type)
 	{
 		m_paddingLeft.value = _value;
 		m_paddingLeft.type = _type;
+		m_paddingLeftDirty = false;
 	}
 
 	void SpacingProperty::setPaddingLeft(float _value)
 	{
 		m_paddingLeft.value = _value;
+		m_paddingLeftDirty = false;
+	}
+
+	void SpacingProperty::resetPaddingLeft()
+	{
+		m_paddingLeft = PaddingValue();
+		m_paddingLeftDirty = false;
 	}
 
 	const sf::Color& BackgroundProperty::getColor() const
@@ -622,6 +898,7 @@ namespace sfui
 	void BackgroundProperty::setColor(const sf::Color& _color)
 	{
 		m_color = _color;
+		m_colorDirty = true;
 	}
 
 	void BackgroundProperty::setColor(std::uint8_t _r, std::uint8_t _g, std::uint8_t _b, std::uint8_t _a)
@@ -630,6 +907,13 @@ namespace sfui
 		m_color.g = _g;
 		m_color.b = _b;
 		m_color.a = _a;
+		m_colorDirty = true;
+	}
+
+	void BackgroundProperty::resetColor()
+	{
+		m_color = sf::Color::Transparent;
+		m_colorDirty = false;
 	}
 
 	const sf::Color& BorderProperty::getColor() const
@@ -640,6 +924,7 @@ namespace sfui
 	void BorderProperty::setColor(const sf::Color& _color)
 	{
 		m_color = _color;
+		m_colorDirty = true;
 	}
 
 	void BorderProperty::setColor(std::uint8_t _r, std::uint8_t _g, std::uint8_t _b, std::uint8_t _a)
@@ -648,6 +933,13 @@ namespace sfui
 		m_color.g = _g;
 		m_color.b = _b;
 		m_color.a = _a;
+		m_colorDirty = true;
+	}
+
+	void BorderProperty::resetColor()
+	{
+		m_color = sf::Color::Black;
+		m_colorDirty = false;
 	}
 
 	const float& BorderProperty::getWidth() const
@@ -658,6 +950,13 @@ namespace sfui
 	void BorderProperty::setWidth(float _width)
 	{
 		m_width = _width;
+		m_widthDirty = true;
+	}
+
+	void BorderProperty::resetWidth()
+	{
+		m_width = 0.f;
+		m_widthDirty = false;
 	}
 
 	const float& BorderProperty::getRadius() const
@@ -668,6 +967,13 @@ namespace sfui
 	void BorderProperty::setRadius(float _radius)
 	{
 		m_radius = _radius;
+		m_radiusDirty = true;
+	}
+
+	void BorderProperty::resetRadius()
+	{
+		m_radius = 0.f;
+		m_radiusDirty = false;
 	}
 
 	float TransformProperty::OriginValue::resolveToPixels(float _relativeTo) const
@@ -691,28 +997,53 @@ namespace sfui
 	void TransformProperty::setOrigin(const Origin& _origin)
 	{
 		m_origin = _origin;
+		m_origin.xDirty = true;
+		m_origin.yDirty = true;
 	}
 
 	void TransformProperty::setOriginX(float _value, OriginType _type)
 	{
 		m_origin.x.value = _value;
 		m_origin.x.type = _type;
+		m_origin.xDirty = true;
 	}
 
 	void TransformProperty::setOriginX(float _value)
 	{
 		m_origin.x.value = _value;
+		m_origin.xDirty = true;
 	}
 
 	void TransformProperty::setOriginY(float _value, OriginType _type)
 	{
 		m_origin.y.value = _value;
 		m_origin.y.type = _type;
+		m_origin.yDirty = true;
 	}
 
 	void TransformProperty::setOriginY(float _value)
 	{
 		m_origin.y.value = _value;
+		m_origin.yDirty = true;
+	}
+
+	void TransformProperty::resetOrigin()
+	{
+		m_origin = Origin();
+		m_origin.xDirty = false;
+		m_origin.yDirty = false;
+	}
+
+	void TransformProperty::resetOriginX()
+	{
+		m_origin.x = OriginValue();
+		m_origin.xDirty = false;
+	}
+
+	void TransformProperty::resetOriginY()
+	{
+		m_origin.y = OriginValue();
+		m_origin.yDirty = false;
 	}
 
 	float TransformProperty::TranslateValue::resolveToPixels(float _relativeTo) const
@@ -736,28 +1067,53 @@ namespace sfui
 	void TransformProperty::setTranslate(const Translate& _translate)
 	{
 		m_translate = _translate;
+		m_translate.xDirty = true;
+		m_translate.yDirty = true;
 	}
 
 	void TransformProperty::setTranslateX(float _value, TranslateType _type)
 	{
 		m_translate.x.value = _value;
 		m_translate.x.type = _type;
+		m_translate.xDirty = true;
 	}
 
 	void TransformProperty::setTranslateX(float _value)
 	{
 		m_translate.x.value = _value;
+		m_translate.xDirty = true;
 	}
 
 	void TransformProperty::setTranslateY(float _value, TranslateType _type)
 	{
 		m_translate.y.value = _value;
 		m_translate.y.type = _type;
+		m_translate.yDirty = true;
 	}
 
 	void TransformProperty::setTranslateY(float _value)
 	{
 		m_translate.y.value = _value;
+		m_translate.yDirty = true;
+	}
+
+	void TransformProperty::resetTranslate()
+	{
+		m_translate = Translate();
+		m_translate.xDirty = false;
+		m_translate.yDirty = false;
+	}
+
+	void TransformProperty::resetTranslateX()
+	{
+		m_translate.x = TranslateValue();
+		m_translate.xDirty = false;
+	}
+
+	void TransformProperty::resetTranslateY()
+	{
+		m_translate.y = TranslateValue();
+		m_translate.yDirty = false;
 	}
 
 	const TransformProperty::Scale& TransformProperty::getScale() const
@@ -768,16 +1124,37 @@ namespace sfui
 	void TransformProperty::setScale(const Scale& _scale)
 	{
 		m_scale = _scale;
+		m_scale.xDirty = true;
+		m_scale.yDirty = true;
 	}
 
 	void TransformProperty::setScaleX(float _value)
 	{
 		m_scale.x = _value;
+		m_scale.xDirty = true;
 	}
 
 	void TransformProperty::setScaleY(float _value)
 	{
 		m_scale.y = _value;
+		m_scale.yDirty = true;
+	}
+
+	void TransformProperty::resetScale()
+	{
+		m_scale = Scale();
+		m_scale.xDirty = false;
+		m_scale.yDirty = false;
+	}
+
+	void TransformProperty::resetScaleX()
+	{
+		m_scale.x = 1.f;
+	}
+
+	void TransformProperty::resetScaleY()
+	{
+		m_scale.y = 1.f;
 	}
 
 	float TransformProperty::Rotate::resolveToDegrees() const
@@ -827,17 +1204,26 @@ namespace sfui
 	void TransformProperty::setRotate(const Rotate& _rotate)
 	{
 		m_rotate = _rotate;
+		m_rotateDirty = true;
 	}
 
 	void TransformProperty::setRotate(float _value, RotateType _type)
 	{
 		m_rotate.value = _value;
 		m_rotate.type = _type;
+		m_rotateDirty = true;
 	}
 
 	void TransformProperty::setRotate(float _value)
 	{
 		m_rotate.value = _value;
+		m_rotateDirty = true;
+	}
+
+	void TransformProperty::resetRotate()
+	{
+		m_rotate = Rotate();
+		m_rotateDirty = false;
 	}
 
 	void UIPropUtils::normalizeAngle(TransformProperty& _prop)
@@ -992,6 +1378,13 @@ namespace sfui
 	void ImageProperty::setRepeat(Repeat _repeat)
 	{
 		m_repeat = _repeat;
+		m_repeatDirty = true;
+	}
+
+	void ImageProperty::resetRepeat()
+	{
+		m_repeat = Repeat::NoRepeat;
+		m_repeatDirty = false;
 	}
 
 	ImageProperty::Smooth ImageProperty::getSmooth() const
@@ -1002,6 +1395,13 @@ namespace sfui
 	void ImageProperty::setSmooth(Smooth _smooth)
 	{
 		m_smooth = _smooth;
+		m_smoothDirty = true;
+	}
+
+	void ImageProperty::resetSmooth()
+	{
+		m_smooth = Smooth::Pixelated;
+
 	}
 
 	const char* ImageProperty::getImagePath() const
@@ -1012,6 +1412,13 @@ namespace sfui
 	void ImageProperty::setImagePath(const char* _imagePath)
 	{
 		m_imagePath = _imagePath;
+		m_imagePathDirty = true;
+	}
+
+	void ImageProperty::resetImagePath()
+	{
+		m_imagePath = nullptr;
+		m_imagePathDirty = false;
 	}
 
 	const sf::Color& ImageProperty::getTintColor() const
@@ -1022,6 +1429,7 @@ namespace sfui
 	void ImageProperty::setTintColor(const sf::Color& _color)
 	{
 		m_tintColor = _color;
+		m_tintColorDirty = true;
 	}
 
 	void ImageProperty::setTintColor(std::uint8_t _r, std::uint8_t _g, std::uint8_t _b, std::uint8_t _a)
@@ -1030,6 +1438,13 @@ namespace sfui
 		m_tintColor.g = _g;
 		m_tintColor.b = _b;
 		m_tintColor.a = _a;
+		m_tintColorDirty = true;
+	}
+
+	void ImageProperty::resetTintColor()
+	{
+		m_tintColor = sf::Color::White;
+		m_tintColorDirty = false;
 	}
 
 	const sf::Image& ImageProperty::getImage() const
@@ -1067,28 +1482,53 @@ namespace sfui
 	void ImageProperty::setSize(const Size& _size)
 	{
 		m_size = _size;
+		m_size.widthDirty = true;
+		m_size.heightDirty = true;
 	}
 
 	void ImageProperty::setWidth(float _value, SizeType _type)
 	{
 		m_size.width.value = _value;
 		m_size.width.type = _type;
+		m_size.widthDirty = true;
 	}
 
 	void ImageProperty::setWidth(float _value)
 	{
 		m_size.width.value = _value;
+		m_size.widthDirty = true;
 	}
 
 	void ImageProperty::setHeight(float _value, SizeType _type)
 	{
 		m_size.height.value = _value;
 		m_size.height.type = _type;
+		m_size.heightDirty = true;
 	}
 
 	void ImageProperty::setHeight(float _value)
 	{
 		m_size.height.value = _value;
+		m_size.heightDirty = true;
+	}
+
+	void ImageProperty::resetSize()
+	{
+		m_size = Size();
+		m_size.widthDirty = false;
+		m_size.heightDirty = false;
+	}
+
+	void ImageProperty::resetWidth()
+	{
+		m_size.width = SizeValue();
+		m_size.widthDirty = false;
+	}
+
+	void ImageProperty::resetHeight()
+	{
+		m_size.height = SizeValue();
+		m_size.heightDirty = false;
 	}
 
 	float ImageProperty::PositionX::resolveToPixels(float _relativeSize, float _relativeTo) const
@@ -1163,6 +1603,7 @@ namespace sfui
 	void ImageProperty::setPositionX(const PositionX& _positionX)
 	{
 		m_positionX = _positionX;
+		m_positionXDirty = true;
 	}
 
 	void ImageProperty::setPositionX(PositionXPositionType _position, float _offsetValue, PositionOffsetType _offsetType)
@@ -1170,28 +1611,39 @@ namespace sfui
 		m_positionX.position = _position;
 		m_positionX.offsetValue = _offsetValue;
 		m_positionX.offsetType = _offsetType;
+		m_positionXDirty = true;
 	}
 
 	void ImageProperty::setPositionX(PositionXPositionType _position, float _offsetValue)
 	{
 		m_positionX.position = _position;
 		m_positionX.offsetValue = _offsetValue;
+		m_positionXDirty = true;
 	}
 
 	void ImageProperty::setPositionX(float _offsetValue, PositionOffsetType _offsetType)
 	{
 		m_positionX.offsetValue = _offsetValue;
 		m_positionX.offsetType = _offsetType;
+		m_positionXDirty = true;
 	}
 
 	void ImageProperty::setPositionX(float _offsetValue)
 	{
 		m_positionX.offsetValue = _offsetValue;
+		m_positionXDirty = true;
 	}
 
 	void ImageProperty::setPositionX(PositionXPositionType _position)
 	{
 		m_positionX.position = _position;
+		m_positionXDirty = true;
+	}
+
+	void ImageProperty::resetPositionX()
+	{
+		m_positionX = PositionX();
+		m_positionXDirty = false;
 	}
 
 	const ImageProperty::PositionY& ImageProperty::getPositionY() const
@@ -1202,6 +1654,7 @@ namespace sfui
 	void ImageProperty::setPositionY(const PositionY& _positionY)
 	{
 		m_positionY = _positionY;
+		m_positionYDirty = true;
 	}
 
 	void ImageProperty::setPositionY(PositionYPositionType _position, float _offsetValue, PositionOffsetType _offsetType)
@@ -1209,28 +1662,39 @@ namespace sfui
 		m_positionY.position = _position;
 		m_positionY.offsetValue = _offsetValue;
 		m_positionY.offsetType = _offsetType;
+		m_positionYDirty = true;
 	}
 
 	void ImageProperty::setPositionY(PositionYPositionType _position, float _offsetValue)
 	{
 		m_positionY.position = _position;
 		m_positionY.offsetValue = _offsetValue;
+		m_positionYDirty = true;
 	}
 
 	void ImageProperty::setPositionY(float _offsetValue, PositionOffsetType _offsetType)
 	{
 		m_positionY.offsetValue = _offsetValue;
 		m_positionY.offsetType = _offsetType;
+		m_positionYDirty = true;
 	}
 
 	void ImageProperty::setPositionY(float _offsetValue)
 	{
 		m_positionY.offsetValue = _offsetValue;
+		m_positionYDirty = true;
 	}
 
 	void ImageProperty::setPositionY(PositionYPositionType _position)
 	{
 		m_positionY.position = _position;
+		m_positionYDirty = true;
+	}
+
+	void ImageProperty::resetPositionY()
+	{
+		m_positionY = PositionY();
+		m_positionYDirty = false;
 	}
 
 	ImageProperty::ScaleMode ImageProperty::getScaleMode() const
@@ -1241,6 +1705,13 @@ namespace sfui
 	void ImageProperty::setScaleMode(ScaleMode _mode)
 	{
 		m_scaleMode = _mode;
+		m_scaleModeDirty = true;
+	}
+
+	void ImageProperty::resetScaleMode()
+	{
+		m_scaleMode = ScaleMode::StretchToFill;
+		m_scaleModeDirty = false;
 	}
 
 	const sf::Vector2f& TransformProperty::getCalculatedOriginPixels() const
