@@ -27,9 +27,11 @@
     <ClInclude Include="Code\Headers\SFUIL\UIElement.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\UIElementProperty.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\Graphics\RoundedRectangle.hpp" />
+    <ClInclude Include="Code\Headers\SFUIL\XMLExport.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\Anchor.cpp" />
+    <ClCompile Include="Code\XMLExport.cpp" />
     <ClCompile Include="Code\UIImage.cpp" />
     <ClCompile Include="Code\UIElementProperty.cpp" />
     <ClCompile Include="Code\UIVisualContainer.cpp" />
