@@ -5,6 +5,8 @@
 
 #include <iostream>
 
+SFUIL_API const char* SFUIL_PANEL_ROOTELEMENT_NAME = "__ROOT_ELEMENT__";
+
 namespace sfui
 {
 	UIPanel::UIPanel()
@@ -12,7 +14,7 @@ namespace sfui
 		m_size = sf::Vector2u(640, 360);
 		m_renderTexture = sf::RenderTexture(m_size);
 
-		m_rootElement = new UIVisualContainer("__ROOT_ELEMENT__");
+		m_rootElement = new UIVisualContainer(SFUIL_PANEL_ROOTELEMENT_NAME);
 		m_rootElement->getProperty<PositionProperty>().setMode(PositionProperty::Mode::Absolute);
 		SizeProperty& rootSize = m_rootElement->getProperty<SizeProperty>();
 		rootSize.setWidth(100.f, SizeProperty::SizeType::Percentage);

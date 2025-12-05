@@ -3,8 +3,14 @@
 #include <SFML/Graphics/RectangleShape.hpp>
 #include "Headers/SFUIL/Graphics/RoundedRectangle.hpp"
 
+SFUIL_API const char* SFUIL_UIELEMENT_NAME = "UIElement";
+
 namespace sfui
 {
+	UIElement::UIElement(const char* _name) : m_name(_name)
+	{
+	}
+
 	void UIElement::setName(const char* _name)
 	{
 		m_name = _name;

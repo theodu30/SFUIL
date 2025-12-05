@@ -3,11 +3,16 @@
 #include "../System/Exports.hpp"
 #include "../UIElement.hpp"
 
+extern SFUIL_API const char* SFUIL_UIVISUALCONTAINER_NAME;
+
 namespace sfui
 {
 	class SFUIL_API UIVisualContainer : public UIElement
 	{
 	public:
+		virtual const char* getTypeName() const override { return SFUIL_UIVISUALCONTAINER_NAME; }
+		static const char* staticTypeName() { return SFUIL_UIVISUALCONTAINER_NAME; }
+
 		UIVisualContainer();
 
 		UIVisualContainer(const char* _name);

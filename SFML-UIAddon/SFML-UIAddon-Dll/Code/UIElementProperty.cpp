@@ -6,6 +6,14 @@
 
 namespace sfui
 {
+	void OpacityProperty::exportToXML(std::ostream& _stream) const
+	{
+		if (m_opacityDirty)
+		{
+			_stream << "opacity: " << m_opacity << ";";
+		}
+	}
+
 	const float& OpacityProperty::getOpacity() const
 	{
 		return m_opacity;
@@ -37,6 +45,19 @@ namespace sfui
 		}
 	}
 
+	void DisplayProperty::exportToXML(std::ostream& _stream) const
+	{
+		if (m_displayDirty)
+		{
+			switch (m_display)
+			{
+			case Type::Flex: _stream << "display: flex;"; break;
+			case Type::None: _stream << "display: none;"; break;
+			default: break;
+			}
+		}
+	}
+
 	DisplayProperty::Type DisplayProperty::getDisplay() const
 	{
 		return m_display;
@@ -54,6 +75,19 @@ namespace sfui
 		m_displayDirty = false;
 	}
 
+	void VisibilityProperty::exportToXML(std::ostream& _stream) const
+	{
+		if (m_visibilityDirty)
+		{
+			switch (m_visibility)
+			{
+			case Type::Visible: _stream << "visibility: visible;"; break;
+			case Type::Hidden: _stream << "visibility: hidden;"; break;
+			default: break;
+			}
+		}
+	}
+
 	VisibilityProperty::Type VisibilityProperty::getVisibility() const
 	{
 		return Type();
@@ -69,6 +103,63 @@ namespace sfui
 	{
 		m_visibility = Type::Visible;
 		m_visibilityDirty = false;
+	}
+
+	void PositionProperty::exportToXML(std::ostream& _stream) const
+	{
+		if (m_modeDirty)
+		{
+			switch (m_mode)
+			{
+			case Mode::Relative: _stream << "position: relative;"; break;
+			case Mode::Absolute: _stream << "position: absolute;"; break;
+			default: break;
+			}
+		}
+
+		if (m_topDirty)
+		{
+			switch (m_top.type)
+			{
+			case ValueType::Auto: _stream << "top: auto;"; break;
+			case ValueType::Pixels: _stream << "top: " << m_top.value << "px;"; break;
+			case ValueType::Percentage: _stream << "top: " << m_top.value << "%;"; break;
+			default: break;
+			}
+		}
+
+		if (m_rightDirty)
+		{
+			switch (m_right.type)
+			{
+			case ValueType::Auto: _stream << "right: auto;"; break;
+			case ValueType::Pixels: _stream << "right: " << m_right.value << "px;"; break;
+			case ValueType::Percentage: _stream << "right: " << m_right.value << "%;"; break;
+			default: break;
+			}
+		}
+
+		if (m_bottomDirty)
+		{
+			switch (m_bottom.type)
+			{
+			case ValueType::Auto: _stream << "bottom: auto;"; break;
+			case ValueType::Pixels: _stream << "bottom: " << m_bottom.value << "px;"; break;
+			case ValueType::Percentage: _stream << "bottom: " << m_bottom.value << "%;"; break;
+			default: break;
+			}
+		}
+
+		if (m_leftDirty)
+		{
+			switch (m_left.type)
+			{
+			case ValueType::Auto: _stream << "left: auto;"; break;
+			case ValueType::Pixels: _stream << "left: " << m_left.value << "px;"; break;
+			case ValueType::Percentage: _stream << "left: " << m_left.value << "%;"; break;
+			default: break;
+			}
+		}
 	}
 
 	PositionProperty::Mode PositionProperty::getMode() const
@@ -238,6 +329,53 @@ namespace sfui
 		}
 	}
 
+	void FlexProperty::exportToXML(std::ostream& _stream) const
+	{
+		if (m_flexBasisDirty)
+		{
+			switch (m_flexBasis.type)
+			{
+			case BasicType::Auto: _stream << "flex-basic: auto;"; break;
+			case BasicType::Pixels: _stream << "flex-basic:" << m_flexBasis.value << "px;"; break;
+			case BasicType::Percentage: _stream << "flex-basic:" << m_flexBasis.value << "%;"; break;
+			default: break;
+			}
+		}
+
+		if (m_flexShrinkDirty)
+		{
+			_stream << "flex-shrink: " << m_flexShrink << ";";
+		}
+
+		if (m_flexGrowDirty)
+		{
+			_stream << "flex-grow: " << m_flexGrow << ";";
+		}
+
+		if (m_flexDirectionDirty)
+		{
+			switch (m_flexDirection)
+			{
+			case Direction::Column: _stream << "flex-direction: column;"; break;
+			case Direction::ColumnReverse: _stream << "flex-direction: column-reverse;"; break;
+			case Direction::Row: _stream << "flex-direction: row;"; break;
+			case Direction::RowReverse: _stream << "flex-direction: row-reverse;"; break;
+			default: break;
+			}
+		}
+
+		if (m_flexWrapDirty)
+		{
+			switch (m_flexWrap)
+			{
+			case Warp::NoWrap: _stream << "flex-wrap: no-wrap;"; break;
+			case Warp::Wrap: _stream << "flex-wrap: wrap;"; break;
+			case Warp::WrapReverse: _stream << "flex-wrap: wrap-reverse;"; break;
+			default: break;
+			}
+		}
+	}
+
 	const FlexProperty::Basic& FlexProperty::getFlexBasic() const
 	{
 		return m_flexBasis;
@@ -336,6 +474,62 @@ namespace sfui
 		m_flexWrapDirty = false;
 	}
 
+	void AlignProperty::exportToXML(std::ostream& _stream) const
+	{
+		if (m_alignItemsDirty)
+		{
+			switch (m_alignItems)
+			{
+			case AlignItems::Auto: _stream << "align-items: auto;"; break;
+			case AlignItems::FlexStart: _stream << "align-items: flex-start;"; break;
+			case AlignItems::Center: _stream << "align-items: center;"; break;
+			case AlignItems::FlexEnd: _stream << "align-items: flex-end;"; break;
+			case AlignItems::Stretch: _stream << "align-items: stretch;"; break;
+			default: break;
+			}
+		}
+
+		if (m_justifyContentDirty)
+		{
+			switch (m_justifyContent)
+			{
+			case JustifyContent::FlexStart: _stream << "justify-content: flex-start;"; break;
+			case JustifyContent::Center: _stream << "justify-content: center;"; break;
+			case JustifyContent::FlexEnd: _stream << "justify-content: flex-end;"; break;
+			case JustifyContent::SpaceBetween: _stream << "justify-content: space-between;"; break;
+			case JustifyContent::SpaceAround: _stream << "justify-content: space-around;"; break;
+			case JustifyContent::SpaceEvenly: _stream << "justify-content: space-evenly;"; break;
+			default: break;
+			}
+		}
+
+		if (m_alignSelfDirty)
+		{
+			switch (m_alignSelf)
+			{
+			case AlignSelf::Auto: _stream << "align-self: auto;"; break;
+			case AlignSelf::FlexStart: _stream << "align-self: flex-start;"; break;
+			case AlignSelf::Center: _stream << "align-self: center;"; break;
+			case AlignSelf::FlexEnd: _stream << "align-self: flex-end;"; break;
+			case AlignSelf::Stretch: _stream << "align-self: stretch;"; break;
+			default: break;
+			}
+		}
+
+		if (m_alignContentDirty)
+		{
+			switch (m_alignContent)
+			{
+			case AlignContent::Auto: _stream << "align-content: auto;"; break;
+			case AlignContent::FlexStart: _stream << "align-content: flex-start;"; break;
+			case AlignContent::Center: _stream << "align-content: center;"; break;
+			case AlignContent::FlexEnd: _stream << "align-content: flex-end;"; break;
+			case AlignContent::Stretch: _stream << "align-content: stretch;"; break;
+			default: break;
+			}
+		}
+	}
+
 	AlignProperty::AlignItems AlignProperty::getAlignItems() const
 	{
 		return m_alignItems;
@@ -416,6 +610,75 @@ namespace sfui
 			return (value / 100.f) * _relativeTo;
 		default:
 			return 0.f;
+		}
+	}
+
+	void SizeProperty::exportToXML(std::ostream& _stream) const
+	{
+		if (m_size.widthDirty)
+		{
+			switch (m_size.width.type)
+			{
+			case SizeType::Auto: _stream << "width: auto;"; break;
+			case SizeType::Pixels: _stream << "width: " << m_size.width.value << "px;"; break;
+			case SizeType::Percentage: _stream << "width: " << m_size.width.value << "%;"; break;
+			default: break;
+			}
+		}
+
+		if (m_size.heightDirty)
+		{
+			switch (m_size.height.type)
+			{
+			case SizeType::Auto: _stream << "height: auto;"; break;
+			case SizeType::Pixels: _stream << "height: " << m_size.height.value << "px;"; break;
+			case SizeType::Percentage: _stream << "height: " << m_size.height.value << "%;"; break;
+			default: break;
+			}
+		}
+
+		if (m_minSize.widthDirty)
+		{
+			switch (m_minSize.width.type)
+			{
+			case MinSizeType::Auto: _stream << "min-width: auto;"; break;
+			case MinSizeType::Pixels: _stream << "min-width: " << m_minSize.width.value << "px;"; break;
+			case MinSizeType::Percentage: _stream << "min-width: " << m_minSize.width.value << "%;"; break;
+			default: break;
+			}
+		}
+
+		if (m_minSize.heightDirty)
+		{
+			switch (m_minSize.height.type)
+			{
+			case MinSizeType::Auto: _stream << "min-height: auto;"; break;
+			case MinSizeType::Pixels: _stream << "min-height: " << m_minSize.height.value << "px;"; break;
+			case MinSizeType::Percentage: _stream << "min-height: " << m_minSize.height.value << "%;"; break;
+			default: break;
+			}
+		}
+
+		if (m_maxSize.widthDirty)
+		{
+			switch (m_maxSize.width.type)
+			{
+			case MaxSizeType::None: _stream << "max-width: auto;"; break;
+			case MaxSizeType::Pixels: _stream << "max-width: " << m_maxSize.width.value << "px;"; break;
+			case MaxSizeType::Percentage: _stream << "max-width: " << m_maxSize.width.value << "%;"; break;
+			default: break;
+			}
+		}
+
+		if (m_maxSize.heightDirty)
+		{
+			switch (m_maxSize.height.type)
+			{
+			case MaxSizeType::None: _stream << "max-height: auto;"; break;
+			case MaxSizeType::Pixels: _stream << "max-height: " << m_maxSize.height.value << "px;"; break;
+			case MaxSizeType::Percentage: _stream << "max-height: " << m_maxSize.height.value << "%;"; break;
+			default: break;
+			}
 		}
 	}
 
@@ -632,6 +895,97 @@ namespace sfui
 			return (value / 100.f) * _relativeTo;
 		default:
 			return 0.f;
+		}
+	}
+
+	void SpacingProperty::exportToXML(std::ostream& _stream) const
+	{
+		if (m_marginTopDirty)
+		{
+			switch (m_marginTop.type)
+			{
+			case MarginType::Auto: _stream << "margin-top: auto;"; break;
+			case MarginType::Pixels: _stream << "margin-top:" << m_marginTop.value << "px;"; break;
+			case MarginType::Percentage: _stream << "margin-top:" << m_marginTop.value << "%;"; break;
+			default: break;
+			}
+		}
+
+		if (m_marginRightDirty)
+		{
+			switch (m_marginRight.type)
+			{
+			case MarginType::Auto: _stream << "margin-right: auto;"; break;
+			case MarginType::Pixels: _stream << "margin-right:" << m_marginRight.value << "px;"; break;
+			case MarginType::Percentage: _stream << "margin-right:" << m_marginRight.value << "%;"; break;
+			default: break;
+			}
+		}
+
+		if (m_marginBottomDirty)
+		{
+			switch (m_marginBottom.type)
+			{
+			case MarginType::Auto: _stream << "margin-bottom: auto;"; break;
+			case MarginType::Pixels: _stream << "margin-bottom:" << m_marginBottom.value << "px;"; break;
+			case MarginType::Percentage: _stream << "margin-bottom:" << m_marginBottom.value << "%;"; break;
+			default: break;
+			}
+		}
+
+		if (m_marginLeftDirty)
+		{
+			switch (m_marginLeft.type)
+			{
+			case MarginType::Auto: _stream << "margin-left: auto;"; break;
+			case MarginType::Pixels: _stream << "margin-left:" << m_marginLeft.value << "px;"; break;
+			case MarginType::Percentage: _stream << "margin-left:" << m_marginLeft.value << "%;"; break;
+			default: break;
+			}
+		}
+
+		if (m_paddingTopDirty)
+		{
+			switch (m_paddingTop.type)
+			{
+			case PaddingType::Auto: _stream << "padding-top: auto;"; break;
+			case PaddingType::Pixels: _stream << "padding-top:" << m_paddingTop.value << "px;"; break;
+			case PaddingType::Percentage: _stream << "padding-top:" << m_paddingTop.value << "%;"; break;
+			default: break;
+			}
+		}
+
+		if (m_paddingRightDirty)
+		{
+			switch (m_paddingRight.type)
+			{
+			case PaddingType::Auto: _stream << "padding-right: auto;"; break;
+			case PaddingType::Pixels: _stream << "padding-right:" << m_paddingRight.value << "px;"; break;
+			case PaddingType::Percentage: _stream << "padding-right:" << m_paddingRight.value << "%;"; break;
+			default: break;
+			}
+		}
+
+		if (m_paddingBottomDirty)
+		{
+			switch (m_paddingBottom.type)
+			{
+			case PaddingType::Auto: _stream << "padding-bottom: auto;"; break;
+			case PaddingType::Pixels: _stream << "padding-bottom:" << m_paddingBottom.value << "px;"; break;
+			case PaddingType::Percentage: _stream << "padding-bottom:" << m_paddingBottom.value << "%;"; break;
+			default: break;
+			}
+		}
+
+		if (m_paddingLeftDirty)
+		{
+			switch (m_paddingLeft.type)
+			{
+			case PaddingType::Auto: _stream << "padding-left: auto;"; break;
+			case PaddingType::Pixels: _stream << "padding-left:" << m_paddingLeft.value << "px;"; break;
+			case PaddingType::Percentage: _stream << "padding-left:" << m_paddingLeft.value << "%;"; break;
+			default: break;
+			}
 		}
 	}
 
@@ -890,6 +1244,14 @@ namespace sfui
 		m_paddingLeftDirty = false;
 	}
 
+	void BackgroundProperty::exportToXML(std::ostream& _stream) const
+	{
+		if (m_colorDirty)
+		{
+			_stream << "background-color: (" << m_color.r << "," << m_color.g << "," << m_color.b << "," << m_color.a << ";";
+		}
+	}
+
 	const sf::Color& BackgroundProperty::getColor() const
 	{
 		return m_color;
@@ -914,6 +1276,24 @@ namespace sfui
 	{
 		m_color = sf::Color::Transparent;
 		m_colorDirty = false;
+	}
+
+	void BorderProperty::exportToXML(std::ostream& _stream) const
+	{
+		if (m_colorDirty)
+		{
+			_stream << "border-color: (" << m_color.r << "," << m_color.g << "," << m_color.b << "," << m_color.a << ";";
+		}
+
+		if (m_widthDirty)
+		{
+			_stream << "border-width: " << m_width << ";";
+		}
+
+		if (m_radiusDirty)
+		{
+			_stream << "border-radius: " << m_radius << ";";
+		}
 	}
 
 	const sf::Color& BorderProperty::getColor() const
@@ -986,6 +1366,69 @@ namespace sfui
 			return (value / 100.f) * _relativeTo;
 		default:
 			return 0.f;
+		}
+	}
+
+	void TransformProperty::exportToXML(std::ostream& _stream) const
+	{
+		if (m_origin.xDirty)
+		{
+			switch (m_origin.x.type)
+			{
+			case OriginType::Pixels: _stream << "origin-x: " << m_origin.x.value << "px;"; break;
+			case OriginType::Percentage: _stream << "origin-x: " << m_origin.x.value << "%;"; break;
+			default: break;
+			}
+		}
+
+		if (m_origin.yDirty)
+		{
+			switch (m_origin.y.type)
+			{
+			case OriginType::Pixels: _stream << "origin-y: " << m_origin.y.value << "px;"; break;
+			case OriginType::Percentage: _stream << "origin-y: " << m_origin.y.value << "%;"; break;
+			default: break;
+			}
+		}
+
+		if (m_translate.xDirty)
+		{
+			switch (m_translate.x.type)
+			{
+			case TranslateType::Pixels: _stream << "translate-x: " << m_translate.x.value << "px;"; break;
+			case TranslateType::Percentage: _stream << "translate-x: " << m_translate.x.value << "%;"; break;
+			default: break;
+			}
+		}
+
+		if (m_translate.yDirty)
+		{
+			switch (m_translate.y.type)
+			{
+			case TranslateType::Pixels: _stream << "translate-y: " << m_translate.y.value << "px;"; break;
+			case TranslateType::Percentage: _stream << "translate-y: " << m_translate.y.value << "%;"; break;
+			default: break;
+			}
+		}
+
+		if (m_scale.xDirty)
+		{
+			_stream << "scale-x: " << m_scale.x << ";";
+		}
+
+		if (m_scale.yDirty)
+		{
+			_stream << "scale-y: " << m_scale.y << ";";
+		}
+
+		if (m_rotateDirty)
+		{
+			switch (m_rotate.type)
+			{
+			case RotateType::Degrees: _stream << "rotate: " << m_rotate.value << "deg;"; break;
+			case RotateType::Radians: _stream << "rotate: " << m_rotate.value << "rad;"; break;
+			default: break;
+			}
 		}
 	}
 
@@ -1259,115 +1702,212 @@ namespace sfui
 		}
 	}
 
-	bool UIPropUtils::isFlexDirectionRowType(const FlexProperty& _flex)
+	const sf::Vector2f& TransformProperty::getCalculatedOriginPixels() const
 	{
-		return _flex.getFlexDirection() == FlexProperty::Direction::Row ||
-			_flex.getFlexDirection() == FlexProperty::Direction::RowReverse;
+		return m_calculatedOriginPixels;
 	}
 
-	bool UIPropUtils::isFlexDirectionColumnType(const FlexProperty& _flex)
+	void TransformProperty::setCalculatedOriginPixels(const sf::Vector2f& _pixels)
 	{
-		return _flex.getFlexDirection() == FlexProperty::Direction::Column ||
-			_flex.getFlexDirection() == FlexProperty::Direction::ColumnReverse;
+		m_calculatedOriginPixels = _pixels;
 	}
 
-	bool UIPropUtils::isFlexDirectionReverseType(const FlexProperty& _flex)
+	void TransformProperty::setCalculatedOriginPixels(float _xPixels, float _yPixels)
 	{
-		return _flex.getFlexDirection() == FlexProperty::Direction::RowReverse ||
-			_flex.getFlexDirection() == FlexProperty::Direction::ColumnReverse;
+		m_calculatedOriginPixels.x = _xPixels;
+		m_calculatedOriginPixels.y = _yPixels;
 	}
 
-	bool UIPropUtils::isPositionAbsolute(const PositionProperty& _position)
+	const sf::Vector2f& TransformProperty::getCalculatedTranslatePixels() const
 	{
-		return _position.getMode() == PositionProperty::Mode::Absolute;
+		return m_calculatedTranslatePixels;
 	}
 
-	bool UIPropUtils::isPositionRelative(const PositionProperty& _position)
+	void TransformProperty::setCalculatedTranslatePixels(const sf::Vector2f& _pixels)
 	{
-		return _position.getMode() == PositionProperty::Mode::Relative;
+		m_calculatedTranslatePixels = _pixels;
 	}
 
-	float UIPropUtils::clampFloat(float _value, float _min, float _max)
+	void TransformProperty::setCalculatedTranslatePixels(float _xPixels, float _yPixels)
 	{
-		if (_value < _min)
-			return _min;
-		if (_value > _max)
-			return _max;
-		return _value;
+		m_calculatedTranslatePixels.x = _xPixels;
+		m_calculatedTranslatePixels.y = _yPixels;
 	}
 
-	unsigned int UIPropUtils::clampUnsignedInt(unsigned int _value, unsigned int _min, unsigned int _max)
+	const sf::Vector2f& TransformProperty::getCalculatedScale() const
 	{
-		if (_value < _min)
-			return _min;
-		if (_value > _max)
-			return _max;
-		return _value;
+		return m_calculatedScale;
 	}
 
-	float UIPropUtils::calculateJustifyContentOffset(const AlignProperty& _justifyContent, size_t _siblingIndex, size_t _siblingCount, float _elementSize, float _parentSize)
+	void TransformProperty::setCalculatedScale(const sf::Vector2f& _scale)
 	{
-		switch (_justifyContent.getJustifyContent())
+		m_calculatedScale = _scale;
+	}
+
+	void TransformProperty::setCalculatedScale(float _xScale, float _yScale)
+	{
+		m_calculatedScale.x = _xScale;
+		m_calculatedScale.y = _yScale;
+	}
+
+	const sf::Angle& TransformProperty::getCalculatedRotateAngle() const
+	{
+		return m_calculatedRotateAngle;
+	}
+
+	void TransformProperty::setCalculatedRotateAngle(const sf::Angle& _angle)
+	{
+		m_calculatedRotateAngle = _angle;
+	}
+
+	sf::Transform TransformProperty::getLocalTransform() const
+	{
+		sf::Transform t;
+
+		t.translate(m_calculatedTranslatePixels);
+		t.translate(m_calculatedOriginPixels);
+		t.rotate(m_calculatedRotateAngle);
+		t.scale(m_calculatedScale);
+		t.translate(-m_calculatedOriginPixels);
+
+		return t;
+	}
+
+	sf::Transform TransformProperty::getWorldTransform(const UIElement* _element) const
+	{
+		sf::Transform local = getLocalTransform();
+
+		if (_element->getParent())
 		{
-		case AlignProperty::JustifyContent::FlexStart:
-			return static_cast<float>(_siblingIndex) * _elementSize;
-		case AlignProperty::JustifyContent::FlexEnd:
-			return _parentSize - (_elementSize * static_cast<float>(_siblingCount - _siblingIndex));
-		case AlignProperty::JustifyContent::Center:
-			return ((_parentSize - (_elementSize * static_cast<float>(_siblingCount))) / 2.f) + (static_cast<float>(_siblingIndex) * _elementSize);
-		case AlignProperty::JustifyContent::SpaceBetween:
-			if (_siblingCount > 1)
+			local = _element->getParent()->getConstProperty<TransformProperty>().getWorldTransform(_element->getParent()) * local;
+		}
+
+		return local;
+	}
+
+	sf::Vector2f TransformProperty::Scale::toVector2f() const
+	{
+		return sf::Vector2f(x, y);
+	}
+
+	sf::Vector2f TransformProperty::Translate::toVector2f(float _relativeToX, float _relativeToY) const
+	{
+		return sf::Vector2f(
+			x.resolveToPixels(_relativeToX),
+			y.resolveToPixels(_relativeToY)
+		);
+	}
+
+	sf::Vector2f TransformProperty::Origin::toVector2f(float _relativeToX, float _relativeToY) const
+	{
+		return sf::Vector2f(
+			x.resolveToPixels(_relativeToX),
+			y.resolveToPixels(_relativeToY)
+		);
+	}
+
+	void ImageProperty::exportToXML(std::ostream& _stream) const
+	{
+		if (m_repeatDirty)
+		{
+			switch (m_repeat)
 			{
-				float space = (_parentSize - (_elementSize * static_cast<float>(_siblingCount))) / static_cast<float>(_siblingCount - 1);
-				return (static_cast<float>(_siblingIndex) * (_elementSize + space));
+			case Repeat::NoRepeat: _stream << "image-repeat: no-repeat;"; break;
+			case Repeat::Repeat: _stream << "image-repeat: repeat;"; break;
+			default: break;
 			}
-			else
+		}
+
+		if (m_smoothDirty)
+		{
+			switch (m_smooth)
 			{
-				return 0.f;
+			case Smooth::Pixelated: _stream << "image-smooth: pixelated;"; break;
+			case Smooth::Smooth: _stream << "image-smooth: smooth;"; break;
+			default: break;
 			}
-		case AlignProperty::JustifyContent::SpaceAround:
+		}
+
+		if (m_imagePathDirty)
 		{
-			float space = (_parentSize - (_elementSize * static_cast<float>(_siblingCount))) / static_cast<float>(_siblingCount);
-			return (space / 2.f) + (static_cast<float>(_siblingIndex) * (_elementSize + space));
+			_stream << "image-path: " << m_imagePath << ";";
 		}
-		case AlignProperty::JustifyContent::SpaceEvenly:
+
+		if (m_tintColorDirty)
 		{
-			float space = (_parentSize - (_elementSize * static_cast<float>(_siblingCount))) / static_cast<float>(_siblingCount + 1);
-			return space + (static_cast<float>(_siblingIndex) * (_elementSize + space));
+			_stream << "image-tint: (" << m_tintColor.r << "," << m_tintColor.g << "," << m_tintColor.b << "," << m_tintColor.a << ");";
 		}
-		default:
-			return 0.f;
-		}
-	}
 
-	float UIPropUtils::calculateAlignItemsOffset(const AlignProperty& _alignItems, float _elementSize, float _parentSize)
-	{
-		switch (_alignItems.getAlignItems())
+		if (m_size.widthDirty)
 		{
-		case AlignProperty::AlignItems::FlexStart:
-			return 0.f;
-		case AlignProperty::AlignItems::FlexEnd:
-			return _parentSize - _elementSize;
-		case AlignProperty::AlignItems::Center:
-			return (_parentSize - _elementSize) / 2.f;
-		case AlignProperty::AlignItems::Stretch:
-			return 0.f;
-		default:
-			return 0.f;
+			switch (m_size.width.type)
+			{
+			case SizeType::Pixels: _stream << "image-width: " << m_size.width.value << "px;"; break;
+			case SizeType::Percentage: _stream << "image-width: " << m_size.width.value << "%;"; break;
+			default: break;
+			}
 		}
-	}
 
-	void UIPropUtils::applyWorldTransform(sf::Transformable& _transformable, const sf::Transform& _transform)
-	{
-		_transformable.setPosition(_transform.transformPoint({ 0.f, 0.f }));
+		if (m_size.heightDirty)
+		{
+			switch (m_size.height.type)
+			{
+			case SizeType::Pixels: _stream << "image-height: " << m_size.height.value << "px;"; break;
+			case SizeType::Percentage: _stream << "image-height: " << m_size.height.value << "%;"; break;
+			default: break;
+			}
+		}
 
-		const float* m = _transform.getMatrix();
-		float angleRad = std::atan2(m[1], m[0]);
-		_transformable.setRotation(sf::radians(angleRad));
+		if (m_positionXDirty)
+		{
+			switch (m_positionX.position)
+			{
+			case PositionXPositionType::Left: _stream << "image-position-x: left;"; break;
+			case PositionXPositionType::Center: _stream << "image-position-x: center;"; break;
+			case PositionXPositionType::Right: _stream << "image-position-x: right;"; break;
+			default: break;
+			}
+			if (m_positionX.position != PositionXPositionType::Center)
+			{
+				switch (m_positionX.offsetType)
+				{
+				case PositionOffsetType::Pixels: _stream << "image-position-x-offset:" << m_positionX.offsetValue << "px;"; break;
+				case PositionOffsetType::Percentage: _stream << "image-position-x-offset:" << m_positionX.offsetValue << "%;"; break;
+				default: break;
+				}
+			}
+		}
 
-		float scaleX = std::sqrt(m[0] * m[0] + m[1] * m[1]);
-		float scaleY = std::sqrt(m[4] * m[4] + m[5] * m[5]);
-		_transformable.setScale({ scaleX, scaleY });
+		if (m_positionYDirty)
+		{
+			switch (m_positionY.position)
+			{
+			case PositionYPositionType::Top: _stream << "image-position-y: top;"; break;
+			case PositionYPositionType::Center: _stream << "image-position-y: center;"; break;
+			case PositionYPositionType::Bottom: _stream << "image-position-y: bottom;"; break;
+			default: break;
+			}
+			if (m_positionY.position != PositionYPositionType::Center)
+			{
+				switch (m_positionY.offsetType)
+				{
+				case PositionOffsetType::Pixels: _stream << "image-position-y-offset:" << m_positionY.offsetValue << "px;"; break;
+				case PositionOffsetType::Percentage: _stream << "image-position-y-offset:" << m_positionY.offsetValue << "%;"; break;
+				default: break;
+				}
+			}
+		}
+
+		if (m_scaleModeDirty)
+		{
+			switch (m_scaleMode)
+			{
+			case ScaleMode::StretchToFill: _stream << "image-scale-mode: stretch-to-fill;"; break;
+			case ScaleMode::ScaleAndCrop: _stream << "image-scale-mode: scale-and-crop;"; break;
+			case ScaleMode::ScaleToFit: _stream << "image-scale-mode: scale-to-fit;"; break;
+			default: break;
+			}
+		}
 	}
 
 	ImageProperty::Repeat ImageProperty::getRepeat() const
@@ -1714,108 +2254,115 @@ namespace sfui
 		m_scaleModeDirty = false;
 	}
 
-	const sf::Vector2f& TransformProperty::getCalculatedOriginPixels() const
+	bool UIPropUtils::isFlexDirectionRowType(const FlexProperty& _flex)
 	{
-		return m_calculatedOriginPixels;
+		return _flex.getFlexDirection() == FlexProperty::Direction::Row ||
+			_flex.getFlexDirection() == FlexProperty::Direction::RowReverse;
 	}
 
-	void TransformProperty::setCalculatedOriginPixels(const sf::Vector2f& _pixels)
+	bool UIPropUtils::isFlexDirectionColumnType(const FlexProperty& _flex)
 	{
-		m_calculatedOriginPixels = _pixels;
+		return _flex.getFlexDirection() == FlexProperty::Direction::Column ||
+			_flex.getFlexDirection() == FlexProperty::Direction::ColumnReverse;
 	}
 
-	void TransformProperty::setCalculatedOriginPixels(float _xPixels, float _yPixels)
+	bool UIPropUtils::isFlexDirectionReverseType(const FlexProperty& _flex)
 	{
-		m_calculatedOriginPixels.x = _xPixels;
-		m_calculatedOriginPixels.y = _yPixels;
+		return _flex.getFlexDirection() == FlexProperty::Direction::RowReverse ||
+			_flex.getFlexDirection() == FlexProperty::Direction::ColumnReverse;
 	}
 
-	const sf::Vector2f& TransformProperty::getCalculatedTranslatePixels() const
+	bool UIPropUtils::isPositionAbsolute(const PositionProperty& _position)
 	{
-		return m_calculatedTranslatePixels;
+		return _position.getMode() == PositionProperty::Mode::Absolute;
 	}
 
-	void TransformProperty::setCalculatedTranslatePixels(const sf::Vector2f& _pixels)
+	bool UIPropUtils::isPositionRelative(const PositionProperty& _position)
 	{
-		m_calculatedTranslatePixels = _pixels;
+		return _position.getMode() == PositionProperty::Mode::Relative;
 	}
 
-	void TransformProperty::setCalculatedTranslatePixels(float _xPixels, float _yPixels)
+	float UIPropUtils::clampFloat(float _value, float _min, float _max)
 	{
-		m_calculatedTranslatePixels.x = _xPixels;
-		m_calculatedTranslatePixels.y = _yPixels;
+		if (_value < _min)
+			return _min;
+		if (_value > _max)
+			return _max;
+		return _value;
 	}
 
-	const sf::Vector2f& TransformProperty::getCalculatedScale() const
+	unsigned int UIPropUtils::clampUnsignedInt(unsigned int _value, unsigned int _min, unsigned int _max)
 	{
-		return m_calculatedScale;
+		if (_value < _min)
+			return _min;
+		if (_value > _max)
+			return _max;
+		return _value;
 	}
 
-	void TransformProperty::setCalculatedScale(const sf::Vector2f& _scale)
+	float UIPropUtils::calculateJustifyContentOffset(const AlignProperty& _justifyContent, size_t _siblingIndex, size_t _siblingCount, float _elementSize, float _parentSize)
 	{
-		m_calculatedScale = _scale;
-	}
-
-	void TransformProperty::setCalculatedScale(float _xScale, float _yScale)
-	{
-		m_calculatedScale.x = _xScale;
-		m_calculatedScale.y = _yScale;
-	}
-
-	const sf::Angle& TransformProperty::getCalculatedRotateAngle() const
-	{
-		return m_calculatedRotateAngle;
-	}
-
-	void TransformProperty::setCalculatedRotateAngle(const sf::Angle& _angle)
-	{
-		m_calculatedRotateAngle = _angle;
-	}
-
-	sf::Transform TransformProperty::getLocalTransform() const
-	{
-		sf::Transform t;
-
-		t.translate(m_calculatedTranslatePixels);
-		t.translate(m_calculatedOriginPixels);
-		t.rotate(m_calculatedRotateAngle);
-		t.scale(m_calculatedScale);
-		t.translate(-m_calculatedOriginPixels);
-
-		return t;
-	}
-
-	sf::Transform TransformProperty::getWorldTransform(const UIElement* _element) const
-	{
-		sf::Transform local = getLocalTransform();
-
-		if (_element->getParent())
+		switch (_justifyContent.getJustifyContent())
 		{
-			local = _element->getParent()->getConstProperty<TransformProperty>().getWorldTransform(_element->getParent()) * local;
+		case AlignProperty::JustifyContent::FlexStart:
+			return static_cast<float>(_siblingIndex) * _elementSize;
+		case AlignProperty::JustifyContent::FlexEnd:
+			return _parentSize - (_elementSize * static_cast<float>(_siblingCount - _siblingIndex));
+		case AlignProperty::JustifyContent::Center:
+			return ((_parentSize - (_elementSize * static_cast<float>(_siblingCount))) / 2.f) + (static_cast<float>(_siblingIndex) * _elementSize);
+		case AlignProperty::JustifyContent::SpaceBetween:
+			if (_siblingCount > 1)
+			{
+				float space = (_parentSize - (_elementSize * static_cast<float>(_siblingCount))) / static_cast<float>(_siblingCount - 1);
+				return (static_cast<float>(_siblingIndex) * (_elementSize + space));
+			}
+			else
+			{
+				return 0.f;
+			}
+		case AlignProperty::JustifyContent::SpaceAround:
+		{
+			float space = (_parentSize - (_elementSize * static_cast<float>(_siblingCount))) / static_cast<float>(_siblingCount);
+			return (space / 2.f) + (static_cast<float>(_siblingIndex) * (_elementSize + space));
 		}
-
-		return local;
+		case AlignProperty::JustifyContent::SpaceEvenly:
+		{
+			float space = (_parentSize - (_elementSize * static_cast<float>(_siblingCount))) / static_cast<float>(_siblingCount + 1);
+			return space + (static_cast<float>(_siblingIndex) * (_elementSize + space));
+		}
+		default:
+			return 0.f;
+		}
 	}
 
-	sf::Vector2f TransformProperty::Scale::toVector2f() const
+	float UIPropUtils::calculateAlignItemsOffset(const AlignProperty& _alignItems, float _elementSize, float _parentSize)
 	{
-		return sf::Vector2f(x, y);
+		switch (_alignItems.getAlignItems())
+		{
+		case AlignProperty::AlignItems::FlexStart:
+			return 0.f;
+		case AlignProperty::AlignItems::FlexEnd:
+			return _parentSize - _elementSize;
+		case AlignProperty::AlignItems::Center:
+			return (_parentSize - _elementSize) / 2.f;
+		case AlignProperty::AlignItems::Stretch:
+			return 0.f;
+		default:
+			return 0.f;
+		}
 	}
 
-	sf::Vector2f TransformProperty::Translate::toVector2f(float _relativeToX, float _relativeToY) const
+	void UIPropUtils::applyWorldTransform(sf::Transformable& _transformable, const sf::Transform& _transform)
 	{
-		return sf::Vector2f(
-			x.resolveToPixels(_relativeToX),
-			y.resolveToPixels(_relativeToY)
-		);
-	}
+		_transformable.setPosition(_transform.transformPoint({ 0.f, 0.f }));
 
-	sf::Vector2f TransformProperty::Origin::toVector2f(float _relativeToX, float _relativeToY) const
-	{
-		return sf::Vector2f(
-			x.resolveToPixels(_relativeToX),
-			y.resolveToPixels(_relativeToY)
-		);
+		const float* m = _transform.getMatrix();
+		float angleRad = std::atan2(m[1], m[0]);
+		_transformable.setRotation(sf::radians(angleRad));
+
+		float scaleX = std::sqrt(m[0] * m[0] + m[1] * m[1]);
+		float scaleY = std::sqrt(m[4] * m[4] + m[5] * m[5]);
+		_transformable.setScale({ scaleX, scaleY });
 	}
 
 }

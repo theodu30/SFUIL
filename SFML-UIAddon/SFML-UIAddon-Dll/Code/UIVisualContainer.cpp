@@ -2,9 +2,11 @@
 #include <iostream>
 #include "math.h"
 
+SFUIL_API const char* SFUIL_UIVISUALCONTAINER_NAME = "UIVisualContainer";
+
 namespace sfui
 {
-	UIVisualContainer::UIVisualContainer() : UIElement("UIVisualContainer")
+	UIVisualContainer::UIVisualContainer() : UIElement(SFUIL_UIVISUALCONTAINER_NAME)
 	{
 		Initialize();
 	}

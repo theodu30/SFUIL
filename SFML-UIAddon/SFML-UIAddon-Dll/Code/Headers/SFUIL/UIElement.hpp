@@ -9,6 +9,8 @@
 #include <concepts>
 #include <type_traits>
 
+extern SFUIL_API const char* SFUIL_UIELEMENT_NAME;
+
 namespace sfui
 {
 	class UIElement;
@@ -25,8 +27,11 @@ namespace sfui
 	class SFUIL_API UIElement
 	{
 	public:
+		virtual const char* getTypeName() const { return SFUIL_UIELEMENT_NAME; }
+		static const char* staticTypeName() { return SFUIL_UIELEMENT_NAME; }
+
 		UIElement() = default;
-		UIElement(const char* _name) : m_name(_name) {}
+		UIElement(const char* _name);
 		virtual ~UIElement() = default;
 
 		virtual void drawToTarget(sf::RenderTexture& _target) = 0;
@@ -241,6 +246,18 @@ namespace sfui
 				results.insert(results.end(), descendantResults.begin(), descendantResults.end());
 			}
 			return results;
+		}
+
+		template <UIElementSubClass T>
+		bool isACastableTo() const
+		{
+			return dynamic_cast<T*>(this) != nullptr;
+		}
+
+		template <UIElementSubClass T>
+		bool isA() const
+		{
+			return std::strcmp(this->getTypeName(), T::staticTypeName()) == 0;
 		}
 
 		virtual void calculateContentSize(sf::Vector2u& _contentSize) const = 0;

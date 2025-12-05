@@ -6,6 +6,8 @@
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Graphics/RenderTexture.hpp>
 
+extern SFUIL_API const char* SFUIL_PANEL_ROOTELEMENT_NAME;
+
 namespace sfui
 {
 	class UIVisualContainer;

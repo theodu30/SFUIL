@@ -6,6 +6,7 @@
 #include <SFUIL/Containers/UIImage.hpp>
 
 #include <iostream>
+#include <SFUIL/XMLExport.hpp>
 
 int main()
 {
@@ -43,7 +44,7 @@ int main()
 	panel.getRootElement()->addChild(container1);
 	panel.getRootElement()->addChild(container2);
 
-	sfui::UIImage* img1 = new sfui::UIImage("Image1");
+	sfui::UIImage* img1 = new sfui::UIImage();
 	sfui::ImageProperty& imgProp = img1->getProperty<sfui::ImageProperty>();
 	img1->getProperty<sfui::BackgroundProperty>().setColor(255ui8, 255ui8, 255ui8, 127ui8); // Semi-transparent white
 	img1->getProperty<sfui::BorderProperty>().setRadius(10.f);
@@ -64,6 +65,8 @@ int main()
 	container2->addChild(container3);
 	container2->addChild(img1);
 	container2->addChild(container4);
+
+	sfui::XMLExport::exportToXML(panel.getRootElement(), "panel");
 
 	bool rotating = false;
 	float rotationSpeed = 50.f; // degrees per frame

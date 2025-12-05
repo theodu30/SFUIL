@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Exports.hpp"
+#include <ostream>
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/Image.hpp>
 #include <SFML/Graphics/Transform.hpp>
@@ -11,11 +12,17 @@ namespace sfui
 	// Forward declaration
 	class UIElement;
 
-	class SFUIL_API Property {};
+	class SFUIL_API Property
+	{
+	public:
+		virtual void exportToXML(std::ostream& _stream) const = 0;
+	};
 
 	class SFUIL_API OpacityProperty : public Property
 	{
 	public:
+		void exportToXML(std::ostream& _stream) const override;
+
 		[[nodiscard]] const float& getOpacity() const;
 		void setOpacity(float _opacity);
 		void resetOpacity();
@@ -31,6 +38,8 @@ namespace sfui
 	class SFUIL_API DisplayProperty : public Property
 	{
 	public:
+		void exportToXML(std::ostream& _stream) const override;
+
 		enum class Type : char
 		{
 			Flex,
@@ -49,6 +58,8 @@ namespace sfui
 	class SFUIL_API VisibilityProperty : public Property
 	{
 	public:
+		void exportToXML(std::ostream& _stream) const override;
+
 		enum class Type : char
 		{
 			Visible,
@@ -66,6 +77,8 @@ namespace sfui
 	class SFUIL_API PositionProperty : public Property
 	{
 	public:
+		void exportToXML(std::ostream& _stream) const override;
+
 		enum class Mode : char
 		{
 			Relative,
@@ -131,6 +144,8 @@ namespace sfui
 	class SFUIL_API FlexProperty : public Property
 	{
 	public:
+		void exportToXML(std::ostream& _stream) const override;
+
 		enum class BasicType : char
 		{
 			Auto,
@@ -199,6 +214,8 @@ namespace sfui
 	class SFUIL_API AlignProperty : public Property
 	{
 	public:
+		void exportToXML(std::ostream& _stream) const override;
+
 		enum class AlignItems : char
 		{
 			Auto,
@@ -266,6 +283,8 @@ namespace sfui
 	class SFUIL_API SizeProperty : public Property
 	{
 	public:
+		void exportToXML(std::ostream& _stream) const override;
+
 		enum class SizeType : char
 		{
 			Auto,
@@ -374,6 +393,8 @@ namespace sfui
 	class SFUIL_API SpacingProperty : public Property
 	{
 	public:
+		void exportToXML(std::ostream& _stream) const override;
+
 		enum class MarginType : char
 		{
 			Auto,
@@ -474,6 +495,8 @@ namespace sfui
 	class SFUIL_API BackgroundProperty : public Property
 	{
 	public:
+		void exportToXML(std::ostream& _stream) const override;
+
 		[[nodiscard]] const sf::Color& getColor() const;
 		void setColor(const sf::Color& _color);
 		void setColor(std::uint8_t _r, std::uint8_t _g, std::uint8_t _b, std::uint8_t _a = 255);
@@ -487,6 +510,8 @@ namespace sfui
 	class SFUIL_API BorderProperty : public Property
 	{
 	public:
+		void exportToXML(std::ostream& _stream) const override;
+
 		[[nodiscard]] const sf::Color& getColor() const;
 		void setColor(const sf::Color& _color);
 		void setColor(std::uint8_t _r, std::uint8_t _g, std::uint8_t _b, std::uint8_t _a = 255);
@@ -512,6 +537,8 @@ namespace sfui
 	class SFUIL_API TransformProperty : public Property
 	{
 	public:
+		void exportToXML(std::ostream& _stream) const override;
+
 		enum class OriginType : char
 		{
 			Pixels,
@@ -653,6 +680,8 @@ namespace sfui
 	class SFUIL_API ImageProperty : public Property
 	{
 	public:
+		void exportToXML(std::ostream& _stream) const override;
+
 		enum class Repeat : char
 		{
 			NoRepeat,
