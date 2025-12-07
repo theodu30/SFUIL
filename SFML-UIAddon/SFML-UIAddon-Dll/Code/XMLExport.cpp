@@ -35,9 +35,41 @@ namespace sfui
 			_stream << " name=\"" << _element->getName() << "\"";
 		}
 
+		_stream << " style= \"";
+
+		_element->getConstProperty<OpacityProperty>().exportToXML(_stream);
+		_element->getConstProperty<DisplayProperty>().exportToXML(_stream);
+		_element->getConstProperty<VisibilityProperty>().exportToXML(_stream);
+		_element->getConstProperty<PositionProperty>().exportToXML(_stream);
+		_element->getConstProperty<FlexProperty>().exportToXML(_stream);
+		_element->getConstProperty<AlignProperty>().exportToXML(_stream);
+		_element->getConstProperty<SizeProperty>().exportToXML(_stream);
+		_element->getConstProperty<SpacingProperty>().exportToXML(_stream);
+		_element->getConstProperty<BackgroundProperty>().exportToXML(_stream);
+		_element->getConstProperty<BorderProperty>().exportToXML(_stream);
+		_element->getConstProperty<TransformProperty>().exportToXML(_stream);
+
+		if (_element->isA<UIImage>())
+		{
+			exportElement_UIImage_ToXML(_element->as<UIImage>(), _stream, _indentLevel);
+		}
+
+		_stream << "\"";
+
 		bool hasChild = _element->getChildCount() > 0;
 
-		_stream << (!hasChild ? "/>" : ">") << std::endl;
+		if (hasChild)
+		{
+			_stream << ">" << std::endl;
+		}
+		else
+		{
+			_stream << "/>";
+			if (_indentLevel > 0)
+			{
+				_stream << std::endl;
+			}
+		}
 
 		for (auto& child : _element->getChildren())
 		{
@@ -47,11 +79,17 @@ namespace sfui
 		if (hasChild)
 		{
 			_stream << std::string(_indentLevel, '\t');
-			_stream << "</sfui:" << _element->getTypeName() << ">" << std::endl;
+			_stream << "</sfui:" << _element->getTypeName() << ">";
+
+			if (_indentLevel > 0)
+			{
+				_stream << std::endl;
+			}
 		}
 	}
 
 	void XMLExport::exportElement_UIImage_ToXML(UIImage* _element, std::ostream& _stream, int _indentLevel)
 	{
+		_element->getConstProperty<ImageProperty>().exportToXML(_stream);
 	}
 }

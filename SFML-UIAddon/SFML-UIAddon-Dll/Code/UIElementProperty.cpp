@@ -10,7 +10,7 @@ namespace sfui
 	{
 		if (m_opacityDirty)
 		{
-			_stream << "opacity: " << m_opacity << ";";
+			_stream << "opacity: " << m_opacity << "; ";
 		}
 	}
 
@@ -51,8 +51,8 @@ namespace sfui
 		{
 			switch (m_display)
 			{
-			case Type::Flex: _stream << "display: flex;"; break;
-			case Type::None: _stream << "display: none;"; break;
+			case Type::Flex: _stream << "display: flex; "; break;
+			case Type::None: _stream << "display: none; "; break;
 			default: break;
 			}
 		}
@@ -81,8 +81,8 @@ namespace sfui
 		{
 			switch (m_visibility)
 			{
-			case Type::Visible: _stream << "visibility: visible;"; break;
-			case Type::Hidden: _stream << "visibility: hidden;"; break;
+			case Type::Visible: _stream << "visibility: visible; "; break;
+			case Type::Hidden: _stream << "visibility: hidden; "; break;
 			default: break;
 			}
 		}
@@ -111,8 +111,8 @@ namespace sfui
 		{
 			switch (m_mode)
 			{
-			case Mode::Relative: _stream << "position: relative;"; break;
-			case Mode::Absolute: _stream << "position: absolute;"; break;
+			case Mode::Relative: _stream << "position: relative; "; break;
+			case Mode::Absolute: _stream << "position: absolute; "; break;
 			default: break;
 			}
 		}
@@ -121,9 +121,9 @@ namespace sfui
 		{
 			switch (m_top.type)
 			{
-			case ValueType::Auto: _stream << "top: auto;"; break;
-			case ValueType::Pixels: _stream << "top: " << m_top.value << "px;"; break;
-			case ValueType::Percentage: _stream << "top: " << m_top.value << "%;"; break;
+			case ValueType::Auto: _stream << "top: auto; "; break;
+			case ValueType::Pixels: _stream << "top: " << m_top.value << "px; "; break;
+			case ValueType::Percentage: _stream << "top: " << m_top.value << "%; "; break;
 			default: break;
 			}
 		}
@@ -132,9 +132,9 @@ namespace sfui
 		{
 			switch (m_right.type)
 			{
-			case ValueType::Auto: _stream << "right: auto;"; break;
-			case ValueType::Pixels: _stream << "right: " << m_right.value << "px;"; break;
-			case ValueType::Percentage: _stream << "right: " << m_right.value << "%;"; break;
+			case ValueType::Auto: _stream << "right: auto; "; break;
+			case ValueType::Pixels: _stream << "right: " << m_right.value << "px; "; break;
+			case ValueType::Percentage: _stream << "right: " << m_right.value << "%; "; break;
 			default: break;
 			}
 		}
@@ -143,9 +143,9 @@ namespace sfui
 		{
 			switch (m_bottom.type)
 			{
-			case ValueType::Auto: _stream << "bottom: auto;"; break;
-			case ValueType::Pixels: _stream << "bottom: " << m_bottom.value << "px;"; break;
-			case ValueType::Percentage: _stream << "bottom: " << m_bottom.value << "%;"; break;
+			case ValueType::Auto: _stream << "bottom: auto; "; break;
+			case ValueType::Pixels: _stream << "bottom: " << m_bottom.value << "px; "; break;
+			case ValueType::Percentage: _stream << "bottom: " << m_bottom.value << "%; "; break;
 			default: break;
 			}
 		}
@@ -154,9 +154,9 @@ namespace sfui
 		{
 			switch (m_left.type)
 			{
-			case ValueType::Auto: _stream << "left: auto;"; break;
-			case ValueType::Pixels: _stream << "left: " << m_left.value << "px;"; break;
-			case ValueType::Percentage: _stream << "left: " << m_left.value << "%;"; break;
+			case ValueType::Auto: _stream << "left: auto; "; break;
+			case ValueType::Pixels: _stream << "left: " << m_left.value << "px; "; break;
+			case ValueType::Percentage: _stream << "left: " << m_left.value << "%; "; break;
 			default: break;
 			}
 		}
@@ -335,31 +335,31 @@ namespace sfui
 		{
 			switch (m_flexBasis.type)
 			{
-			case BasicType::Auto: _stream << "flex-basic: auto;"; break;
-			case BasicType::Pixels: _stream << "flex-basic:" << m_flexBasis.value << "px;"; break;
-			case BasicType::Percentage: _stream << "flex-basic:" << m_flexBasis.value << "%;"; break;
+			case BasicType::Auto: _stream << "flex-basic: auto; "; break;
+			case BasicType::Pixels: _stream << "flex-basic:" << m_flexBasis.value << "px; "; break;
+			case BasicType::Percentage: _stream << "flex-basic:" << m_flexBasis.value << "%; "; break;
 			default: break;
 			}
 		}
 
 		if (m_flexShrinkDirty)
 		{
-			_stream << "flex-shrink: " << m_flexShrink << ";";
+			_stream << "flex-shrink: " << m_flexShrink << "; ";
 		}
 
 		if (m_flexGrowDirty)
 		{
-			_stream << "flex-grow: " << m_flexGrow << ";";
+			_stream << "flex-grow: " << m_flexGrow << "; ";
 		}
 
 		if (m_flexDirectionDirty)
 		{
 			switch (m_flexDirection)
 			{
-			case Direction::Column: _stream << "flex-direction: column;"; break;
-			case Direction::ColumnReverse: _stream << "flex-direction: column-reverse;"; break;
-			case Direction::Row: _stream << "flex-direction: row;"; break;
-			case Direction::RowReverse: _stream << "flex-direction: row-reverse;"; break;
+			case Direction::Column: _stream << "flex-direction: column; "; break;
+			case Direction::ColumnReverse: _stream << "flex-direction: column-reverse; "; break;
+			case Direction::Row: _stream << "flex-direction: row; "; break;
+			case Direction::RowReverse: _stream << "flex-direction: row-reverse; "; break;
 			default: break;
 			}
 		}
@@ -368,9 +368,9 @@ namespace sfui
 		{
 			switch (m_flexWrap)
 			{
-			case Warp::NoWrap: _stream << "flex-wrap: no-wrap;"; break;
-			case Warp::Wrap: _stream << "flex-wrap: wrap;"; break;
-			case Warp::WrapReverse: _stream << "flex-wrap: wrap-reverse;"; break;
+			case Warp::NoWrap: _stream << "flex-wrap: no-wrap; "; break;
+			case Warp::Wrap: _stream << "flex-wrap: wrap; "; break;
+			case Warp::WrapReverse: _stream << "flex-wrap: wrap-reverse; "; break;
 			default: break;
 			}
 		}
@@ -480,11 +480,11 @@ namespace sfui
 		{
 			switch (m_alignItems)
 			{
-			case AlignItems::Auto: _stream << "align-items: auto;"; break;
-			case AlignItems::FlexStart: _stream << "align-items: flex-start;"; break;
-			case AlignItems::Center: _stream << "align-items: center;"; break;
-			case AlignItems::FlexEnd: _stream << "align-items: flex-end;"; break;
-			case AlignItems::Stretch: _stream << "align-items: stretch;"; break;
+			case AlignItems::Auto: _stream << "align-items: auto; "; break;
+			case AlignItems::FlexStart: _stream << "align-items: flex-start; "; break;
+			case AlignItems::Center: _stream << "align-items: center; "; break;
+			case AlignItems::FlexEnd: _stream << "align-items: flex-end; "; break;
+			case AlignItems::Stretch: _stream << "align-items: stretch; "; break;
 			default: break;
 			}
 		}
@@ -493,12 +493,12 @@ namespace sfui
 		{
 			switch (m_justifyContent)
 			{
-			case JustifyContent::FlexStart: _stream << "justify-content: flex-start;"; break;
-			case JustifyContent::Center: _stream << "justify-content: center;"; break;
-			case JustifyContent::FlexEnd: _stream << "justify-content: flex-end;"; break;
-			case JustifyContent::SpaceBetween: _stream << "justify-content: space-between;"; break;
-			case JustifyContent::SpaceAround: _stream << "justify-content: space-around;"; break;
-			case JustifyContent::SpaceEvenly: _stream << "justify-content: space-evenly;"; break;
+			case JustifyContent::FlexStart: _stream << "justify-content: flex-start; "; break;
+			case JustifyContent::Center: _stream << "justify-content: center; "; break;
+			case JustifyContent::FlexEnd: _stream << "justify-content: flex-end; "; break;
+			case JustifyContent::SpaceBetween: _stream << "justify-content: space-between; "; break;
+			case JustifyContent::SpaceAround: _stream << "justify-content: space-around; "; break;
+			case JustifyContent::SpaceEvenly: _stream << "justify-content: space-evenly; "; break;
 			default: break;
 			}
 		}
@@ -507,11 +507,11 @@ namespace sfui
 		{
 			switch (m_alignSelf)
 			{
-			case AlignSelf::Auto: _stream << "align-self: auto;"; break;
-			case AlignSelf::FlexStart: _stream << "align-self: flex-start;"; break;
-			case AlignSelf::Center: _stream << "align-self: center;"; break;
-			case AlignSelf::FlexEnd: _stream << "align-self: flex-end;"; break;
-			case AlignSelf::Stretch: _stream << "align-self: stretch;"; break;
+			case AlignSelf::Auto: _stream << "align-self: auto; "; break;
+			case AlignSelf::FlexStart: _stream << "align-self: flex-start; "; break;
+			case AlignSelf::Center: _stream << "align-self: center; "; break;
+			case AlignSelf::FlexEnd: _stream << "align-self: flex-end; "; break;
+			case AlignSelf::Stretch: _stream << "align-self: stretch; "; break;
 			default: break;
 			}
 		}
@@ -520,11 +520,11 @@ namespace sfui
 		{
 			switch (m_alignContent)
 			{
-			case AlignContent::Auto: _stream << "align-content: auto;"; break;
-			case AlignContent::FlexStart: _stream << "align-content: flex-start;"; break;
-			case AlignContent::Center: _stream << "align-content: center;"; break;
-			case AlignContent::FlexEnd: _stream << "align-content: flex-end;"; break;
-			case AlignContent::Stretch: _stream << "align-content: stretch;"; break;
+			case AlignContent::Auto: _stream << "align-content: auto; "; break;
+			case AlignContent::FlexStart: _stream << "align-content: flex-start; "; break;
+			case AlignContent::Center: _stream << "align-content: center; "; break;
+			case AlignContent::FlexEnd: _stream << "align-content: flex-end; "; break;
+			case AlignContent::Stretch: _stream << "align-content: stretch; "; break;
 			default: break;
 			}
 		}
@@ -619,9 +619,9 @@ namespace sfui
 		{
 			switch (m_size.width.type)
 			{
-			case SizeType::Auto: _stream << "width: auto;"; break;
-			case SizeType::Pixels: _stream << "width: " << m_size.width.value << "px;"; break;
-			case SizeType::Percentage: _stream << "width: " << m_size.width.value << "%;"; break;
+			case SizeType::Auto: _stream << "width: auto; "; break;
+			case SizeType::Pixels: _stream << "width: " << m_size.width.value << "px; "; break;
+			case SizeType::Percentage: _stream << "width: " << m_size.width.value << "%; "; break;
 			default: break;
 			}
 		}
@@ -630,9 +630,9 @@ namespace sfui
 		{
 			switch (m_size.height.type)
 			{
-			case SizeType::Auto: _stream << "height: auto;"; break;
-			case SizeType::Pixels: _stream << "height: " << m_size.height.value << "px;"; break;
-			case SizeType::Percentage: _stream << "height: " << m_size.height.value << "%;"; break;
+			case SizeType::Auto: _stream << "height: auto; "; break;
+			case SizeType::Pixels: _stream << "height: " << m_size.height.value << "px; "; break;
+			case SizeType::Percentage: _stream << "height: " << m_size.height.value << "%; "; break;
 			default: break;
 			}
 		}
@@ -641,9 +641,9 @@ namespace sfui
 		{
 			switch (m_minSize.width.type)
 			{
-			case MinSizeType::Auto: _stream << "min-width: auto;"; break;
-			case MinSizeType::Pixels: _stream << "min-width: " << m_minSize.width.value << "px;"; break;
-			case MinSizeType::Percentage: _stream << "min-width: " << m_minSize.width.value << "%;"; break;
+			case MinSizeType::Auto: _stream << "min-width: auto; "; break;
+			case MinSizeType::Pixels: _stream << "min-width: " << m_minSize.width.value << "px; "; break;
+			case MinSizeType::Percentage: _stream << "min-width: " << m_minSize.width.value << "%; "; break;
 			default: break;
 			}
 		}
@@ -652,9 +652,9 @@ namespace sfui
 		{
 			switch (m_minSize.height.type)
 			{
-			case MinSizeType::Auto: _stream << "min-height: auto;"; break;
-			case MinSizeType::Pixels: _stream << "min-height: " << m_minSize.height.value << "px;"; break;
-			case MinSizeType::Percentage: _stream << "min-height: " << m_minSize.height.value << "%;"; break;
+			case MinSizeType::Auto: _stream << "min-height: auto; "; break;
+			case MinSizeType::Pixels: _stream << "min-height: " << m_minSize.height.value << "px; "; break;
+			case MinSizeType::Percentage: _stream << "min-height: " << m_minSize.height.value << "%; "; break;
 			default: break;
 			}
 		}
@@ -663,9 +663,9 @@ namespace sfui
 		{
 			switch (m_maxSize.width.type)
 			{
-			case MaxSizeType::None: _stream << "max-width: auto;"; break;
-			case MaxSizeType::Pixels: _stream << "max-width: " << m_maxSize.width.value << "px;"; break;
-			case MaxSizeType::Percentage: _stream << "max-width: " << m_maxSize.width.value << "%;"; break;
+			case MaxSizeType::None: _stream << "max-width: auto; "; break;
+			case MaxSizeType::Pixels: _stream << "max-width: " << m_maxSize.width.value << "px; "; break;
+			case MaxSizeType::Percentage: _stream << "max-width: " << m_maxSize.width.value << "%; "; break;
 			default: break;
 			}
 		}
@@ -674,9 +674,9 @@ namespace sfui
 		{
 			switch (m_maxSize.height.type)
 			{
-			case MaxSizeType::None: _stream << "max-height: auto;"; break;
-			case MaxSizeType::Pixels: _stream << "max-height: " << m_maxSize.height.value << "px;"; break;
-			case MaxSizeType::Percentage: _stream << "max-height: " << m_maxSize.height.value << "%;"; break;
+			case MaxSizeType::None: _stream << "max-height: auto; "; break;
+			case MaxSizeType::Pixels: _stream << "max-height: " << m_maxSize.height.value << "px; "; break;
+			case MaxSizeType::Percentage: _stream << "max-height: " << m_maxSize.height.value << "%;  "; break;
 			default: break;
 			}
 		}
@@ -904,9 +904,9 @@ namespace sfui
 		{
 			switch (m_marginTop.type)
 			{
-			case MarginType::Auto: _stream << "margin-top: auto;"; break;
-			case MarginType::Pixels: _stream << "margin-top:" << m_marginTop.value << "px;"; break;
-			case MarginType::Percentage: _stream << "margin-top:" << m_marginTop.value << "%;"; break;
+			case MarginType::Auto: _stream << "margin-top: auto; "; break;
+			case MarginType::Pixels: _stream << "margin-top:" << m_marginTop.value << "px; "; break;
+			case MarginType::Percentage: _stream << "margin-top:" << m_marginTop.value << "%; "; break;
 			default: break;
 			}
 		}
@@ -915,9 +915,9 @@ namespace sfui
 		{
 			switch (m_marginRight.type)
 			{
-			case MarginType::Auto: _stream << "margin-right: auto;"; break;
-			case MarginType::Pixels: _stream << "margin-right:" << m_marginRight.value << "px;"; break;
-			case MarginType::Percentage: _stream << "margin-right:" << m_marginRight.value << "%;"; break;
+			case MarginType::Auto: _stream << "margin-right: auto; "; break;
+			case MarginType::Pixels: _stream << "margin-right:" << m_marginRight.value << "px; "; break;
+			case MarginType::Percentage: _stream << "margin-right:" << m_marginRight.value << "%; "; break;
 			default: break;
 			}
 		}
@@ -926,9 +926,9 @@ namespace sfui
 		{
 			switch (m_marginBottom.type)
 			{
-			case MarginType::Auto: _stream << "margin-bottom: auto;"; break;
-			case MarginType::Pixels: _stream << "margin-bottom:" << m_marginBottom.value << "px;"; break;
-			case MarginType::Percentage: _stream << "margin-bottom:" << m_marginBottom.value << "%;"; break;
+			case MarginType::Auto: _stream << "margin-bottom: auto; "; break;
+			case MarginType::Pixels: _stream << "margin-bottom:" << m_marginBottom.value << "px; "; break;
+			case MarginType::Percentage: _stream << "margin-bottom:" << m_marginBottom.value << "%; "; break;
 			default: break;
 			}
 		}
@@ -937,9 +937,9 @@ namespace sfui
 		{
 			switch (m_marginLeft.type)
 			{
-			case MarginType::Auto: _stream << "margin-left: auto;"; break;
-			case MarginType::Pixels: _stream << "margin-left:" << m_marginLeft.value << "px;"; break;
-			case MarginType::Percentage: _stream << "margin-left:" << m_marginLeft.value << "%;"; break;
+			case MarginType::Auto: _stream << "margin-left: auto; "; break;
+			case MarginType::Pixels: _stream << "margin-left:" << m_marginLeft.value << "px; "; break;
+			case MarginType::Percentage: _stream << "margin-left:" << m_marginLeft.value << "%; "; break;
 			default: break;
 			}
 		}
@@ -948,9 +948,9 @@ namespace sfui
 		{
 			switch (m_paddingTop.type)
 			{
-			case PaddingType::Auto: _stream << "padding-top: auto;"; break;
-			case PaddingType::Pixels: _stream << "padding-top:" << m_paddingTop.value << "px;"; break;
-			case PaddingType::Percentage: _stream << "padding-top:" << m_paddingTop.value << "%;"; break;
+			case PaddingType::Auto: _stream << "padding-top: auto; "; break;
+			case PaddingType::Pixels: _stream << "padding-top:" << m_paddingTop.value << "px; "; break;
+			case PaddingType::Percentage: _stream << "padding-top:" << m_paddingTop.value << "%; "; break;
 			default: break;
 			}
 		}
@@ -959,9 +959,9 @@ namespace sfui
 		{
 			switch (m_paddingRight.type)
 			{
-			case PaddingType::Auto: _stream << "padding-right: auto;"; break;
-			case PaddingType::Pixels: _stream << "padding-right:" << m_paddingRight.value << "px;"; break;
-			case PaddingType::Percentage: _stream << "padding-right:" << m_paddingRight.value << "%;"; break;
+			case PaddingType::Auto: _stream << "padding-right: auto; "; break;
+			case PaddingType::Pixels: _stream << "padding-right:" << m_paddingRight.value << "px; "; break;
+			case PaddingType::Percentage: _stream << "padding-right:" << m_paddingRight.value << "%; "; break;
 			default: break;
 			}
 		}
@@ -970,9 +970,9 @@ namespace sfui
 		{
 			switch (m_paddingBottom.type)
 			{
-			case PaddingType::Auto: _stream << "padding-bottom: auto;"; break;
-			case PaddingType::Pixels: _stream << "padding-bottom:" << m_paddingBottom.value << "px;"; break;
-			case PaddingType::Percentage: _stream << "padding-bottom:" << m_paddingBottom.value << "%;"; break;
+			case PaddingType::Auto: _stream << "padding-bottom: auto; "; break;
+			case PaddingType::Pixels: _stream << "padding-bottom:" << m_paddingBottom.value << "px; "; break;
+			case PaddingType::Percentage: _stream << "padding-bottom:" << m_paddingBottom.value << "%; "; break;
 			default: break;
 			}
 		}
@@ -981,9 +981,9 @@ namespace sfui
 		{
 			switch (m_paddingLeft.type)
 			{
-			case PaddingType::Auto: _stream << "padding-left: auto;"; break;
-			case PaddingType::Pixels: _stream << "padding-left:" << m_paddingLeft.value << "px;"; break;
-			case PaddingType::Percentage: _stream << "padding-left:" << m_paddingLeft.value << "%;"; break;
+			case PaddingType::Auto: _stream << "padding-left: auto; "; break;
+			case PaddingType::Pixels: _stream << "padding-left:" << m_paddingLeft.value << "px; "; break;
+			case PaddingType::Percentage: _stream << "padding-left:" << m_paddingLeft.value << "%; "; break;
 			default: break;
 			}
 		}
@@ -1248,7 +1248,11 @@ namespace sfui
 	{
 		if (m_colorDirty)
 		{
-			_stream << "background-color: (" << m_color.r << "," << m_color.g << "," << m_color.b << "," << m_color.a << ";";
+			_stream << "background-color: ("
+				<< static_cast<int>(m_color.r) << ","
+				<< static_cast<int>(m_color.g) << ","
+				<< static_cast<int>(m_color.b) << ","
+				<< static_cast<int>(m_color.a) << "); ";
 		}
 	}
 
@@ -1282,17 +1286,21 @@ namespace sfui
 	{
 		if (m_colorDirty)
 		{
-			_stream << "border-color: (" << m_color.r << "," << m_color.g << "," << m_color.b << "," << m_color.a << ";";
+			_stream << "border-color: ("
+				<< static_cast<int>(m_color.r) << ","
+				<< static_cast<int>(m_color.g) << ","
+				<< static_cast<int>(m_color.b) << ","
+				<< static_cast<int>(m_color.a) << "); ";
 		}
 
 		if (m_widthDirty)
 		{
-			_stream << "border-width: " << m_width << ";";
+			_stream << "border-width: " << m_width << "; ";
 		}
 
 		if (m_radiusDirty)
 		{
-			_stream << "border-radius: " << m_radius << ";";
+			_stream << "border-radius: " << m_radius << "; ";
 		}
 	}
 
@@ -1375,8 +1383,8 @@ namespace sfui
 		{
 			switch (m_origin.x.type)
 			{
-			case OriginType::Pixels: _stream << "origin-x: " << m_origin.x.value << "px;"; break;
-			case OriginType::Percentage: _stream << "origin-x: " << m_origin.x.value << "%;"; break;
+			case OriginType::Pixels: _stream << "origin-x: " << m_origin.x.value << "px; "; break;
+			case OriginType::Percentage: _stream << "origin-x: " << m_origin.x.value << "%; "; break;
 			default: break;
 			}
 		}
@@ -1385,8 +1393,8 @@ namespace sfui
 		{
 			switch (m_origin.y.type)
 			{
-			case OriginType::Pixels: _stream << "origin-y: " << m_origin.y.value << "px;"; break;
-			case OriginType::Percentage: _stream << "origin-y: " << m_origin.y.value << "%;"; break;
+			case OriginType::Pixels: _stream << "origin-y: " << m_origin.y.value << "px; "; break;
+			case OriginType::Percentage: _stream << "origin-y: " << m_origin.y.value << "%; "; break;
 			default: break;
 			}
 		}
@@ -1395,8 +1403,8 @@ namespace sfui
 		{
 			switch (m_translate.x.type)
 			{
-			case TranslateType::Pixels: _stream << "translate-x: " << m_translate.x.value << "px;"; break;
-			case TranslateType::Percentage: _stream << "translate-x: " << m_translate.x.value << "%;"; break;
+			case TranslateType::Pixels: _stream << "translate-x: " << m_translate.x.value << "px; "; break;
+			case TranslateType::Percentage: _stream << "translate-x: " << m_translate.x.value << "%; "; break;
 			default: break;
 			}
 		}
@@ -1405,28 +1413,28 @@ namespace sfui
 		{
 			switch (m_translate.y.type)
 			{
-			case TranslateType::Pixels: _stream << "translate-y: " << m_translate.y.value << "px;"; break;
-			case TranslateType::Percentage: _stream << "translate-y: " << m_translate.y.value << "%;"; break;
+			case TranslateType::Pixels: _stream << "translate-y: " << m_translate.y.value << "px; "; break;
+			case TranslateType::Percentage: _stream << "translate-y: " << m_translate.y.value << "%; "; break;
 			default: break;
 			}
 		}
 
 		if (m_scale.xDirty)
 		{
-			_stream << "scale-x: " << m_scale.x << ";";
+			_stream << "scale-x: " << m_scale.x << "; ";
 		}
 
 		if (m_scale.yDirty)
 		{
-			_stream << "scale-y: " << m_scale.y << ";";
+			_stream << "scale-y: " << m_scale.y << "; ";
 		}
 
 		if (m_rotateDirty)
 		{
 			switch (m_rotate.type)
 			{
-			case RotateType::Degrees: _stream << "rotate: " << m_rotate.value << "deg;"; break;
-			case RotateType::Radians: _stream << "rotate: " << m_rotate.value << "rad;"; break;
+			case RotateType::Degrees: _stream << "rotate: " << m_rotate.value << "deg; "; break;
+			case RotateType::Radians: _stream << "rotate: " << m_rotate.value << "rad; "; break;
 			default: break;
 			}
 		}
@@ -1669,39 +1677,6 @@ namespace sfui
 		m_rotateDirty = false;
 	}
 
-	void UIPropUtils::normalizeAngle(TransformProperty& _prop)
-	{
-		_prop.setRotate(normalizedAngle(_prop.getRotate()));
-	}
-
-	TransformProperty::Rotate UIPropUtils::normalizedAngle(const TransformProperty::Rotate& _rotate)
-	{
-		switch (_rotate.type)
-		{
-		case TransformProperty::RotateType::Degrees:
-		{
-			float degrees = std::fmod(_rotate.value, 360.f);
-			if (degrees > 180.f)
-				degrees -= 360.f;
-			else if (degrees < -180.f)
-				degrees += 360.f;
-			return TransformProperty::Rotate{ degrees, TransformProperty::RotateType::Degrees };
-		}
-		case TransformProperty::RotateType::Radians:
-		{
-			const float twoPi = static_cast<float>(2 * M_PI);
-			float radians = std::fmod(_rotate.value, twoPi);
-			if (radians > static_cast<float>(M_PI))
-				radians -= twoPi;
-			else if (radians < -static_cast<float>(M_PI))
-				radians += twoPi;
-			return TransformProperty::Rotate{ radians, TransformProperty::RotateType::Radians };
-		}
-		default:
-			return _rotate;
-		}
-	}
-
 	const sf::Vector2f& TransformProperty::getCalculatedOriginPixels() const
 	{
 		return m_calculatedOriginPixels;
@@ -1812,8 +1787,8 @@ namespace sfui
 		{
 			switch (m_repeat)
 			{
-			case Repeat::NoRepeat: _stream << "image-repeat: no-repeat;"; break;
-			case Repeat::Repeat: _stream << "image-repeat: repeat;"; break;
+			case Repeat::NoRepeat: _stream << "image-repeat: no-repeat; "; break;
+			case Repeat::Repeat: _stream << "image-repeat: repeat; "; break;
 			default: break;
 			}
 		}
@@ -1822,27 +1797,31 @@ namespace sfui
 		{
 			switch (m_smooth)
 			{
-			case Smooth::Pixelated: _stream << "image-smooth: pixelated;"; break;
-			case Smooth::Smooth: _stream << "image-smooth: smooth;"; break;
+			case Smooth::Pixelated: _stream << "image-smooth: pixelated; "; break;
+			case Smooth::Smooth: _stream << "image-smooth: smooth; "; break;
 			default: break;
 			}
 		}
 
 		if (m_imagePathDirty)
 		{
-			_stream << "image-path: " << m_imagePath << ";";
+			_stream << "image-path: \'" << m_imagePath << "\'; ";
 		}
 
 		if (m_tintColorDirty)
 		{
-			_stream << "image-tint: (" << m_tintColor.r << "," << m_tintColor.g << "," << m_tintColor.b << "," << m_tintColor.a << ");";
+			_stream << "image-tint: ("
+				<< static_cast<int>(m_tintColor.r) << ","
+				<< static_cast<int>(m_tintColor.g) << ","
+				<< static_cast<int>(m_tintColor.b) << ","
+				<< static_cast<int>(m_tintColor.a) << "); ";
 		}
 
 		if (m_size.widthDirty)
 		{
 			switch (m_size.width.type)
 			{
-			case SizeType::Pixels: _stream << "image-width: " << m_size.width.value << "px;"; break;
+			case SizeType::Pixels: _stream << "image-width: " << m_size.width.value << "px; "; break;
 			case SizeType::Percentage: _stream << "image-width: " << m_size.width.value << "%;"; break;
 			default: break;
 			}
@@ -1852,8 +1831,8 @@ namespace sfui
 		{
 			switch (m_size.height.type)
 			{
-			case SizeType::Pixels: _stream << "image-height: " << m_size.height.value << "px;"; break;
-			case SizeType::Percentage: _stream << "image-height: " << m_size.height.value << "%;"; break;
+			case SizeType::Pixels: _stream << "image-height: " << m_size.height.value << "px; "; break;
+			case SizeType::Percentage: _stream << "image-height: " << m_size.height.value << "%; "; break;
 			default: break;
 			}
 		}
@@ -1862,17 +1841,17 @@ namespace sfui
 		{
 			switch (m_positionX.position)
 			{
-			case PositionXPositionType::Left: _stream << "image-position-x: left;"; break;
-			case PositionXPositionType::Center: _stream << "image-position-x: center;"; break;
-			case PositionXPositionType::Right: _stream << "image-position-x: right;"; break;
+			case PositionXPositionType::Left: _stream << "image-position-x: left; "; break;
+			case PositionXPositionType::Center: _stream << "image-position-x: center; "; break;
+			case PositionXPositionType::Right: _stream << "image-position-x: right; "; break;
 			default: break;
 			}
 			if (m_positionX.position != PositionXPositionType::Center)
 			{
 				switch (m_positionX.offsetType)
 				{
-				case PositionOffsetType::Pixels: _stream << "image-position-x-offset:" << m_positionX.offsetValue << "px;"; break;
-				case PositionOffsetType::Percentage: _stream << "image-position-x-offset:" << m_positionX.offsetValue << "%;"; break;
+				case PositionOffsetType::Pixels: _stream << "image-position-x-offset:" << m_positionX.offsetValue << "px; "; break;
+				case PositionOffsetType::Percentage: _stream << "image-position-x-offset:" << m_positionX.offsetValue << "%; "; break;
 				default: break;
 				}
 			}
@@ -1882,17 +1861,17 @@ namespace sfui
 		{
 			switch (m_positionY.position)
 			{
-			case PositionYPositionType::Top: _stream << "image-position-y: top;"; break;
-			case PositionYPositionType::Center: _stream << "image-position-y: center;"; break;
-			case PositionYPositionType::Bottom: _stream << "image-position-y: bottom;"; break;
+			case PositionYPositionType::Top: _stream << "image-position-y: top; "; break;
+			case PositionYPositionType::Center: _stream << "image-position-y: center; "; break;
+			case PositionYPositionType::Bottom: _stream << "image-position-y: bottom; "; break;
 			default: break;
 			}
 			if (m_positionY.position != PositionYPositionType::Center)
 			{
 				switch (m_positionY.offsetType)
 				{
-				case PositionOffsetType::Pixels: _stream << "image-position-y-offset:" << m_positionY.offsetValue << "px;"; break;
-				case PositionOffsetType::Percentage: _stream << "image-position-y-offset:" << m_positionY.offsetValue << "%;"; break;
+				case PositionOffsetType::Pixels: _stream << "image-position-y-offset:" << m_positionY.offsetValue << "px; "; break;
+				case PositionOffsetType::Percentage: _stream << "image-position-y-offset:" << m_positionY.offsetValue << "%; "; break;
 				default: break;
 				}
 			}
@@ -1902,9 +1881,9 @@ namespace sfui
 		{
 			switch (m_scaleMode)
 			{
-			case ScaleMode::StretchToFill: _stream << "image-scale-mode: stretch-to-fill;"; break;
-			case ScaleMode::ScaleAndCrop: _stream << "image-scale-mode: scale-and-crop;"; break;
-			case ScaleMode::ScaleToFit: _stream << "image-scale-mode: scale-to-fit;"; break;
+			case ScaleMode::StretchToFill: _stream << "image-scale-mode: stretch-to-fill; "; break;
+			case ScaleMode::ScaleAndCrop: _stream << "image-scale-mode: scale-and-crop; "; break;
+			case ScaleMode::ScaleToFit: _stream << "image-scale-mode: scale-to-fit; "; break;
 			default: break;
 			}
 		}
@@ -2363,6 +2342,39 @@ namespace sfui
 		float scaleX = std::sqrt(m[0] * m[0] + m[1] * m[1]);
 		float scaleY = std::sqrt(m[4] * m[4] + m[5] * m[5]);
 		_transformable.setScale({ scaleX, scaleY });
+	}
+
+	void UIPropUtils::normalizeAngle(TransformProperty& _prop)
+	{
+		_prop.setRotate(normalizedAngle(_prop.getRotate()));
+	}
+
+	TransformProperty::Rotate UIPropUtils::normalizedAngle(const TransformProperty::Rotate& _rotate)
+	{
+		switch (_rotate.type)
+		{
+		case TransformProperty::RotateType::Degrees:
+		{
+			float degrees = std::fmod(_rotate.value, 360.f);
+			if (degrees > 180.f)
+				degrees -= 360.f;
+			else if (degrees < -180.f)
+				degrees += 360.f;
+			return TransformProperty::Rotate{ degrees, TransformProperty::RotateType::Degrees };
+		}
+		case TransformProperty::RotateType::Radians:
+		{
+			const float twoPi = static_cast<float>(2 * M_PI);
+			float radians = std::fmod(_rotate.value, twoPi);
+			if (radians > static_cast<float>(M_PI))
+				radians -= twoPi;
+			else if (radians < -static_cast<float>(M_PI))
+				radians += twoPi;
+			return TransformProperty::Rotate{ radians, TransformProperty::RotateType::Radians };
+		}
+		default:
+			return _rotate;
+		}
 	}
 
 }
