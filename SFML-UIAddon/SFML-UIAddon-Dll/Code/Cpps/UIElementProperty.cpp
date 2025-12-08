@@ -1,5 +1,5 @@
-#include "Headers/SFUIL/System/UIElementProperty.hpp"
-#include "Headers/SFUIL/UIElement.hpp"
+#include "../Headers/SFUIL/System/UIElementProperty.hpp"
+#include "../Headers/SFUIL/UIElement.hpp"
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <cmath>

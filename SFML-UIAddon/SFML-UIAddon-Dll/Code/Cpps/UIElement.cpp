@@ -1,7 +1,7 @@
-#include "Headers/SFUIL/UIElement.hpp"
+#include "../Headers/SFUIL/UIElement.hpp"
+#include "../Headers/SFUIL/Graphics/RoundedRectangle.hpp"
 #include <iostream>
 #include <SFML/Graphics/RectangleShape.hpp>
-#include "Headers/SFUIL/Graphics/RoundedRectangle.hpp"
 
 SFUIL_API const char* SFUIL_UIELEMENT_NAME = "UIElement";
 

@@ -1,8 +1,8 @@
-#include "Headers/SFUIL/XMLExport.hpp"
-#include "Headers/SFUIL/UIElement.hpp"
-#include "Headers/SFUIL/Containers/UIVisualContainer.hpp"
-#include "Headers/SFUIL/Containers/UIImage.hpp"
-#include "Headers/SFUIL/UIPanel.hpp"
+#include "../Headers/SFUIL/XMLExport.hpp"
+#include "../Headers/SFUIL/UIElement.hpp"
+#include "../Headers/SFUIL/Containers/UIVisualContainer.hpp"
+#include "../Headers/SFUIL/Containers/UIImage.hpp"
+#include "../Headers/SFUIL/UIPanel.hpp"
 #include <string>
 #include <iostream>
 #include <fstream>

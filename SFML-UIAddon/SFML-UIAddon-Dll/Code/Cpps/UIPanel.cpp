@@ -1,5 +1,5 @@
-#include "Headers/SFUIL/UIPanel.hpp"
-#include "Headers/SFUIL/Containers/UIVisualContainer.hpp"
+#include "../Headers/SFUIL/UIPanel.hpp"
+#include "../Headers/SFUIL/Containers/UIVisualContainer.hpp"
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/RectangleShape.hpp>
 
