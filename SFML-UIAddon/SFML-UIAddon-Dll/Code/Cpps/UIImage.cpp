@@ -1,4 +1,5 @@
 #include "../Headers/SFUIL/Containers/UIImage.hpp"
+#include "../Headers/SFUIL/System/UIPropUtils.hpp"
 #include <iostream>
 
 SFUIL_API const char* SFUIL_UIIMAGE_NAME = "UIImage";

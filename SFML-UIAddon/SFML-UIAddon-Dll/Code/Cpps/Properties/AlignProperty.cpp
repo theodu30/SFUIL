@@ -1,0 +1,128 @@
+#include "../../Headers/SFUIL/System/Properties/AlignProperty.hpp"
+
+namespace sfui
+{
+	void AlignProperty::exportToXML(std::ostream& _stream) const
+	{
+		if (m_alignItemsDirty)
+		{
+			switch (m_alignItems)
+			{
+			case AlignItems::Auto: _stream << "align-items: auto; "; break;
+			case AlignItems::FlexStart: _stream << "align-items: flex-start; "; break;
+			case AlignItems::Center: _stream << "align-items: center; "; break;
+			case AlignItems::FlexEnd: _stream << "align-items: flex-end; "; break;
+			case AlignItems::Stretch: _stream << "align-items: stretch; "; break;
+			default: break;
+			}
+		}
+
+		if (m_justifyContentDirty)
+		{
+			switch (m_justifyContent)
+			{
+			case JustifyContent::FlexStart: _stream << "justify-content: flex-start; "; break;
+			case JustifyContent::Center: _stream << "justify-content: center; "; break;
+			case JustifyContent::FlexEnd: _stream << "justify-content: flex-end; "; break;
+			case JustifyContent::SpaceBetween: _stream << "justify-content: space-between; "; break;
+			case JustifyContent::SpaceAround: _stream << "justify-content: space-around; "; break;
+			case JustifyContent::SpaceEvenly: _stream << "justify-content: space-evenly; "; break;
+			default: break;
+			}
+		}
+
+		if (m_alignSelfDirty)
+		{
+			switch (m_alignSelf)
+			{
+			case AlignSelf::Auto: _stream << "align-self: auto; "; break;
+			case AlignSelf::FlexStart: _stream << "align-self: flex-start; "; break;
+			case AlignSelf::Center: _stream << "align-self: center; "; break;
+			case AlignSelf::FlexEnd: _stream << "align-self: flex-end; "; break;
+			case AlignSelf::Stretch: _stream << "align-self: stretch; "; break;
+			default: break;
+			}
+		}
+
+		if (m_alignContentDirty)
+		{
+			switch (m_alignContent)
+			{
+			case AlignContent::Auto: _stream << "align-content: auto; "; break;
+			case AlignContent::FlexStart: _stream << "align-content: flex-start; "; break;
+			case AlignContent::Center: _stream << "align-content: center; "; break;
+			case AlignContent::FlexEnd: _stream << "align-content: flex-end; "; break;
+			case AlignContent::Stretch: _stream << "align-content: stretch; "; break;
+			default: break;
+			}
+		}
+	}
+
+	AlignProperty::AlignItems AlignProperty::getAlignItems() const
+	{
+		return m_alignItems;
+	}
+
+	void AlignProperty::setAlignItems(AlignItems _alignItems)
+	{
+		m_alignItems = _alignItems;
+		m_alignItemsDirty = true;
+	}
+
+	void AlignProperty::resetAlignItems()
+	{
+		m_alignItems = AlignItems::Stretch;
+		m_alignItemsDirty = false;
+	}
+
+	AlignProperty::JustifyContent AlignProperty::getJustifyContent() const
+	{
+		return m_justifyContent;
+	}
+
+	void AlignProperty::setJustifyContent(JustifyContent _justifyContent)
+	{
+		m_justifyContent = _justifyContent;
+		m_justifyContentDirty = true;
+	}
+
+	void AlignProperty::resetJustifyContent()
+	{
+		m_justifyContent = JustifyContent::FlexStart;
+		m_justifyContentDirty = false;
+	}
+
+	AlignProperty::AlignSelf AlignProperty::getAlignSelf() const
+	{
+		return m_alignSelf;
+	}
+
+	void AlignProperty::setAlignSelf(AlignSelf _alignSelf)
+	{
+		m_alignSelf = _alignSelf;
+		m_alignSelfDirty = true;
+	}
+
+	void AlignProperty::resetAlignSelf()
+	{
+		m_alignSelf = AlignSelf::Auto;
+		m_alignSelfDirty = false;
+	}
+
+	AlignProperty::AlignContent AlignProperty::getAlignContent() const
+	{
+		return m_alignContent;
+	}
+
+	void AlignProperty::setAlignContent(AlignContent _alignContent)
+	{
+		m_alignContent = _alignContent;
+		m_alignContentDirty = true;
+	}
+
+	void AlignProperty::resetAlignContent()
+	{
+		m_alignContent = AlignContent::FlexStart;
+		m_alignContentDirty = false;
+	}
+}

@@ -1,5 +1,6 @@
 #include "../Headers/SFUIL/UIElement.hpp"
 #include "../Headers/SFUIL/Graphics/RoundedRectangle.hpp"
+#include "../Headers/SFUIL/System/UIPropUtils.hpp"
 #include <iostream>
 #include <SFML/Graphics/RectangleShape.hpp>
 

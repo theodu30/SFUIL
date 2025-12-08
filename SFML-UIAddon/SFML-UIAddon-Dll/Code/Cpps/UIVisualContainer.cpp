@@ -1,4 +1,5 @@
 #include "../Headers/SFUIL/Containers/UIVisualContainer.hpp"
+#include "../Headers/SFUIL/System/UIPropUtils.hpp"
 #include <iostream>
 #include "math.h"
 

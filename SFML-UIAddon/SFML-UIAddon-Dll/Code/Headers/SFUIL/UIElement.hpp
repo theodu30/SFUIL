@@ -1,7 +1,7 @@
 #pragma once
 
 #include "System/Exports.hpp"
-#include "System/UIElementProperty.hpp"
+#include "System/Properties.hpp"
 #include <SFML/Graphics/RenderTexture.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Shape.hpp>

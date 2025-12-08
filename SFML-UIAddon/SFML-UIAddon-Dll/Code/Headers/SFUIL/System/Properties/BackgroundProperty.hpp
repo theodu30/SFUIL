@@ -1,0 +1,22 @@
+#pragma once
+
+#include "Property.hpp"
+#include <SFML/Graphics/Color.hpp>
+
+namespace sfui
+{
+	class SFUIL_API BackgroundProperty : public Property
+	{
+	public:
+		void exportToXML(std::ostream& _stream) const override;
+
+		[[nodiscard]] const sf::Color& getColor() const;
+		void setColor(const sf::Color& _color);
+		void setColor(std::uint8_t _r, std::uint8_t _g, std::uint8_t _b, std::uint8_t _a = 255);
+		void resetColor();
+
+	private:
+		sf::Color m_color = sf::Color::Transparent;
+		bool m_colorDirty = false;
+	};
+}
