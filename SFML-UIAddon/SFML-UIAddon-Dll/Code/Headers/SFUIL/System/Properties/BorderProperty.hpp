@@ -24,7 +24,10 @@ namespace sfui
 		void resetRadius();
 
 	private:
-		sf::Color m_color = sf::Color::Black;
+		std::uint8_t m_r = 0;
+		std::uint8_t m_g = 0;
+		std::uint8_t m_b = 0;
+		std::uint8_t m_a = 255;
 		bool m_colorDirty = false;
 		float m_width = 0.f;
 		bool m_widthDirty = false;
