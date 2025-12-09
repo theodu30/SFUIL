@@ -64,6 +64,11 @@ namespace sfui
 		float imageHeight = m_image.getSize().height.resolveToPixels(_targetSize.y);
 
 		sf::Image img = m_image.getImage();
+		if (img.getSize().x == 0 || img.getSize().y == 0)
+		{
+			return;
+		}
+
 		sf::Texture texture;
 		if (texture.loadFromImage(img))
 		{

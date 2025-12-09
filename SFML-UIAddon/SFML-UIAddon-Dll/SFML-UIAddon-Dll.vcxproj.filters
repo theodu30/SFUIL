@@ -90,6 +90,9 @@
     <ClInclude Include="Code\Headers\SFUIL\System\Properties.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Code\Headers\SFUIL\XMLImport.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\Cpps\UIPanel.cpp">
@@ -150,6 +153,9 @@
       <Filter>Source Files\Properties</Filter>
     </ClCompile>
     <ClCompile Include="Code\Cpps\UIPropUtils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Cpps\XMLImport.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

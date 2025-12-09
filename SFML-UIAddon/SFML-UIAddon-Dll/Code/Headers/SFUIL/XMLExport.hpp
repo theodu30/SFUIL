@@ -5,7 +5,6 @@
 
 namespace sfui
 {
-	// Forward declaration
 	class SFUIL_API XMLExport
 	{
 	public:

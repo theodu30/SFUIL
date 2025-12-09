@@ -8,13 +8,35 @@ SFUIL_API const char* SFUIL_UIELEMENT_NAME = "UIElement";
 
 namespace sfui
 {
-	UIElement::UIElement(const char* _name) : m_name(_name)
+	UIElement::UIElement()
 	{
+		m_name = new char[strlen(SFUIL_UIELEMENT_NAME) + 1];
+		memcpy(m_name, SFUIL_UIELEMENT_NAME, strlen(SFUIL_UIELEMENT_NAME) + 1);
+	}
+
+	UIElement::UIElement(const char* _name)
+	{
+		m_name = new char[strlen(_name) + 1];
+		memcpy(m_name, _name, strlen(_name) + 1);
+	}
+
+	UIElement::~UIElement()
+	{
+		if (m_name)
+		{
+			delete[] m_name;
+		}
 	}
 
 	void UIElement::setName(const char* _name)
 	{
-		m_name = _name;
+		if (m_name)
+		{
+			delete[] m_name;
+		}
+
+		m_name = new char[strlen(_name) + 1];
+		memcpy(m_name, _name, strlen(_name) + 1);
 	}
 
 	const char* UIElement::getName() const
@@ -75,7 +97,12 @@ namespace sfui
 		return m_children;
 	}
 
-	const UIElement* UIElement::getParent() const
+	UIElement* UIElement::getParent()
+	{
+		return m_parent;
+	}
+
+	const UIElement* UIElement::getConstParent() const
 	{
 		return m_parent;
 	}

@@ -57,6 +57,9 @@ namespace sfui
 		{
 			return m_rootElement;
 		}
+
+		void setRootElement(UIVisualContainer* _element);
+
 	private:
 		bool m_active = false;
 		Alignment m_alignment;

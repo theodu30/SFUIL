@@ -12,8 +12,8 @@ namespace sfui
 {
 	void XMLExport::exportToXML(UIElement* _element, const char* _filename)
 	{
-		// Create file using filename and extension
-		std::ofstream file(std::string(_filename) + ".xml", std::ios::out | std::ios::trunc);
+		// Create file using filename
+		std::ofstream file(std::string(_filename), std::ios::out | std::ios::trunc);
 		if (!file.is_open())
 		{
 			std::cerr << "Failed to open file for XML export: " << _filename << std::endl;
@@ -35,7 +35,7 @@ namespace sfui
 			_stream << " name=\"" << _element->getName() << "\"";
 		}
 
-		_stream << " style= \"";
+		_stream << " style=\"";
 
 		_element->getConstProperty<OpacityProperty>().exportToXML(_stream);
 		_element->getConstProperty<DisplayProperty>().exportToXML(_stream);

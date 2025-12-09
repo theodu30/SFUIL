@@ -1,0 +1,8 @@
+<sfui:UIVisualContainer name="__ROOT_ELEMENT__" style="">
+	<sfui:UIVisualContainer name="Container 1" style=""/>
+	<sfui:UIVisualContainer name="Container 2" style="">
+		<sfui:UIVisualContainer name="Container 3" style=""/>
+		<sfui:UIImage style=""/>
+		<sfui:UIVisualContainer name="Container 4" style=""/>
+	</sfui:UIVisualContainer>
+</sfui:UIVisualContainer>

@@ -2,11 +2,12 @@
 #include <SFUIL/UIPanel.hpp>
 #include <SFUIL/Containers/UIVisualContainer.hpp>
 #include <SFUIL/Graphics/RoundedRectangle.hpp>
-#include <SFUIL/System/UIElementProperty.hpp>
+#include <SFUIL/System/Properties.hpp>
 #include <SFUIL/Containers/UIImage.hpp>
 
 #include <iostream>
 #include <SFUIL/XMLExport.hpp>
+#include <SFUIL/XMLImport.hpp>
 
 int main()
 {
@@ -21,52 +22,55 @@ int main()
 	panel.setSize(window.getSize());
 	panel.getRootElement()->getProperty<sfui::FlexProperty>().setFlexDirection(sfui::FlexProperty::Direction::Column);
 	
-	sfui::UIVisualContainer* container1 = new sfui::UIVisualContainer("Container 1");
-	sfui::UIVisualContainer* container2 = new sfui::UIVisualContainer("Container 2");
-	sfui::UIVisualContainer* container3 = new sfui::UIVisualContainer("Container 3");
-	sfui::UIVisualContainer* container4 = new sfui::UIVisualContainer("Container 4");
-	container1->getProperty<sfui::BackgroundProperty>().setColor(255ui8, 0ui8, 0ui8, 127ui8); // Semi-transparent red
-	container3->getProperty<sfui::BackgroundProperty>().setColor(0ui8, 0ui8, 255ui8, 127ui8); // Semi-transparent blue
-	container4->getProperty<sfui::BackgroundProperty>().setColor(0ui8, 255ui8, 0ui8, 127ui8); // Semi-transparent green
-	container1->getProperty<sfui::FlexProperty>().setFlexDirection(sfui::FlexProperty::Direction::Row);
-	container2->getProperty<sfui::FlexProperty>().setFlexDirection(sfui::FlexProperty::Direction::Row);
-	container1->getProperty<sfui::TransformProperty>().setOriginX(50.f, sfui::TransformProperty::OriginType::Percentage);
-	container1->getProperty<sfui::TransformProperty>().setOriginY(100.f, sfui::TransformProperty::OriginType::Percentage);
-	container2->getProperty<sfui::TransformProperty>().setOriginX(50.f, sfui::TransformProperty::OriginType::Percentage);
-	container2->getProperty<sfui::TransformProperty>().setOriginY(50.f, sfui::TransformProperty::OriginType::Percentage);
-	container3->getProperty<sfui::TransformProperty>().setOriginX(0.f, sfui::TransformProperty::OriginType::Percentage);
-	container3->getProperty<sfui::TransformProperty>().setOriginY(100.f, sfui::TransformProperty::OriginType::Percentage);
-	container4->getProperty<sfui::TransformProperty>().setOriginX(50.f, sfui::TransformProperty::OriginType::Percentage);
-	container4->getProperty<sfui::TransformProperty>().setOriginY(0.f, sfui::TransformProperty::OriginType::Percentage);
-	container1->getProperty<sfui::BorderProperty>().setRadius(20.f);
-	container1->getProperty<sfui::BorderProperty>().setWidth(5.f);
-	container1->getProperty<sfui::BorderProperty>().setColor(255ui8, 0ui8, 0ui8, 191ui8);
-	panel.getRootElement()->addChild(container1);
-	panel.getRootElement()->addChild(container2);
+	//sfui::UIVisualContainer* container1 = new sfui::UIVisualContainer("Container 1");
+	//sfui::UIVisualContainer* container2 = new sfui::UIVisualContainer("Container 2");
+	//sfui::UIVisualContainer* container3 = new sfui::UIVisualContainer("Container 3");
+	//sfui::UIVisualContainer* container4 = new sfui::UIVisualContainer("Container 4");
+	//container1->getProperty<sfui::BackgroundProperty>().setColor(255ui8, 0ui8, 0ui8, 127ui8); // Semi-transparent red
+	//container3->getProperty<sfui::BackgroundProperty>().setColor(0ui8, 0ui8, 255ui8, 127ui8); // Semi-transparent blue
+	//container4->getProperty<sfui::BackgroundProperty>().setColor(0ui8, 255ui8, 0ui8, 127ui8); // Semi-transparent green
+	//container1->getProperty<sfui::FlexProperty>().setFlexDirection(sfui::FlexProperty::Direction::Row);
+	//container2->getProperty<sfui::FlexProperty>().setFlexDirection(sfui::FlexProperty::Direction::Row);
+	//container1->getProperty<sfui::TransformProperty>().setOriginX(50.f, sfui::TransformProperty::OriginType::Percentage);
+	//container1->getProperty<sfui::TransformProperty>().setOriginY(100.f, sfui::TransformProperty::OriginType::Percentage);
+	//container2->getProperty<sfui::TransformProperty>().setOriginX(50.f, sfui::TransformProperty::OriginType::Percentage);
+	//container2->getProperty<sfui::TransformProperty>().setOriginY(50.f, sfui::TransformProperty::OriginType::Percentage);
+	//container3->getProperty<sfui::TransformProperty>().setOriginX(0.f, sfui::TransformProperty::OriginType::Percentage);
+	//container3->getProperty<sfui::TransformProperty>().setOriginY(100.f, sfui::TransformProperty::OriginType::Percentage);
+	//container4->getProperty<sfui::TransformProperty>().setOriginX(50.f, sfui::TransformProperty::OriginType::Percentage);
+	//container4->getProperty<sfui::TransformProperty>().setOriginY(0.f, sfui::TransformProperty::OriginType::Percentage);
+	//container1->getProperty<sfui::BorderProperty>().setRadius(20.f);
+	//container1->getProperty<sfui::BorderProperty>().setWidth(5.f);
+	//container1->getProperty<sfui::BorderProperty>().setColor(255ui8, 0ui8, 0ui8, 191ui8);
+	//panel.getRootElement()->addChild(container1);
+	//panel.getRootElement()->addChild(container2);
+	//
+	//sfui::UIImage* img1 = new sfui::UIImage();
+	//sfui::ImageProperty& imgProp = img1->getProperty<sfui::ImageProperty>();
+	//img1->getProperty<sfui::BackgroundProperty>().setColor(255ui8, 255ui8, 255ui8, 127ui8); // Semi-transparent white
+	//img1->getProperty<sfui::BorderProperty>().setRadius(10.f);
+	//img1->getProperty<sfui::BorderProperty>().setWidth(3.f);
+	//img1->getProperty<sfui::BorderProperty>().setColor(255ui8, 255ui8, 255ui8, 255ui8);
+	//imgProp.setImagePath("kirbo_sunset_wallpaper.png");
+	////imgProp.setImagePath("circle.png");
+	//imgProp.loadImage();
+	//imgProp.setWidth(100.f, sfui::ImageProperty::SizeType::Percentage);
+	//imgProp.setHeight(100.f, sfui::ImageProperty::SizeType::Percentage);
+	//imgProp.setScaleMode(sfui::ImageProperty::ScaleMode::ScaleToFit);
+	//imgProp.setSmooth(sfui::ImageProperty::Smooth::Smooth);
+	//imgProp.setPositionX(sfui::ImageProperty::PositionXPositionType::Center, 0.f);
+	//imgProp.setPositionY(sfui::ImageProperty::PositionYPositionType::Bottom, 100.f, sfui::ImageProperty::PositionOffsetType::Percentage);
+	//img1->getProperty<sfui::TransformProperty>().setOriginX(50.f, sfui::TransformProperty::OriginType::Percentage);
+	//img1->getProperty<sfui::TransformProperty>().setOriginY(50.f, sfui::TransformProperty::OriginType::Percentage);
+	//img1->getProperty<sfui::PositionProperty>().setMode(sfui::PositionProperty::Mode::Relative);
+	//container2->addChild(container3);
+	//container2->addChild(img1);
+	//container2->addChild(container4);
 
-	sfui::UIImage* img1 = new sfui::UIImage();
-	sfui::ImageProperty& imgProp = img1->getProperty<sfui::ImageProperty>();
-	img1->getProperty<sfui::BackgroundProperty>().setColor(255ui8, 255ui8, 255ui8, 127ui8); // Semi-transparent white
-	img1->getProperty<sfui::BorderProperty>().setRadius(10.f);
-	img1->getProperty<sfui::BorderProperty>().setWidth(3.f);
-	img1->getProperty<sfui::BorderProperty>().setColor(255ui8, 255ui8, 255ui8, 255ui8);
-	imgProp.setImagePath("kirbo_sunset_wallpaper.png");
-	//imgProp.setImagePath("circle.png");
-	imgProp.loadImage();
-	imgProp.setWidth(100.f, sfui::ImageProperty::SizeType::Percentage);
-	imgProp.setHeight(100.f, sfui::ImageProperty::SizeType::Percentage);
-	imgProp.setScaleMode(sfui::ImageProperty::ScaleMode::ScaleToFit);
-	imgProp.setSmooth(sfui::ImageProperty::Smooth::Smooth);
-	imgProp.setPositionX(sfui::ImageProperty::PositionXPositionType::Center, 0.f);
-	imgProp.setPositionY(sfui::ImageProperty::PositionYPositionType::Bottom, 100.f, sfui::ImageProperty::PositionOffsetType::Percentage);
-	img1->getProperty<sfui::TransformProperty>().setOriginX(50.f, sfui::TransformProperty::OriginType::Percentage);
-	img1->getProperty<sfui::TransformProperty>().setOriginY(50.f, sfui::TransformProperty::OriginType::Percentage);
-	img1->getProperty<sfui::PositionProperty>().setMode(sfui::PositionProperty::Mode::Relative);
-	container2->addChild(container3);
-	container2->addChild(img1);
-	container2->addChild(container4);
-
-	sfui::XMLExport::exportToXML(panel.getRootElement(), "panel");
+	//sfui::XMLExport::exportToXML(panel.getRootElement(), "panel.xml");
+	//sfui::XMLImport::importFromXML("panel.xml");
+	panel.setRootElement(sfui::XMLImport::importFromXML("panel.xml")->as<sfui::UIVisualContainer>());
+	sfui::XMLExport::exportToXML(panel.getRootElement(), "panel_out.xml");
 
 	bool rotating = false;
 	float rotationSpeed = 50.f; // degrees per frame

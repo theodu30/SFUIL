@@ -42,6 +42,7 @@
     <ClInclude Include="Code\Headers\SFUIL\System\Properties\ImageProperty.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\UIPropUtils.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\Properties.hpp" />
+    <ClInclude Include="Code\Headers\SFUIL\XMLImport.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\Cpps\Properties\AlignProperty.cpp" />
@@ -64,6 +65,7 @@
     <ClCompile Include="Code\Cpps\Properties\TransformProperty.cpp" />
     <ClCompile Include="Code\Cpps\UIPropUtils.cpp" />
     <ClCompile Include="Code\Cpps\Properties\VisibilityProperty.cpp" />
+    <ClCompile Include="Code\Cpps\XMLImport.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

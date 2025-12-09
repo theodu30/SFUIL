@@ -30,9 +30,9 @@ namespace sfui
 		virtual const char* getTypeName() const { return SFUIL_UIELEMENT_NAME; }
 		static const char* staticTypeName() { return SFUIL_UIELEMENT_NAME; }
 
-		UIElement() = default;
+		UIElement();
 		UIElement(const char* _name);
-		virtual ~UIElement() = default;
+		virtual ~UIElement();
 
 		virtual void drawToTarget(sf::RenderTexture& _target) = 0;
 
@@ -158,7 +158,9 @@ namespace sfui
 
 		std::vector<UIElement*>& getChildren();
 
-		const UIElement* getParent() const;
+		UIElement* getParent();
+
+		const UIElement* getConstParent() const;
 
 		sf::Vector2f getRenderSize() const;
 
@@ -263,7 +265,7 @@ namespace sfui
 		virtual void calculateContentSize(sf::Vector2u& _contentSize) const = 0;
 
 	protected:
-		const char* m_name = "UIElement";
+		char* m_name;
 		std::vector<UIElement*> m_children;
 		UIElement* m_parent = nullptr;
 		bool m_dirty = true;

@@ -393,9 +393,9 @@ namespace sfui
 	{
 		sf::Transform local = getLocalTransform();
 
-		if (_element->getParent())
+		if (_element->getConstParent())
 		{
-			local = _element->getParent()->getConstProperty<TransformProperty>().getWorldTransform(_element->getParent()) * local;
+			local = _element->getConstParent()->getConstProperty<TransformProperty>().getWorldTransform(_element->getConstParent()) * local;
 		}
 
 		return local;

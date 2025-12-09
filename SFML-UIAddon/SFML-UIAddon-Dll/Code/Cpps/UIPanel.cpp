@@ -132,4 +132,13 @@ namespace sfui
 	{
 		return m_panelBackgroundColor;
 	}
+
+	void UIPanel::setRootElement(UIVisualContainer* _element)
+	{
+		if (m_rootElement != nullptr)
+		{
+			delete m_rootElement;
+		}
+		m_rootElement = _element;
+	}
 }
