@@ -2,6 +2,7 @@
 #include "../../Headers/SFUIL/UIElement.hpp"
 #define _USE_MATH_DEFINES
 #include <math.h>
+#include <string>
 
 namespace sfui
 {
@@ -138,6 +139,58 @@ namespace sfui
 		m_origin.yDirty = false;
 	}
 
+	void TransformProperty::setOriginXFromCStr(const char* _value)
+	{
+		if (_value == nullptr)
+		{
+			resetOriginX();
+			return;
+		}
+
+		if (std::strstr(_value, "px") != nullptr)
+		{
+			std::string numberPart = std::string(_value).substr(0, std::strlen(_value) - 2);
+			float value = std::stof(numberPart);
+			setOriginX(value, OriginType::Pixels);
+		}
+		else if (std::strstr(_value, "%") != nullptr)
+		{
+			std::string numberPart = std::string(_value).substr(0, std::strlen(_value) - 1);
+			float value = std::stof(numberPart);
+			setOriginX(value, OriginType::Percentage);
+		}
+		else
+		{
+			resetOriginX();
+		}
+	}
+
+	void TransformProperty::setOriginYFromCStr(const char* _value)
+	{
+		if (_value == nullptr)
+		{
+			resetOriginY();
+			return;
+		}
+
+		if (std::strstr(_value, "px") != nullptr)
+		{
+			std::string numberPart = std::string(_value).substr(0, std::strlen(_value) - 2);
+			float value = std::stof(numberPart);
+			setOriginY(value, OriginType::Pixels);
+		}
+		else if (std::strstr(_value, "%") != nullptr)
+		{
+			std::string numberPart = std::string(_value).substr(0, std::strlen(_value) - 1);
+			float value = std::stof(numberPart);
+			setOriginY(value, OriginType::Percentage);
+		}
+		else
+		{
+			resetOriginY();
+		}
+	}
+
 	float TransformProperty::TranslateValue::resolveToPixels(float _relativeTo) const
 	{
 		switch (type)
@@ -208,6 +261,58 @@ namespace sfui
 		m_translate.yDirty = false;
 	}
 
+	void TransformProperty::setTranslateXFromCStr(const char* _value)
+	{
+		if (_value == nullptr)
+		{
+			resetTranslateX();
+			return;
+		}
+
+		if (std::strstr(_value, "px") != nullptr)
+		{
+			std::string numberPart = std::string(_value).substr(0, std::strlen(_value) - 2);
+			float value = std::stof(numberPart);
+			setTranslateX(value, TranslateType::Pixels);
+		}
+		else if (std::strstr(_value, "%") != nullptr)
+		{
+			std::string numberPart = std::string(_value).substr(0, std::strlen(_value) - 1);
+			float value = std::stof(numberPart);
+			setTranslateX(value, TranslateType::Percentage);
+		}
+		else
+		{
+			resetTranslateX();
+		}
+	}
+
+	void TransformProperty::setTranslateYFromCStr(const char* _value)
+	{
+		if (_value == nullptr)
+		{
+			resetTranslateY();
+			return;
+		}
+
+		if (std::strstr(_value, "px") != nullptr)
+		{
+			std::string numberPart = std::string(_value).substr(0, std::strlen(_value) - 2);
+			float value = std::stof(numberPart);
+			setTranslateY(value, TranslateType::Pixels);
+		}
+		else if (std::strstr(_value, "%") != nullptr)
+		{
+			std::string numberPart = std::string(_value).substr(0, std::strlen(_value) - 1);
+			float value = std::stof(numberPart);
+			setTranslateY(value, TranslateType::Percentage);
+		}
+		else
+		{
+			resetTranslateY();
+		}
+	}
+
 	const TransformProperty::Scale& TransformProperty::getScale() const
 	{
 		return m_scale;
@@ -247,6 +352,44 @@ namespace sfui
 	void TransformProperty::resetScaleY()
 	{
 		m_scale.y = 1.f;
+	}
+
+	void TransformProperty::setScaleXFromCStr(const char* _value)
+	{
+		if (_value == nullptr)
+		{
+			resetScaleX();
+			return;
+		}
+
+		try
+		{
+			float value = std::stof(_value);
+			setScaleX(value);
+		}
+		catch (...)
+		{
+			resetScaleX();
+		}
+	}
+
+	void TransformProperty::setScaleYFromCStr(const char* _value)
+	{
+		if (_value == nullptr)
+		{
+			resetScaleY();
+			return;
+		}
+
+		try
+		{
+			float value = std::stof(_value);
+			setScaleY(value);
+		}
+		catch (...)
+		{
+			resetScaleY();
+		}
 	}
 
 	float TransformProperty::Rotate::resolveToDegrees() const
@@ -316,6 +459,32 @@ namespace sfui
 	{
 		m_rotate = Rotate();
 		m_rotateDirty = false;
+	}
+
+	void TransformProperty::setRotateFromCStr(const char* _value)
+	{
+		if (_value == nullptr)
+		{
+			resetRotate();
+			return;
+		}
+
+		if (std::strstr(_value, "deg") != nullptr)
+		{
+			std::string numberPart = std::string(_value).substr(0, std::strlen(_value) - 3);
+			float value = std::stof(numberPart);
+			setRotate(value, RotateType::Degrees);
+		}
+		else if (std::strstr(_value, "rad") != nullptr)
+		{
+			std::string numberPart = std::string(_value).substr(0, std::strlen(_value) - 3);
+			float value = std::stof(numberPart);
+			setRotate(value, RotateType::Radians);
+		}
+		else
+		{
+			resetRotate();
+		}
 	}
 
 	const sf::Vector2f& TransformProperty::getCalculatedOriginPixels() const

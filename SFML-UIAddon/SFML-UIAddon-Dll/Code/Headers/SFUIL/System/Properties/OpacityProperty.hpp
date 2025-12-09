@@ -12,6 +12,7 @@ namespace sfui
 		[[nodiscard]] const float& getOpacity() const;
 		void setOpacity(float _opacity);
 		void resetOpacity();
+		void setOpacityFromCStr(const char* _value);
 
 	private:
 		float m_opacity = 1.f;

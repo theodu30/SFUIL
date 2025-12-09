@@ -31,4 +31,27 @@ namespace sfui
 		m_display = Type::Flex;
 		m_displayDirty = false;
 	}
+
+	void DisplayProperty::setDisplayFromCStr(const char* _typeStr)
+	{
+		if (_typeStr == nullptr)
+		{
+			resetDisplay();
+			return;
+		}
+
+		if (strcmp(_typeStr, "flex") == 0)
+		{
+			setDisplay(Type::Flex);
+		}
+		else if (strcmp(_typeStr, "none") == 0)
+		{
+			setDisplay(Type::None);
+		}
+		else
+		{
+			resetDisplay();
+		}
+	}
+
 }

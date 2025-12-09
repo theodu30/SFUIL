@@ -28,4 +28,24 @@ namespace sfui
 		m_opacity = 1.f;
 		m_opacityDirty = false;
 	}
+
+	void OpacityProperty::setOpacityFromCStr(const char* _value)
+	{
+		if (_value == nullptr)
+		{
+			resetOpacity();
+			return;
+		}
+
+		try
+		{
+			float opacity = std::stof(_value);
+			setOpacity(opacity);
+		}
+		catch (...)
+		{
+			resetOpacity();
+		}
+	}
+
 }

@@ -21,6 +21,7 @@ namespace sfui
 		[[nodiscard]] AlignItems getAlignItems() const;
 		void setAlignItems(AlignItems _alignItems);
 		void resetAlignItems();
+		void setAlignItemsFromCStr(const char* _value);
 
 		enum class JustifyContent : char
 		{
@@ -35,6 +36,7 @@ namespace sfui
 		[[nodiscard]] JustifyContent getJustifyContent() const;
 		void setJustifyContent(JustifyContent _justifyContent);
 		void resetJustifyContent();
+		void setJustifyContentFromCStr(const char* _value);
 
 		enum class AlignSelf : char
 		{
@@ -48,6 +50,7 @@ namespace sfui
 		[[nodiscard]] AlignSelf getAlignSelf() const;
 		void setAlignSelf(AlignSelf _alignSelf);
 		void resetAlignSelf();
+		void setAlignSelfFromCStr(const char* _value);
 
 		enum class AlignContent : char
 		{
@@ -61,6 +64,7 @@ namespace sfui
 		[[nodiscard]] AlignContent getAlignContent() const;
 		void setAlignContent(AlignContent _alignContent);
 		void resetAlignContent();
+		void setAlignContentFromCStr(const char* _value);
 
 	private:
 		AlignItems m_alignItems = AlignItems::Stretch;

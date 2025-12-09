@@ -1,4 +1,5 @@
 #include "../../Headers/SFUIL/System/Properties/FlexProperty.hpp"
+#include <string>
 
 namespace sfui
 {
@@ -94,6 +95,34 @@ namespace sfui
 		m_flexBasisDirty = false;
 	}
 
+	void FlexProperty::setFlexBasicFromCStr(const char* _value)
+	{
+		if (_value == nullptr)
+		{
+			resetFlexBasic();
+			return;
+		}
+
+		if (std::strcmp(_value, "auto") == 0)
+		{
+			setFlexBasic(0.f, BasicType::Auto);
+		}
+		else if (std::strstr(_value, "px") != nullptr)
+		{
+			float val = std::stof(std::string(_value).substr(0, std::strlen(_value) - 2));
+			setFlexBasic(val, BasicType::Pixels);
+		}
+		else if (std::strstr(_value, "%") != nullptr)
+		{
+			float val = std::stof(std::string(_value).substr(0, std::strlen(_value) - 1));
+			setFlexBasic(val, BasicType::Percentage);
+		}
+		else
+		{
+			resetFlexBasic();
+		}
+	}
+
 	const float& FlexProperty::getFlexShrink() const
 	{
 		return m_flexShrink;
@@ -109,6 +138,25 @@ namespace sfui
 	{
 		m_flexShrink = 1.f;
 		m_flexShrinkDirty = false;
+	}
+
+	void FlexProperty::setFlexShrinkFromCStr(const char* _value)
+	{
+		if (_value == nullptr)
+		{
+			resetFlexShrink();
+			return;
+		}
+
+		try
+		{
+			float val = std::stof(_value);
+			setFlexShrink(val);
+		}
+		catch (...)
+		{
+			resetFlexShrink();
+		}
 	}
 
 	const float& FlexProperty::getFlexGrow() const
@@ -128,6 +176,25 @@ namespace sfui
 		m_flexGrowDirty = false;
 	}
 
+	void FlexProperty::setFlexGrowFromCStr(const char* _value)
+	{
+		if (_value == nullptr)
+		{
+			resetFlexGrow();
+			return;
+		}
+
+		try
+		{
+			float val = std::stof(_value);
+			setFlexGrow(val);
+		}
+		catch (...)
+		{
+			resetFlexGrow();
+		}
+	}
+
 	FlexProperty::Direction FlexProperty::getFlexDirection() const
 	{
 		return m_flexDirection;
@@ -143,6 +210,36 @@ namespace sfui
 	{
 		m_flexDirection = Direction::Column;
 		m_flexDirectionDirty = false;
+	}
+
+	void FlexProperty::setFlexDirectionFromCStr(const char* _value)
+	{
+		if (_value == nullptr)
+		{
+			resetFlexDirection();
+			return;
+		}
+
+		if (std::strcmp(_value, "column") == 0)
+		{
+			setFlexDirection(Direction::Column);
+		}
+		else if (std::strcmp(_value, "column-reverse") == 0)
+		{
+			setFlexDirection(Direction::ColumnReverse);
+		}
+		else if (std::strcmp(_value, "row") == 0)
+		{
+			setFlexDirection(Direction::Row);
+		}
+		else if (std::strcmp(_value, "row-reverse") == 0)
+		{
+			setFlexDirection(Direction::RowReverse);
+		}
+		else
+		{
+			resetFlexDirection();
+		}
 	}
 
 	FlexProperty::Warp FlexProperty::getFlexWrap() const
@@ -161,4 +258,31 @@ namespace sfui
 		m_flexWrap = Warp::NoWrap;
 		m_flexWrapDirty = false;
 	}
+
+	void FlexProperty::setFlexWrapFromCStr(const char* _value)
+	{
+		if (_value == nullptr)
+		{
+			resetFlexWrap();
+			return;
+		}
+
+		if (std::strcmp(_value, "no-wrap") == 0)
+		{
+			setFlexWrap(Warp::NoWrap);
+		}
+		else if (std::strcmp(_value, "wrap") == 0)
+		{
+			setFlexWrap(Warp::Wrap);
+		}
+		else if (std::strcmp(_value, "wrap-reverse") == 0)
+		{
+			setFlexWrap(Warp::WrapReverse);
+		}
+		else
+		{
+			resetFlexWrap();
+		}
+	}
+
 }

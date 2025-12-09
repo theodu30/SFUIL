@@ -14,14 +14,17 @@ namespace sfui
 		void setColor(const sf::Color& _color);
 		void setColor(std::uint8_t _r, std::uint8_t _g, std::uint8_t _b, std::uint8_t _a = 255);
 		void resetColor();
+		void setColorFromCStr(const char* _colorStr);
 
 		[[nodiscard]] const float& getWidth() const;
 		void setWidth(float _width);
 		void resetWidth();
+		void setWidthFromCStr(const char* _widthStr);
 
 		[[nodiscard]] const float& getRadius() const;
 		void setRadius(float _radius);
 		void resetRadius();
+		void setRadiusFromCStr(const char* _radiusStr);
 
 	private:
 		std::uint8_t m_r = 0;

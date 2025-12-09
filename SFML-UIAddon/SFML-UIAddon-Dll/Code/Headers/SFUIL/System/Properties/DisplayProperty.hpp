@@ -18,6 +18,7 @@ namespace sfui
 		[[nodiscard]] Type getDisplay() const;
 		void setDisplay(Type _type);
 		void resetDisplay();
+		void setDisplayFromCStr(const char* _typeStr);
 
 	private:
 		Type m_display = Type::Flex;

@@ -1,8 +1,8 @@
-<sfui:UIVisualContainer name="__ROOT_ELEMENT__" style="">
-	<sfui:UIVisualContainer name="Container 1" style=""/>
-	<sfui:UIVisualContainer name="Container 2" style="">
-		<sfui:UIVisualContainer name="Container 3" style=""/>
-		<sfui:UIImage style=""/>
-		<sfui:UIVisualContainer name="Container 4" style=""/>
+<sfui:UIVisualContainer name="__ROOT_ELEMENT__" style="position: absolute; flex-direction: column; width: 100%; height: 100%; ">
+	<sfui:UIVisualContainer name="Container 1" style="flex-direction: row; background-color: (255,0,0,127); border-color: (255,0,0,191); border-width: 5; border-radius: 20; origin-x: 50%; origin-y: 100%; "/>
+	<sfui:UIVisualContainer name="Container 2" style="flex-direction: row; origin-x: 50%; origin-y: 50%; ">
+		<sfui:UIVisualContainer name="Container 3" style="background-color: (0,0,255,127); origin-x: 0%; origin-y: 100%; "/>
+		<sfui:UIImage style="position: relative; background-color: (255,255,255,127); border-color: (255,255,255,255); border-width: 3; border-radius: 10; origin-x: 50%; origin-y: 50%; image-smooth: smooth; image-path: 'kirbo_sunset_wallpaper.png'; image-width: 100%;image-height: 100%; image-position-x: center; image-position-y: bottom; image-position-y-offset:100%; image-scale-mode: scale-to-fit; "/>
+		<sfui:UIVisualContainer name="Container 4" style="background-color: (0,255,0,127); origin-x: 50%; origin-y: 0%; "/>
 	</sfui:UIVisualContainer>
 </sfui:UIVisualContainer>

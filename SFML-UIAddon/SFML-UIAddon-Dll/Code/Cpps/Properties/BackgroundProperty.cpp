@@ -50,4 +50,32 @@ namespace sfui
 		m_a = 0;
 		m_colorDirty = false;
 	}
+
+	void BackgroundProperty::setColorFromCStr(const char* _colorStr)
+	{
+		if (_colorStr == nullptr)
+		{
+			resetColor();
+			return;
+		}
+
+		std::uint8_t r = 0;
+		std::uint8_t g = 0;
+		std::uint8_t b = 0;
+		std::uint8_t a = 255;
+
+		if (sscanf_s(_colorStr, "(%hhu,%hhu,%hhu,%hhu)", &r, &g, &b, &a) == 4)
+		{
+			setColor(r, g, b, a);
+		}
+		else if (sscanf_s(_colorStr, "(%hhu,%hhu,%hhu)", &r, &g, &b) == 3)
+		{
+			setColor(r, g, b, 255);
+		}
+		else
+		{
+			resetColor();
+		}
+	}
+
 }

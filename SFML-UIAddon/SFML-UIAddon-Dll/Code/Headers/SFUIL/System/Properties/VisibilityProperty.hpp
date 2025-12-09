@@ -17,6 +17,7 @@ namespace sfui
 		[[nodiscard]] Type getVisibility() const;
 		void setVisibility(Type _type);
 		void resetVisibility();
+		void setVisibilityFromCStr(const char* _value);
 
 	private:
 		Type m_visibility = Type::Visible;

@@ -31,4 +31,27 @@ namespace sfui
 		m_visibility = Type::Visible;
 		m_visibilityDirty = false;
 	}
+
+	void VisibilityProperty::setVisibilityFromCStr(const char* _value)
+	{
+		if (_value == nullptr)
+		{
+			resetVisibility();
+			return;
+		}
+
+		if (strcmp(_value, "visible") == 0)
+		{
+			setVisibility(Type::Visible);
+		}
+		else if (strcmp(_value, "hidden") == 0)
+		{
+			setVisibility(Type::Hidden);
+		}
+		else
+		{
+			resetVisibility();
+		}
+	}
+
 }

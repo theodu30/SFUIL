@@ -41,6 +41,8 @@ namespace sfui
 		void resetSize();
 		void resetWidth();
 		void resetHeight();
+		void setWidthFromCStr(const char* _value);
+		void setHeightFromCStr(const char* _value);
 
 		enum class MinSizeType : char
 		{
@@ -74,6 +76,8 @@ namespace sfui
 		void resetMinSize();
 		void resetMinWidth();
 		void resetMinHeight();
+		void setMinWidthFromCStr(const char* _value);
+		void setMinHeightFromCStr(const char* _value);
 
 		enum class MaxSizeType : char
 		{
@@ -107,6 +111,8 @@ namespace sfui
 		void resetMaxSize();
 		void resetMaxWidth();
 		void resetMaxHeight();
+		void setMaxWidthFromCStr(const char* _value);
+		void setMaxHeightFromCStr(const char* _value);
 
 	private:
 		Size m_size;

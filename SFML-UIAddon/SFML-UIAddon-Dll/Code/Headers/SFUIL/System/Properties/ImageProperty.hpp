@@ -20,6 +20,7 @@ namespace sfui
 		[[nodiscard]] Repeat getRepeat() const;
 		void setRepeat(Repeat _repeat);
 		void resetRepeat();
+		void setRepeatFromCStr(const char* _value);
 
 		enum class Smooth : char
 		{
@@ -30,15 +31,18 @@ namespace sfui
 		[[nodiscard]] Smooth getSmooth() const;
 		void setSmooth(Smooth _smooth);
 		void resetSmooth();
+		void setSmoothFromCStr(const char* _value);
 
 		[[nodiscard]] const char* getImagePath() const;
 		void setImagePath(const char* _imagePath);
 		void resetImagePath();
+		void setImagePathFromCStr(const char* _value);
 
 		[[nodiscard]] const sf::Color& getTintColor() const;
 		void setTintColor(const sf::Color& _color);
 		void setTintColor(std::uint8_t _r, std::uint8_t _g, std::uint8_t _b, std::uint8_t _a = 255);
 		void resetTintColor();
+		void setTintColorFromCStr(const char* _value);
 
 		[[nodiscard]] const sf::Image& getImage() const;
 		bool loadImage();
@@ -74,6 +78,8 @@ namespace sfui
 		void resetSize();
 		void resetWidth();
 		void resetHeight();
+		void setWidthFromCStr(const char* _value);
+		void setHeightFromCStr(const char* _value);
 
 		enum class PositionXPositionType : char
 		{
@@ -121,6 +127,8 @@ namespace sfui
 		void setPositionX(float _offsetValue);
 		void setPositionX(PositionXPositionType _position);
 		void resetPositionX();
+		void setPositionXFromCStr(const char* _value);
+		void setPositionXOffsetFromCStr(const char* _value);
 
 		[[nodiscard]] const PositionY& getPositionY() const;
 		void setPositionY(const PositionY& _positionY);
@@ -130,6 +138,8 @@ namespace sfui
 		void setPositionY(float _offsetValue);
 		void setPositionY(PositionYPositionType _position);
 		void resetPositionY();
+		void setPositionYFromCStr(const char* _value);
+		void setPositionYOffsetFromCStr(const char* _value);
 
 		enum class ScaleMode : char
 		{
@@ -141,9 +151,10 @@ namespace sfui
 		[[nodiscard]] ScaleMode getScaleMode() const;
 		void setScaleMode(ScaleMode _mode);
 		void resetScaleMode();
+		void setScaleModeFromCStr(const char* _value);
 
 	private:
-		const char* m_imagePath = nullptr;
+		char* m_imagePath = nullptr;
 		bool m_imagePathDirty = false;
 		sf::Image m_image;
 		sf::Color m_tintColor = sf::Color::White;

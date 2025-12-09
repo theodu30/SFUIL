@@ -61,6 +61,33 @@ namespace sfui
 		m_colorDirty = false;
 	}
 
+	void BorderProperty::setColorFromCStr(const char* _colorStr)
+	{
+		if (_colorStr == nullptr)
+		{
+			resetColor();
+			return;
+		}
+
+		std::uint8_t r = 0;
+		std::uint8_t g = 0;
+		std::uint8_t b = 0;
+		std::uint8_t a = 255;
+
+		if (sscanf_s(_colorStr, "(%hhu,%hhu,%hhu,%hhu)", &r, &g, &b, &a) == 4)
+		{
+			setColor(r, g, b, a);
+		}
+		else if (sscanf_s(_colorStr, "(%hhu,%hhu,%hhu)", &r, &g, &b) == 3)
+		{
+			setColor(r, g, b, 255);
+		}
+		else
+		{
+			resetColor();
+		}
+	}
+
 	const float& BorderProperty::getWidth() const
 	{
 		return m_width;
@@ -76,6 +103,25 @@ namespace sfui
 	{
 		m_width = 0.f;
 		m_widthDirty = false;
+	}
+
+	void BorderProperty::setWidthFromCStr(const char* _widthStr)
+	{
+		if (_widthStr == nullptr)
+		{
+			resetWidth();
+			return;
+		}
+
+		float width = 0.f;
+		if (sscanf_s(_widthStr, "%f", &width) == 1)
+		{
+			setWidth(width);
+		}
+		else
+		{
+			resetWidth();
+		}
 	}
 
 	const float& BorderProperty::getRadius() const
@@ -94,4 +140,24 @@ namespace sfui
 		m_radius = 0.f;
 		m_radiusDirty = false;
 	}
+
+	void BorderProperty::setRadiusFromCStr(const char* _radiusStr)
+	{
+		if (_radiusStr == nullptr)
+		{
+			resetRadius();
+			return;
+		}
+
+		float radius = 0.f;
+		if (sscanf_s(_radiusStr, "%f", &radius) == 1)
+		{
+			setRadius(radius);
+		}
+		else
+		{
+			resetRadius();
+		}
+	}
+
 }

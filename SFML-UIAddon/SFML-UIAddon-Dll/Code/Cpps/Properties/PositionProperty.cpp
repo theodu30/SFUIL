@@ -1,4 +1,5 @@
 #include "../../Headers/SFUIL/System/Properties/PositionProperty.hpp"
+#include <string>
 
 namespace sfui
 {
@@ -76,6 +77,28 @@ namespace sfui
 		m_modeDirty = false;
 	}
 
+	void PositionProperty::setModeFromCStr(const char* _modeStr)
+	{
+		if (_modeStr == nullptr)
+		{
+			resetMode();
+			return;
+		}
+
+		if (std::strcmp(_modeStr, "relative") == 0)
+		{
+			setMode(Mode::Relative);
+		}
+		else if (std::strcmp(_modeStr, "absolute") == 0)
+		{
+			setMode(Mode::Absolute);
+		}
+		else
+		{
+			resetMode();
+		}
+	}
+
 	float PositionProperty::Value::resolveToPixels(float _relativeTo) const
 	{
 		switch (type)
@@ -121,6 +144,34 @@ namespace sfui
 		m_topDirty = false;
 	}
 
+	void PositionProperty::setTopFromCStr(const char* _value)
+	{
+		if (_value == nullptr)
+		{
+			resetTop();
+			return;
+		}
+
+		if (std::strcmp(_value, "auto") == 0)
+		{
+			setTop(Value{ 0.f, ValueType::Auto });
+		}
+		else if (std::strstr(_value, "px") != nullptr)
+		{
+			float val = std::stof(std::string(_value).substr(0, std::strlen(_value) - 2));
+			setTop(val, ValueType::Pixels);
+		}
+		else if (std::strstr(_value, "%") != nullptr)
+		{
+			float val = std::stof(std::string(_value).substr(0, std::strlen(_value) - 1));
+			setTop(val, ValueType::Percentage);
+		}
+		else
+		{
+			resetTop();
+		}
+	}
+
 	const PositionProperty::Value& PositionProperty::getRight() const
 	{
 		return m_right;
@@ -149,6 +200,34 @@ namespace sfui
 	{
 		m_right = Value();
 		m_rightDirty = false;
+	}
+
+	void PositionProperty::setRightFromCStr(const char* _value)
+	{
+		if (_value == nullptr)
+		{
+			resetRight();
+			return;
+		}
+
+		if (std::strcmp(_value, "auto") == 0)
+		{
+			setRight(Value{ 0.f, ValueType::Auto });
+		}
+		else if (std::strstr(_value, "px") != nullptr)
+		{
+			float val = std::stof(std::string(_value).substr(0, std::strlen(_value) - 2));
+			setRight(val, ValueType::Pixels);
+		}
+		else if (std::strstr(_value, "%") != nullptr)
+		{
+			float val = std::stof(std::string(_value).substr(0, std::strlen(_value) - 1));
+			setRight(val, ValueType::Percentage);
+		}
+		else
+		{
+			resetRight();
+		}
 	}
 
 	const PositionProperty::Value& PositionProperty::getBottom() const
@@ -181,6 +260,34 @@ namespace sfui
 		m_bottomDirty = false;
 	}
 
+	void PositionProperty::setBottomFromCStr(const char* _value)
+	{
+		if (_value == nullptr)
+		{
+			resetBottom();
+			return;
+		}
+
+		if (std::strcmp(_value, "auto") == 0)
+		{
+			setBottom(Value{ 0.f, ValueType::Auto });
+		}
+		else if (std::strstr(_value, "px") != nullptr)
+		{
+			float val = std::stof(std::string(_value).substr(0, std::strlen(_value) - 2));
+			setBottom(val, ValueType::Pixels);
+		}
+		else if (std::strstr(_value, "%") != nullptr)
+		{
+			float val = std::stof(std::string(_value).substr(0, std::strlen(_value) - 1));
+			setBottom(val, ValueType::Percentage);
+		}
+		else
+		{
+			resetBottom();
+		}
+	}
+
 	const PositionProperty::Value& PositionProperty::getLeft() const
 	{
 		return m_left;
@@ -209,5 +316,32 @@ namespace sfui
 	{
 		m_left = Value();
 		m_leftDirty = false;
+	}
+	void PositionProperty::setLeftFromCStr(const char* _value)
+	{
+		if (_value == nullptr)
+		{
+			resetLeft();
+			return;
+		}
+
+		if (std::strcmp(_value, "auto") == 0)
+		{
+			setLeft(Value{ 0.f, ValueType::Auto });
+		}
+		else if (std::strstr(_value, "px") != nullptr)
+		{
+			float val = std::stof(std::string(_value).substr(0, std::strlen(_value) - 2));
+			setLeft(val, ValueType::Pixels);
+		}
+		else if (std::strstr(_value, "%") != nullptr)
+		{
+			float val = std::stof(std::string(_value).substr(0, std::strlen(_value) - 1));
+			setLeft(val, ValueType::Percentage);
+		}
+		else
+		{
+			resetLeft();
+		}
 	}
 }

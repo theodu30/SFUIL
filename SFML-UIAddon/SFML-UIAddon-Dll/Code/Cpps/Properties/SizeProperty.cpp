@@ -1,4 +1,5 @@
 #include "../../Headers/SFUIL/System/Properties/SizeProperty.hpp"
+#include <string>
 
 namespace sfui
 {
@@ -143,6 +144,62 @@ namespace sfui
 		m_size.heightDirty = false;
 	}
 
+	void SizeProperty::setWidthFromCStr(const char* _value)
+	{
+		if (_value == nullptr)
+		{
+			resetWidth();
+			return;
+		}
+
+		if (std::string(_value) == "auto")
+		{
+			setWidth(0.f, SizeType::Auto);
+		}
+		else if (std::strstr(_value, "px") != nullptr)
+		{
+			float val = std::stof(std::string(_value).substr(0, std::strlen(_value) - 2));
+			setWidth(val, SizeType::Pixels);
+		}
+		else if (std::strstr(_value, "%") != nullptr)
+		{
+			float val = std::stof(std::string(_value).substr(0, std::strlen(_value) - 1));
+			setWidth(val, SizeType::Percentage);
+		}
+		else
+		{
+			resetWidth();
+		}
+	}
+
+	void SizeProperty::setHeightFromCStr(const char* _value)
+	{
+		if (_value == nullptr)
+		{
+			resetHeight();
+			return;
+		}
+
+		if (std::string(_value) == "auto")
+		{
+			setHeight(0.f, SizeType::Auto);
+		}
+		else if (std::strstr(_value, "px") != nullptr)
+		{
+			float val = std::stof(std::string(_value).substr(0, std::strlen(_value) - 2));
+			setHeight(val, SizeType::Pixels);
+		}
+		else if (std::strstr(_value, "%") != nullptr)
+		{
+			float val = std::stof(std::string(_value).substr(0, std::strlen(_value) - 1));
+			setHeight(val, SizeType::Percentage);
+		}
+		else
+		{
+			resetHeight();
+		}
+	}
+
 	float SizeProperty::MinSizeValue::resolveToPixels(float _relativeTo) const
 	{
 		switch (type)
@@ -213,6 +270,62 @@ namespace sfui
 	{
 		m_minSize.height = MinSizeValue();
 		m_minSize.heightDirty = false;
+	}
+
+	void SizeProperty::setMinWidthFromCStr(const char* _value)
+	{
+		if (_value == nullptr)
+		{
+			resetMinWidth();
+			return;
+		}
+
+		if (std::string(_value) == "auto")
+		{
+			setMinWidth(0.f, MinSizeType::Auto);
+		}
+		else if (std::strstr(_value, "px") != nullptr)
+		{
+			float val = std::stof(std::string(_value).substr(0, std::strlen(_value) - 2));
+			setMinWidth(val, MinSizeType::Pixels);
+		}
+		else if (std::strstr(_value, "%") != nullptr)
+		{
+			float val = std::stof(std::string(_value).substr(0, std::strlen(_value) - 1));
+			setMinWidth(val, MinSizeType::Percentage);
+		}
+		else
+		{
+			resetMinWidth();
+		}
+	}
+
+	void SizeProperty::setMinHeightFromCStr(const char* _value)
+	{
+		if (_value == nullptr)
+		{
+			resetMinHeight();
+			return;
+		}
+
+		if (std::string(_value) == "auto")
+		{
+			setMinHeight(0.f, MinSizeType::Auto);
+		}
+		else if (std::strstr(_value, "px") != nullptr)
+		{
+			float val = std::stof(std::string(_value).substr(0, std::strlen(_value) - 2));
+			setMinHeight(val, MinSizeType::Pixels);
+		}
+		else if (std::strstr(_value, "%") != nullptr)
+		{
+			float val = std::stof(std::string(_value).substr(0, std::strlen(_value) - 1));
+			setMinHeight(val, MinSizeType::Percentage);
+		}
+		else
+		{
+			resetMinHeight();
+		}
 	}
 
 	float SizeProperty::MaxSizeValue::resolveToPixels(float _relativeTo) const
@@ -286,4 +399,61 @@ namespace sfui
 		m_maxSize.height = MaxSizeValue();
 		m_maxSize.heightDirty = false;
 	}
+
+	void SizeProperty::setMaxWidthFromCStr(const char* _value)
+	{
+		if (_value == nullptr)
+		{
+			resetMaxWidth();
+			return;
+		}
+
+		if (std::string(_value) == "auto")
+		{
+			setMaxWidth(0.f, MaxSizeType::None);
+		}
+		else if (std::strstr(_value, "px") != nullptr)
+		{
+			float val = std::stof(std::string(_value).substr(0, std::strlen(_value) - 2));
+			setMaxWidth(val, MaxSizeType::Pixels);
+		}
+		else if (std::strstr(_value, "%") != nullptr)
+		{
+			float val = std::stof(std::string(_value).substr(0, std::strlen(_value) - 1));
+			setMaxWidth(val, MaxSizeType::Percentage);
+		}
+		else
+		{
+			resetMaxWidth();
+		}
+	}
+
+	void SizeProperty::setMaxHeightFromCStr(const char* _value)
+	{
+		if (_value == nullptr)
+		{
+			resetMaxHeight();
+			return;
+		}
+
+		if (std::string(_value) == "auto")
+		{
+			setMaxHeight(0.f, MaxSizeType::None);
+		}
+		else if (std::strstr(_value, "px") != nullptr)
+		{
+			float val = std::stof(std::string(_value).substr(0, std::strlen(_value) - 2));
+			setMaxHeight(val, MaxSizeType::Pixels);
+		}
+		else if (std::strstr(_value, "%") != nullptr)
+		{
+			float val = std::stof(std::string(_value).substr(0, std::strlen(_value) - 1));
+			setMaxHeight(val, MaxSizeType::Percentage);
+		}
+		else
+		{
+			resetMaxHeight();
+		}
+	}
+
 }

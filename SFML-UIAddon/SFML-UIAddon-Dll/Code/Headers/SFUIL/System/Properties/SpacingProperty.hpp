@@ -29,24 +29,28 @@ namespace sfui
 		void setMarginTop(float _value, MarginType _type);
 		void setMarginTop(float _value);
 		void resetMarginTop();
+		void setMarginTopFromCStr(const char* _value);
 
 		[[nodiscard]] const MarginValue& getMarginRight() const;
 		void setMarginRight(const MarginValue& _value);
 		void setMarginRight(float _value, MarginType _type);
 		void setMarginRight(float _value);
 		void resetMarginRight();
+		void setMarginRightFromCStr(const char* _value);
 
 		[[nodiscard]] const MarginValue& getMarginBottom() const;
 		void setMarginBottom(const MarginValue& _value);
 		void setMarginBottom(float _value, MarginType _type);
 		void setMarginBottom(float _value);
 		void resetMarginBottom();
+		void setMarginBottomFromCStr(const char* _value);
 
 		[[nodiscard]] const MarginValue& getMarginLeft() const;
 		void setMarginLeft(const MarginValue& _value);
 		void setMarginLeft(float _value, MarginType _type);
 		void setMarginLeft(float _value);
 		void resetMarginLeft();
+		void setMarginLeftFromCStr(const char* _value);
 
 		enum class PaddingType : char
 		{
@@ -68,24 +72,28 @@ namespace sfui
 		void setPaddingTop(float _value, PaddingType _type);
 		void setPaddingTop(float _value);
 		void resetPaddingTop();
+		void setPaddingTopFromCStr(const char* _value);
 
 		[[nodiscard]] const PaddingValue& getPaddingRight() const;
 		void setPaddingRight(const PaddingValue& _value);
 		void setPaddingRight(float _value, PaddingType _type);
 		void setPaddingRight(float _value);
 		void resetPaddingRight();
+		void setPaddingRightFromCStr(const char* _value);
 
 		[[nodiscard]] const PaddingValue& getPaddingBottom() const;
 		void setPaddingBottom(const PaddingValue& _value);
 		void setPaddingBottom(float _value, PaddingType _type);
 		void setPaddingBottom(float _value);
 		void resetPaddingBottom();
+		void setPaddingBottomFromCStr(const char* _value);
 
 		[[nodiscard]] const PaddingValue& getPaddingLeft() const;
 		void setPaddingLeft(const PaddingValue& _value);
 		void setPaddingLeft(float _value, PaddingType _type);
 		void setPaddingLeft(float _value);
 		void resetPaddingLeft();
+		void setPaddingLeftFromCStr(const char* _value);
 
 	private:
 		MarginValue m_marginTop;

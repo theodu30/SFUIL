@@ -29,14 +29,18 @@ namespace sfui
 		void setFlexBasic(float _value, BasicType _type);
 		void setFlexBasic(float _value);
 		void resetFlexBasic();
+		void setFlexBasicFromCStr(const char* _value);
+
 
 		[[nodiscard]] const float& getFlexShrink() const;
 		void setFlexShrink(float _value);
 		void resetFlexShrink();
+		void setFlexShrinkFromCStr(const char* _value);
 
 		[[nodiscard]] const float& getFlexGrow() const;
 		void setFlexGrow(float _value);
 		void resetFlexGrow();
+		void setFlexGrowFromCStr(const char* _value);
 
 		enum class Direction : char
 		{
@@ -49,6 +53,7 @@ namespace sfui
 		[[nodiscard]] Direction getFlexDirection() const;
 		void setFlexDirection(Direction _direction);
 		void resetFlexDirection();
+		void setFlexDirectionFromCStr(const char* _value);
 
 		enum class Warp : char
 		{
@@ -60,6 +65,7 @@ namespace sfui
 		[[nodiscard]] Warp getFlexWrap() const;
 		void setFlexWrap(Warp _warp);
 		void resetFlexWrap();
+		void setFlexWrapFromCStr(const char* _value);
 
 	private:
 		Basic m_flexBasis;

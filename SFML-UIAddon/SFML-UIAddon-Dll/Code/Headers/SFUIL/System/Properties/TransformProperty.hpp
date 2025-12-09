@@ -44,6 +44,8 @@ namespace sfui
 		void resetOrigin();
 		void resetOriginX();
 		void resetOriginY();
+		void setOriginXFromCStr(const char* _value);
+		void setOriginYFromCStr(const char* _value);
 
 		enum class TranslateType : char
 		{
@@ -78,6 +80,8 @@ namespace sfui
 		void resetTranslate();
 		void resetTranslateX();
 		void resetTranslateY();
+		void setTranslateXFromCStr(const char* _value);
+		void setTranslateYFromCStr(const char* _value);
 
 		struct Scale
 		{
@@ -96,6 +100,8 @@ namespace sfui
 		void resetScale();
 		void resetScaleX();
 		void resetScaleY();
+		void setScaleXFromCStr(const char* _value);
+		void setScaleYFromCStr(const char* _value);
 
 		enum class RotateType : char
 		{
@@ -118,6 +124,7 @@ namespace sfui
 		void setRotate(float _value, RotateType _type);
 		void setRotate(float _value);
 		void resetRotate();
+		void setRotateFromCStr(const char* _value);
 
 	private:
 		Origin m_origin;

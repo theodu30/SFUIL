@@ -14,6 +14,7 @@ namespace sfui
 		void setColor(const sf::Color& _color);
 		void setColor(std::uint8_t _r, std::uint8_t _g, std::uint8_t _b, std::uint8_t _a = 255);
 		void resetColor();
+		void setColorFromCStr(const char* _colorStr);
 
 	private:
 		std::uint8_t m_r = 0;

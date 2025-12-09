@@ -18,6 +18,7 @@ namespace sfui
 		[[nodiscard]] Mode getMode() const;
 		void setMode(Mode _mode);
 		void resetMode();
+		void setModeFromCStr(const char* _modeStr);
 
 		enum class ValueType : char
 		{
@@ -39,24 +40,28 @@ namespace sfui
 		void setTop(float _value, ValueType _type);
 		void setTop(float _value);
 		void resetTop();
+		void setTopFromCStr(const char* _value);
 
 		[[nodiscard]] const Value& getRight() const;
 		void setRight(const Value& _value);
 		void setRight(float _value, ValueType _type);
 		void setRight(float _value);
 		void resetRight();
+		void setRightFromCStr(const char* _value);
 
 		[[nodiscard]] const Value& getBottom() const;
 		void setBottom(const Value& _value);
 		void setBottom(float _value, ValueType _type);
 		void setBottom(float _value);
 		void resetBottom();
+		void setBottomFromCStr(const char* _value);
 
 		[[nodiscard]] const Value& getLeft() const;
 		void setLeft(const Value& _value);
 		void setLeft(float _value, ValueType _type);
 		void setLeft(float _value);
 		void resetLeft();
+		void setLeftFromCStr(const char* _value);
 
 	private:
 		Mode m_mode = Mode::Relative;

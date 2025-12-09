@@ -75,6 +75,28 @@ namespace sfui
 		m_alignItemsDirty = false;
 	}
 
+	void AlignProperty::setAlignItemsFromCStr(const char* _value)
+	{
+		if (_value == nullptr)
+		{
+			resetAlignItems();
+			return;
+		}
+
+		if (strcmp(_value, "auto") == 0)
+			setAlignItems(AlignItems::Auto);
+		else if (strcmp(_value, "flex-start") == 0)
+			setAlignItems(AlignItems::FlexStart);
+		else if (strcmp(_value, "center") == 0)
+			setAlignItems(AlignItems::Center);
+		else if (strcmp(_value, "flex-end") == 0)
+			setAlignItems(AlignItems::FlexEnd);
+		else if (strcmp(_value, "stretch") == 0)
+			setAlignItems(AlignItems::Stretch);
+		else
+			resetAlignItems();
+	}
+
 	AlignProperty::JustifyContent AlignProperty::getJustifyContent() const
 	{
 		return m_justifyContent;
@@ -90,6 +112,30 @@ namespace sfui
 	{
 		m_justifyContent = JustifyContent::FlexStart;
 		m_justifyContentDirty = false;
+	}
+
+	void AlignProperty::setJustifyContentFromCStr(const char* _value)
+	{
+		if (_value == nullptr)
+		{
+			resetJustifyContent();
+			return;
+		}
+
+		if (strcmp(_value, "flex-start") == 0)
+			setJustifyContent(JustifyContent::FlexStart);
+		else if (strcmp(_value, "center") == 0)
+			setJustifyContent(JustifyContent::Center);
+		else if (strcmp(_value, "flex-end") == 0)
+			setJustifyContent(JustifyContent::FlexEnd);
+		else if (strcmp(_value, "space-between") == 0)
+			setJustifyContent(JustifyContent::SpaceBetween);
+		else if (strcmp(_value, "space-around") == 0)
+			setJustifyContent(JustifyContent::SpaceAround);
+		else if (strcmp(_value, "space-evenly") == 0)
+			setJustifyContent(JustifyContent::SpaceEvenly);
+		else
+			resetJustifyContent();
 	}
 
 	AlignProperty::AlignSelf AlignProperty::getAlignSelf() const
@@ -109,6 +155,28 @@ namespace sfui
 		m_alignSelfDirty = false;
 	}
 
+	void AlignProperty::setAlignSelfFromCStr(const char* _value)
+	{
+		if (_value == nullptr)
+		{
+			resetAlignSelf();
+			return;
+		}
+
+		if (strcmp(_value, "auto") == 0)
+			setAlignSelf(AlignSelf::Auto);
+		else if (strcmp(_value, "flex-start") == 0)
+			setAlignSelf(AlignSelf::FlexStart);
+		else if (strcmp(_value, "center") == 0)
+			setAlignSelf(AlignSelf::Center);
+		else if (strcmp(_value, "flex-end") == 0)
+			setAlignSelf(AlignSelf::FlexEnd);
+		else if (strcmp(_value, "stretch") == 0)
+			setAlignSelf(AlignSelf::Stretch);
+		else
+			resetAlignSelf();
+	}
+
 	AlignProperty::AlignContent AlignProperty::getAlignContent() const
 	{
 		return m_alignContent;
@@ -125,4 +193,27 @@ namespace sfui
 		m_alignContent = AlignContent::FlexStart;
 		m_alignContentDirty = false;
 	}
+
+	void AlignProperty::setAlignContentFromCStr(const char* _value)
+	{
+		if (_value == nullptr)
+		{
+			resetAlignContent();
+			return;
+		}
+
+		if (strcmp(_value, "auto") == 0)
+			setAlignContent(AlignContent::Auto);
+		else if (strcmp(_value, "flex-start") == 0)
+			setAlignContent(AlignContent::FlexStart);
+		else if (strcmp(_value, "center") == 0)
+			setAlignContent(AlignContent::Center);
+		else if (strcmp(_value, "flex-end") == 0)
+			setAlignContent(AlignContent::FlexEnd);
+		else if (strcmp(_value, "stretch") == 0)
+			setAlignContent(AlignContent::Stretch);
+		else
+			resetAlignContent();
+	}
+
 }

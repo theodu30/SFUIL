@@ -1,4 +1,5 @@
 #include "../../Headers/SFUIL/System/Properties/SpacingProperty.hpp"
+#include <string>
 
 namespace sfui
 {
@@ -138,6 +139,34 @@ namespace sfui
 		m_marginTopDirty = false;
 	}
 
+	void SpacingProperty::setMarginTopFromCStr(const char* _value)
+	{
+		if (_value == nullptr)
+		{
+			resetMarginTop();
+			return;
+		}
+
+		if (strcmp(_value, "auto") == 0)
+		{
+			setMarginTop(0.f, MarginType::Auto);
+		}
+		else if (std::strstr(_value, "px") != nullptr)
+		{
+			float val = std::stof(std::string(_value).substr(0, std::strlen(_value) - 2));
+			setMarginTop(val, MarginType::Pixels);
+		}
+		else if (std::strstr(_value, "%") != nullptr)
+		{
+			float val = std::stof(std::string(_value).substr(0, std::strlen(_value) - 1));
+			setMarginTop(val, MarginType::Percentage);
+		}
+		else
+		{
+			resetMarginTop();
+		}
+	}
+
 	const SpacingProperty::MarginValue& SpacingProperty::getMarginRight() const
 	{
 		return m_marginRight;
@@ -166,6 +195,34 @@ namespace sfui
 	{
 		m_marginRight = MarginValue();
 		m_marginRightDirty = false;
+	}
+
+	void SpacingProperty::setMarginRightFromCStr(const char* _value)
+	{
+		if (_value == nullptr)
+		{
+			resetMarginRight();
+			return;
+		}
+
+		if (strcmp(_value, "auto") == 0)
+		{
+			setMarginRight(0.f, MarginType::Auto);
+		}
+		else if (std::strstr(_value, "px") != nullptr)
+		{
+			float val = std::stof(std::string(_value).substr(0, std::strlen(_value) - 2));
+			setMarginRight(val, MarginType::Pixels);
+		}
+		else if (std::strstr(_value, "%") != nullptr)
+		{
+			float val = std::stof(std::string(_value).substr(0, std::strlen(_value) - 1));
+			setMarginRight(val, MarginType::Percentage);
+		}
+		else
+		{
+			resetMarginRight();
+		}
 	}
 
 	const SpacingProperty::MarginValue& SpacingProperty::getMarginBottom() const
@@ -198,6 +255,34 @@ namespace sfui
 		m_marginBottomDirty = false;
 	}
 
+	void SpacingProperty::setMarginBottomFromCStr(const char* _value)
+	{
+		if (_value == nullptr)
+		{
+			resetMarginBottom();
+			return;
+		}
+
+		if (strcmp(_value, "auto") == 0)
+		{
+			setMarginBottom(0.f, MarginType::Auto);
+		}
+		else if (std::strstr(_value, "px") != nullptr)
+		{
+			float val = std::stof(std::string(_value).substr(0, std::strlen(_value) - 2));
+			setMarginBottom(val, MarginType::Pixels);
+		}
+		else if (std::strstr(_value, "%") != nullptr)
+		{
+			float val = std::stof(std::string(_value).substr(0, std::strlen(_value) - 1));
+			setMarginBottom(val, MarginType::Percentage);
+		}
+		else
+		{
+			resetMarginBottom();
+		}
+	}
+
 	const SpacingProperty::MarginValue& SpacingProperty::getMarginLeft() const
 	{
 		return m_marginLeft;
@@ -226,6 +311,34 @@ namespace sfui
 	{
 		m_marginLeft = MarginValue();
 		m_marginLeftDirty = false;
+	}
+
+	void SpacingProperty::setMarginLeftFromCStr(const char* _value)
+	{
+		if (_value == nullptr)
+		{
+			resetMarginLeft();
+			return;
+		}
+
+		if (strcmp(_value, "auto") == 0)
+		{
+			setMarginLeft(0.f, MarginType::Auto);
+		}
+		else if (std::strstr(_value, "px") != nullptr)
+		{
+			float val = std::stof(std::string(_value).substr(0, std::strlen(_value) - 2));
+			setMarginLeft(val, MarginType::Pixels);
+		}
+		else if (std::strstr(_value, "%") != nullptr)
+		{
+			float val = std::stof(std::string(_value).substr(0, std::strlen(_value) - 1));
+			setMarginLeft(val, MarginType::Percentage);
+		}
+		else
+		{
+			resetMarginLeft();
+		}
 	}
 
 	float SpacingProperty::PaddingValue::resolveToPixels(float _relativeTo) const
@@ -273,6 +386,34 @@ namespace sfui
 		m_paddingTopDirty = false;
 	}
 
+	void SpacingProperty::setPaddingTopFromCStr(const char* _value)
+	{
+		if (_value == nullptr)
+		{
+			resetPaddingTop();
+			return;
+		}
+
+		if (strcmp(_value, "auto") == 0)
+		{
+			setPaddingTop(0.f, PaddingType::Auto);
+		}
+		else if (std::strstr(_value, "px") != nullptr)
+		{
+			float val = std::stof(std::string(_value).substr(0, std::strlen(_value) - 2));
+			setPaddingTop(val, PaddingType::Pixels);
+		}
+		else if (std::strstr(_value, "%") != nullptr)
+		{
+			float val = std::stof(std::string(_value).substr(0, std::strlen(_value) - 1));
+			setPaddingTop(val, PaddingType::Percentage);
+		}
+		else
+		{
+			resetPaddingTop();
+		}
+	}
+
 	const SpacingProperty::PaddingValue& SpacingProperty::getPaddingRight() const
 	{
 		return m_paddingRight;
@@ -301,6 +442,34 @@ namespace sfui
 	{
 		m_paddingRight = PaddingValue();
 		m_paddingRightDirty = false;
+	}
+
+	void SpacingProperty::setPaddingRightFromCStr(const char* _value)
+	{
+		if (_value == nullptr)
+		{
+			resetPaddingRight();
+			return;
+		}
+
+		if (strcmp(_value, "auto") == 0)
+		{
+			setPaddingRight(0.f, PaddingType::Auto);
+		}
+		else if (std::strstr(_value, "px") != nullptr)
+		{
+			float val = std::stof(std::string(_value).substr(0, std::strlen(_value) - 2));
+			setPaddingRight(val, PaddingType::Pixels);
+		}
+		else if (std::strstr(_value, "%") != nullptr)
+		{
+			float val = std::stof(std::string(_value).substr(0, std::strlen(_value) - 1));
+			setPaddingRight(val, PaddingType::Percentage);
+		}
+		else
+		{
+			resetPaddingRight();
+		}
 	}
 
 	const SpacingProperty::PaddingValue& SpacingProperty::getPaddingBottom() const
@@ -333,6 +502,34 @@ namespace sfui
 		m_paddingBottomDirty = false;
 	}
 
+	void SpacingProperty::setPaddingBottomFromCStr(const char* _value)
+	{
+		if (_value == nullptr)
+		{
+			resetPaddingBottom();
+			return;
+		}
+
+		if (strcmp(_value, "auto") == 0)
+		{
+			setPaddingBottom(0.f, PaddingType::Auto);
+		}
+		else if (std::strstr(_value, "px") != nullptr)
+		{
+			float val = std::stof(std::string(_value).substr(0, std::strlen(_value) - 2));
+			setPaddingBottom(val, PaddingType::Pixels);
+		}
+		else if (std::strstr(_value, "%") != nullptr)
+		{
+			float val = std::stof(std::string(_value).substr(0, std::strlen(_value) - 1));
+			setPaddingBottom(val, PaddingType::Percentage);
+		}
+		else
+		{
+			resetPaddingBottom();
+		}
+	}
+
 	const SpacingProperty::PaddingValue& SpacingProperty::getPaddingLeft() const
 	{
 		return m_paddingLeft;
@@ -362,4 +559,33 @@ namespace sfui
 		m_paddingLeft = PaddingValue();
 		m_paddingLeftDirty = false;
 	}
+
+	void SpacingProperty::setPaddingLeftFromCStr(const char* _value)
+	{
+		if (_value == nullptr)
+		{
+			resetPaddingLeft();
+			return;
+		}
+
+		if (strcmp(_value, "auto") == 0)
+		{
+			setPaddingLeft(0.f, PaddingType::Auto);
+		}
+		else if (std::strstr(_value, "px") != nullptr)
+		{
+			float val = std::stof(std::string(_value).substr(0, std::strlen(_value) - 2));
+			setPaddingLeft(val, PaddingType::Pixels);
+		}
+		else if (std::strstr(_value, "%") != nullptr)
+		{
+			float val = std::stof(std::string(_value).substr(0, std::strlen(_value) - 1));
+			setPaddingLeft(val, PaddingType::Percentage);
+		}
+		else
+		{
+			resetPaddingLeft();
+		}
+	}
+
 }

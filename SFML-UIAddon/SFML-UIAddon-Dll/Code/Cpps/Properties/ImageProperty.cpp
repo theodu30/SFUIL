@@ -1,4 +1,5 @@
 #include "../../Headers/SFUIL/System/Properties/ImageProperty.hpp"
+#include <string>
 
 namespace sfui
 {
@@ -127,6 +128,28 @@ namespace sfui
 		m_repeatDirty = false;
 	}
 
+	void ImageProperty::setRepeatFromCStr(const char* _value)
+	{
+		if (_value == nullptr)
+		{
+			resetRepeat();
+			return;
+		}
+
+		if (std::strcmp(_value, "no-repeat") == 0)
+		{
+			setRepeat(Repeat::NoRepeat);
+		}
+		else if (std::strcmp(_value, "repeat") == 0)
+		{
+			setRepeat(Repeat::Repeat);
+		}
+		else
+		{
+			resetRepeat();
+		}
+	}
+
 	ImageProperty::Smooth ImageProperty::getSmooth() const
 	{
 		return m_smooth;
@@ -144,6 +167,28 @@ namespace sfui
 
 	}
 
+	void ImageProperty::setSmoothFromCStr(const char* _value)
+	{
+		if (_value == nullptr)
+		{
+			resetSmooth();
+			return;
+		}
+
+		if (std::strcmp(_value, "pixelated") == 0)
+		{
+			setSmooth(Smooth::Pixelated);
+		}
+		else if (std::strcmp(_value, "smooth") == 0)
+		{
+			setSmooth(Smooth::Smooth);
+		}
+		else
+		{
+			resetSmooth();
+		}
+	}
+
 	const char* ImageProperty::getImagePath() const
 	{
 		return m_imagePath;
@@ -151,14 +196,39 @@ namespace sfui
 
 	void ImageProperty::setImagePath(const char* _imagePath)
 	{
-		m_imagePath = _imagePath;
+		m_imagePath = new char[std::strlen(_imagePath) + 1];
+		std::memcpy(m_imagePath, _imagePath, std::strlen(_imagePath) + 1);
 		m_imagePathDirty = true;
 	}
 
 	void ImageProperty::resetImagePath()
 	{
+		if (m_imagePath != nullptr)
+		{
+			delete[] m_imagePath;
+		}
 		m_imagePath = nullptr;
 		m_imagePathDirty = false;
+	}
+
+	void ImageProperty::setImagePathFromCStr(const char* _value)
+	{
+		if (_value == nullptr)
+		{
+			resetImagePath();
+			return;
+		}
+
+		size_t len = std::strlen(_value);
+		if (len >= 2 && _value[0] == '\'' && _value[len - 1] == '\'')
+		{
+			std::string pathStr = std::string(_value).substr(1, len - 2);
+			setImagePath(pathStr.c_str());
+		}
+		else
+		{
+			resetImagePath();
+		}
 	}
 
 	const sf::Color& ImageProperty::getTintColor() const
@@ -185,6 +255,33 @@ namespace sfui
 	{
 		m_tintColor = sf::Color::White;
 		m_tintColorDirty = false;
+	}
+
+	void ImageProperty::setTintColorFromCStr(const char* _value)
+	{
+		if (_value == nullptr)
+		{
+			resetTintColor();
+			return;
+		}
+
+		std::uint8_t r = 0;
+		std::uint8_t g = 0;
+		std::uint8_t b = 0;
+		std::uint8_t a = 255;
+
+		if (sscanf_s(_value, "(%hhu,%hhu,%hhu,%hhu)", &r, &g, &b, &a) == 4)
+		{
+			setTintColor(r, g, b, a);
+		}
+		else if (sscanf_s(_value, "(%hhu,%hhu,%hhu)", &r, &g, &b) == 3)
+		{
+			setTintColor(r, g, b, 255);
+		}
+		else
+		{
+			resetTintColor();
+		}
 	}
 
 	const sf::Image& ImageProperty::getImage() const
@@ -269,6 +366,54 @@ namespace sfui
 	{
 		m_size.height = SizeValue();
 		m_size.heightDirty = false;
+	}
+
+	void ImageProperty::setWidthFromCStr(const char* _value)
+	{
+		if (_value == nullptr)
+		{
+			resetWidth();
+			return;
+		}
+
+		if (std::strstr(_value, "px") != nullptr)
+		{
+			float val = std::stof(std::string(_value).substr(0, std::strlen(_value) - 2));
+			setWidth(val, SizeType::Pixels);
+		}
+		else if (std::strstr(_value, "%") != nullptr)
+		{
+			float val = std::stof(std::string(_value).substr(0, std::strlen(_value) - 1));
+			setWidth(val, SizeType::Percentage);
+		}
+		else
+		{
+			resetWidth();
+		}
+	}
+
+	void ImageProperty::setHeightFromCStr(const char* _value)
+	{
+		if (_value == nullptr)
+		{
+			resetHeight();
+			return;
+		}
+
+		if (std::strstr(_value, "px") != nullptr)
+		{
+			float val = std::stof(std::string(_value).substr(0, std::strlen(_value) - 2));
+			setHeight(val, SizeType::Pixels);
+		}
+		else if (std::strstr(_value, "%") != nullptr)
+		{
+			float val = std::stof(std::string(_value).substr(0, std::strlen(_value) - 1));
+			setHeight(val, SizeType::Percentage);
+		}
+		else
+		{
+			resetHeight();
+		}
 	}
 
 	float ImageProperty::PositionX::resolveToPixels(float _relativeSize, float _relativeTo) const
@@ -386,6 +531,56 @@ namespace sfui
 		m_positionXDirty = false;
 	}
 
+	void ImageProperty::setPositionXFromCStr(const char* _value)
+	{
+		if (_value == nullptr)
+		{
+			resetPositionX();
+			return;
+		}
+
+		if (std::strcmp(_value, "left") == 0)
+		{
+			setPositionX(PositionXPositionType::Left);
+		}
+		else if (std::strcmp(_value, "center") == 0)
+		{
+			setPositionX(PositionXPositionType::Center);
+		}
+		else if (std::strcmp(_value, "right") == 0)
+		{
+			setPositionX(PositionXPositionType::Right);
+		}
+		else
+		{
+			resetPositionX();
+		}
+	}
+
+	void ImageProperty::setPositionXOffsetFromCStr(const char* _value)
+	{
+		if (_value == nullptr)
+		{
+			resetPositionX();
+			return;
+		}
+
+		if (std::strstr(_value, "px") != nullptr)
+		{
+			float val = std::stof(std::string(_value).substr(0, std::strlen(_value) - 2));
+			setPositionX(val, PositionOffsetType::Pixels);
+		}
+		else if (std::strstr(_value, "%") != nullptr)
+		{
+			float val = std::stof(std::string(_value).substr(0, std::strlen(_value) - 1));
+			setPositionX(val, PositionOffsetType::Percentage);
+		}
+		else
+		{
+			resetPositionX();
+		}
+	}
+
 	const ImageProperty::PositionY& ImageProperty::getPositionY() const
 	{
 		return m_positionY;
@@ -437,6 +632,56 @@ namespace sfui
 		m_positionYDirty = false;
 	}
 
+	void ImageProperty::setPositionYFromCStr(const char* _value)
+	{
+		if (_value == nullptr)
+		{
+			resetPositionY();
+			return;
+		}
+
+		if (std::strcmp(_value, "top") == 0)
+		{
+			setPositionY(PositionYPositionType::Top);
+		}
+		else if (std::strcmp(_value, "center") == 0)
+		{
+			setPositionY(PositionYPositionType::Center);
+		}
+		else if (std::strcmp(_value, "bottom") == 0)
+		{
+			setPositionY(PositionYPositionType::Bottom);
+		}
+		else
+		{
+			resetPositionY();
+		}
+	}
+
+	void ImageProperty::setPositionYOffsetFromCStr(const char* _value)
+	{
+		if (_value == nullptr)
+		{
+			resetPositionY();
+			return;
+		}
+
+		if (std::strstr(_value, "px") != nullptr)
+		{
+			float val = std::stof(std::string(_value).substr(0, std::strlen(_value) - 2));
+			setPositionY(val, PositionOffsetType::Pixels);
+		}
+		else if (std::strstr(_value, "%") != nullptr)
+		{
+			float val = std::stof(std::string(_value).substr(0, std::strlen(_value) - 1));
+			setPositionY(val, PositionOffsetType::Percentage);
+		}
+		else
+		{
+			resetPositionY();
+		}
+	}
+
 	ImageProperty::ScaleMode ImageProperty::getScaleMode() const
 	{
 		return m_scaleMode;
@@ -453,4 +698,31 @@ namespace sfui
 		m_scaleMode = ScaleMode::StretchToFill;
 		m_scaleModeDirty = false;
 	}
+
+	void ImageProperty::setScaleModeFromCStr(const char* _value)
+	{
+		if (_value == nullptr)
+		{
+			resetScaleMode();
+			return;
+		}
+
+		if (std::strcmp(_value, "stretch-to-fill") == 0)
+		{
+			setScaleMode(ScaleMode::StretchToFill);
+		}
+		else if (std::strcmp(_value, "scale-and-crop") == 0)
+		{
+			setScaleMode(ScaleMode::ScaleAndCrop);
+		}
+		else if (std::strcmp(_value, "scale-to-fit") == 0)
+		{
+			setScaleMode(ScaleMode::ScaleToFit);
+		}
+		else
+		{
+			resetScaleMode();
+		}
+	}
+
 }
