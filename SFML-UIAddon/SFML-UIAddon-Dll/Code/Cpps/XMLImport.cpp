@@ -46,8 +46,6 @@ namespace sfui
 
 				UIElement* element = nullptr;
 
-				std::cout << "Importing element of type: " << elementType << std::endl;
-
 				if (strcmp(elementType.c_str(), UIVisualContainer::staticTypeName()) == 0)
 				{
 					element = importElement_UIVisualContainer_FromXML(lineAfterType);

@@ -69,7 +69,8 @@ int main()
 
 	//sfui::XMLExport::exportToXML(panel.getRootElement(), "panel.xml");
 	//sfui::XMLImport::importFromXML("panel.xml");
-	panel.setRootElement(sfui::XMLImport::importFromXML("panel.xml")->as<sfui::UIVisualContainer>());
+	std::string panelToLoad = "panel_test.xml";
+	panel.setRootElement(sfui::XMLImport::importFromXML(panelToLoad.c_str())->as<sfui::UIVisualContainer>());
 	sfui::XMLExport::exportToXML(panel.getRootElement(), "panel_out.xml");
 
 	bool rotating = false;
@@ -84,20 +85,46 @@ int main()
 		while (const std::optional event = window.pollEvent())
 		{
 			if (event->is<sf::Event::Closed>())
+			{
 				window.close();
-			if (event->is<sf::Event::KeyPressed>())
+			}
+			else if (event->is<sf::Event::KeyPressed>())
 			{
 				sf::Keyboard::Key key = event->getIf<sf::Event::KeyPressed>()->code;
 				if (key == sf::Keyboard::Key::Escape)
+				{
 					window.close();
-				if (key == sf::Keyboard::Key::A)
+				}
+				else if (key == sf::Keyboard::Key::A)
 				{
 					panel.setActive(!panel.isActive());
 					std::cout << "Toggled UIPanel active state to " << (panel.isActive() ? "true" : "false") << std::endl;
 				}
-				if (key == sf::Keyboard::Key::R)
+				else if (key == sf::Keyboard::Key::R)
 				{
 					rotating = !rotating;
+				}
+				else if (key == sf::Keyboard::Key::Backspace)
+				{
+					if (panel.getRootElement())
+					{
+						panel.getRootElement()->removeFromHierarchy();
+					}
+				}
+				else if (key == sf::Keyboard::Key::L)
+				{
+					if (panel.getRootElement())
+					{
+						panel.getRootElement()->removeFromHierarchy();
+					}
+					panel.setRootElement(sfui::XMLImport::importFromXML(panelToLoad.c_str())->as<sfui::UIVisualContainer>());
+				}
+				else if (key == sf::Keyboard::Key::S)
+				{
+					if (panel.getRootElement())
+					{
+						sfui::XMLExport::exportToXML(panel.getRootElement(), "panel_out.xml");
+					}
 				}
 			}
 		}
@@ -107,7 +134,7 @@ int main()
 			bool single = true;
 			if (single)
 			{
-				if (sfui::UIVisualContainer* c = panel.getRootElement()->query<sfui::UIVisualContainer>("Container 2"))
+				if (sfui::UIVisualContainer* c = panel.getRootElement()->query<sfui::UIVisualContainer>("__ELEMENT_TO_ROTATE__"))
 				{
 					sfui::TransformProperty& transform = c->getProperty<sfui::TransformProperty>();
 					transform.setRotate(transform.getRotate().value + rotationSpeed * dt);
