@@ -71,7 +71,7 @@ int main()
 	//sfui::XMLImport::importFromXML("panel.xml");
 	std::string panelToLoad = "panel_test.xml";
 	panel.setRootElement(sfui::XMLImport::importFromXML(panelToLoad.c_str())->as<sfui::UIVisualContainer>());
-	sfui::XMLExport::exportToXML(panel.getRootElement(), "panel_out.xml");
+	//sfui::XMLExport::exportToXML(panel.getRootElement(), "panel_out.xml");
 
 	bool rotating = false;
 	float rotationSpeed = 50.f; // degrees per frame
