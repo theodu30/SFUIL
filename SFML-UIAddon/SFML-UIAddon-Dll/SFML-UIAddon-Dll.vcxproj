@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Code\Headers\SFUIL\System\Length.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\Properties\BorderProperty.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\Properties\BackgroundProperty.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\Properties\AlignProperty.hpp" />
@@ -66,6 +67,7 @@
     <ClCompile Include="Code\Cpps\UIPropUtils.cpp" />
     <ClCompile Include="Code\Cpps\Properties\VisibilityProperty.cpp" />
     <ClCompile Include="Code\Cpps\XMLImport.cpp" />
+    <ClCompile Include="Code\Cpps\Length.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
