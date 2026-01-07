@@ -24,7 +24,7 @@
     <ClInclude Include="Code\Headers\SFUIL\System\Properties\AlignProperty.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\Containers\UIImage.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\Containers\UIVisualContainer.hpp" />
-    <ClInclude Include="Code\Headers\SFUIL\System\Anchor.hpp" />
+    <ClInclude Include="Code\Headers\SFUIL\System\PanelAnchor.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\Exports.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\UIPanel.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\UIElement.hpp" />
@@ -48,7 +48,7 @@
     <ClCompile Include="Code\Cpps\Properties\AlignProperty.cpp" />
     <ClCompile Include="Code\Cpps\Properties\BackgroundProperty.cpp" />
     <ClCompile Include="Code\Cpps\Properties\BorderProperty.cpp" />
-    <ClCompile Include="Code\Cpps\Anchor.cpp" />
+    <ClCompile Include="Code\Cpps\PanelAnchor.cpp" />
     <ClCompile Include="Code\Cpps\XMLExport.cpp" />
     <ClCompile Include="Code\Cpps\UIImage.cpp" />
     <ClCompile Include="Code\Cpps\UIVisualContainer.cpp" />

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "System/Exports.hpp"
-#include "System/Anchor.hpp"
+#include "System/PanelAnchor.hpp"
 
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Graphics/RenderTexture.hpp>
@@ -37,9 +37,7 @@ namespace sfui
 
 		const unsigned int& getHeight() const noexcept;
 
-		void setAlignment(const Alignment& _alignment);
-
-		void setAlignment(HorizontalAlignment _alignX, VerticalAlignment _alignY);
+		void setAlignment(const Alignment _alignment);
 
 		[[nodiscard]] const Alignment& getAlignment() const noexcept;
 
@@ -65,7 +63,7 @@ namespace sfui
 		Alignment m_alignment;
 		sf::Color m_panelBackgroundColor = sf::Color::Transparent;
 		sf::Vector2u m_size;
-		sf::Vector2i m_offset = sf::Vector2i(0, 0);
+		sf::Vector2i m_offset = sf::Vector2i();
 		sf::RenderTexture m_renderTexture;
 		UIVisualContainer* m_rootElement = nullptr;
 	};

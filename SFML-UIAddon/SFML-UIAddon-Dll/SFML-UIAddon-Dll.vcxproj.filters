@@ -27,7 +27,7 @@
     <ClInclude Include="Code\Headers\SFUIL\System\Exports.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Code\Headers\SFUIL\System\Anchor.hpp">
+    <ClInclude Include="Code\Headers\SFUIL\System\PanelAnchor.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Code\Headers\SFUIL\UIElement.hpp">
@@ -98,7 +98,7 @@
     <ClCompile Include="Code\Cpps\UIPanel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Code\Cpps\Anchor.cpp">
+    <ClCompile Include="Code\Cpps\PanelAnchor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Code\Cpps\UIElement.cpp">

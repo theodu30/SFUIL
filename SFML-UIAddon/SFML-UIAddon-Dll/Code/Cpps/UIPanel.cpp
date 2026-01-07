@@ -50,9 +50,9 @@ namespace sfui
 		const sf::Texture& texture = m_renderTexture.getTexture();
 		sf::Sprite sprite(texture);
 
-		sf::Vector2u targetSize = _target.getSize();
-		sf::Vector2f position = Anchor::getAnchoredPosition(targetSize, m_size, m_alignment, m_offset);
-		sprite.setPosition(sf::Vector2f(position));
+		sf::Vector2f targetSize = sf::Vector2f(_target.getSize());
+		sf::Vector2f position = Alignments::PositionFromAlignment(m_alignment, sf::Vector2f(targetSize), sf::Vector2f(m_size));
+		sprite.setPosition(position + sf::Vector2f(m_offset));
 
 		_target.draw(sprite);
 	}
@@ -93,14 +93,9 @@ namespace sfui
 		return m_size.y;
 	}
 
-	void UIPanel::setAlignment(const Alignment& _alignment)
+	void UIPanel::setAlignment(const Alignment _alignment)
 	{
 		m_alignment = _alignment;
-	}
-
-	void UIPanel::setAlignment(HorizontalAlignment _alignX, VerticalAlignment _alignY)
-	{
-		setAlignment(Alignment(_alignX, _alignY));
 	}
 
 	const Alignment& UIPanel::getAlignment() const noexcept

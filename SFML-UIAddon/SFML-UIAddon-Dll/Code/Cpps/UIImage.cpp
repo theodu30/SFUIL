@@ -2,7 +2,7 @@
 #include "../Headers/SFUIL/System/UIPropUtils.hpp"
 #include <iostream>
 
-SFUIL_API const char* SFUIL_UIIMAGE_NAME = "UIImage";
+const char* SFUIL_UIIMAGE_NAME = "UIImage";
 
 namespace sfui
 {

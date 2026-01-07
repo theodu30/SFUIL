@@ -4,7 +4,7 @@
 #include <iostream>
 #include <SFML/Graphics/RectangleShape.hpp>
 
-SFUIL_API const char* SFUIL_UIELEMENT_NAME = "UIElement";
+const char* SFUIL_UIELEMENT_NAME = "UIElement";
 
 namespace sfui
 {
