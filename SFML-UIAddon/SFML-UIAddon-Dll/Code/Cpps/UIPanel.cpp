@@ -52,7 +52,7 @@ namespace sfui
 
 		sf::Vector2f targetSize = sf::Vector2f(_target.getSize());
 		sf::Vector2f position = Alignments::PositionFromAlignment(m_alignment, sf::Vector2f(targetSize), sf::Vector2f(m_size));
-		sprite.setPosition(position + sf::Vector2f(m_offset));
+		sprite.setPosition(position + m_offset);
 
 		_target.draw(sprite);
 	}
@@ -103,17 +103,17 @@ namespace sfui
 		return m_alignment;
 	}
 
-	void UIPanel::setOffset(const sf::Vector2i& _offset)
+	void UIPanel::setOffset(const sf::Vector2f& _offset)
 	{
 		m_offset = _offset;
 	}
 
-	void UIPanel::setOffset(int _offsetX, int _offsetY)
+	void UIPanel::setOffset(float _offsetX, float _offsetY)
 	{
-		setOffset(sf::Vector2i(_offsetX, _offsetY));
+		setOffset({ _offsetX, _offsetY });
 	}
 
-	const sf::Vector2i& UIPanel::getOffset() const noexcept
+	const sf::Vector2f& UIPanel::getOffset() const noexcept
 	{
 		return m_offset;
 	}
@@ -126,6 +126,11 @@ namespace sfui
 	const sf::Color& UIPanel::getPanelBackgroundColor() const noexcept
 	{
 		return m_panelBackgroundColor;
+	}
+
+	UIVisualContainer* UIPanel::getRootElement() const noexcept
+	{
+		return m_rootElement;
 	}
 
 	void UIPanel::setRootElement(UIVisualContainer* _element)

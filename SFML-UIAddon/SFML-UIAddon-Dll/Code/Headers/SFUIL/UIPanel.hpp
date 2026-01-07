@@ -16,7 +16,6 @@ namespace sfui
 	{
 	public:
 		UIPanel();
-
 		~UIPanel();
 
 		void render();
@@ -24,38 +23,25 @@ namespace sfui
 		void drawToTarget(sf::RenderTarget& _target);
 
 		void setActive(bool _active);
-
 		const bool& isActive() const noexcept;
 
 		void setSize(const sf::Vector2u& _size);
-
 		void setSize(unsigned int _width, unsigned int _height);
-
 		[[nodiscard]] const sf::Vector2u& getSize() const noexcept;
-
 		const unsigned int& getWidth() const noexcept;
-
 		const unsigned int& getHeight() const noexcept;
 
 		void setAlignment(const Alignment _alignment);
-
 		[[nodiscard]] const Alignment& getAlignment() const noexcept;
 
-		void setOffset(const sf::Vector2i& _offset);
-
-		void setOffset(int _offsetX, int _offsetY);
-
-		[[nodiscard]] const sf::Vector2i& getOffset() const noexcept;
+		void setOffset(const sf::Vector2f& _offset);
+		void setOffset(float _offsetX, float _offsetY);
+		[[nodiscard]] const sf::Vector2f& getOffset() const noexcept;
 
 		void setPanelBackgroundColor(const sf::Color& _color);
-
 		[[nodiscard]] const sf::Color& getPanelBackgroundColor() const noexcept;
 
-		UIVisualContainer* getRootElement() const noexcept
-		{
-			return m_rootElement;
-		}
-
+		UIVisualContainer* getRootElement() const noexcept;
 		void setRootElement(UIVisualContainer* _element);
 
 	private:
@@ -63,7 +49,7 @@ namespace sfui
 		Alignment m_alignment;
 		sf::Color m_panelBackgroundColor = sf::Color::Transparent;
 		sf::Vector2u m_size;
-		sf::Vector2i m_offset = sf::Vector2i();
+		sf::Vector2f m_offset = sf::Vector2f();
 		sf::RenderTexture m_renderTexture;
 		UIVisualContainer* m_rootElement = nullptr;
 	};
