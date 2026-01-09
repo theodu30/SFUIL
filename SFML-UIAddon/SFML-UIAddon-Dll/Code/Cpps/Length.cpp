@@ -2,90 +2,153 @@
 
 namespace sfui
 {
-
-	Length::Length(float _value) : m_value(_value), m_unit(LengthUnit::Pixel)
+	Length::Length(float _value, Unit _unit) : m_value(_value), m_unit(_unit)
 	{
 	}
 
-	Length::Length(float _value, LengthUnit _unit) : m_value(_value), m_unit(_unit)
+	Length::Length() : m_value(0.f), m_unit(Unit::Pixel)
 	{
 	}
 
-	void Length::set(float _value, LengthUnit _unit)
+	Length::Length(const Length& _other)
 	{
-		m_value = _value;
-		m_unit = _unit;
+		this->m_value = _other.m_value;
+		this->m_unit = _other.m_unit;
 	}
 
-	void Length::setDefault(float _value, LengthUnit _unit)
+	Length& Length::operator=(const Length& _other)
 	{
-		m_defaultValue = _value;
-		m_defaultUnit = _unit;
+		this->m_value = _other.m_value;
+		this->m_unit = _other.m_unit;
+
+		return *this;
 	}
 
-	float Length::toPixels(const LengthContext& _ctx)
+	Length::Length(Length&& _other) noexcept
 	{
-		switch (m_unit)
+		this->m_value = _other.m_value;
+		this->m_unit = _other.m_unit;
+
+		_other.m_value = 0.f;
+		_other.m_unit = Unit::Pixel;
+	}
+
+	Length& Length::operator=(Length&& _other) noexcept
+	{
+		this->m_value = _other.m_value;
+		this->m_unit = _other.m_unit;
+
+		_other.m_value = 0.f;
+		_other.m_unit = Unit::Pixel;
+
+		return *this;
+	}
+
+	Length::Length(float _value) : m_value(_value), m_unit(Unit::Pixel)
+	{
+	}
+
+	Length::Length(float _value, LengthUnit _unit) : m_value(_value)
+	{
+		switch (_unit)
 		{
-		case LengthUnit::Pixel:
-			return m_value;
 		case LengthUnit::Percent:
-			return m_value * _ctx.parentSize * 0.01f;
-		case LengthUnit::Em:
-			return m_value * _ctx.fontSize * 0.01f;
-		case LengthUnit::Rem:
-			return m_value * _ctx.rootFontSize * 0.01f;
-		case LengthUnit::Vw:
-			return m_value * _ctx.viewportWidth * 0.01f;
-		case LengthUnit::Vh:
-			return m_value * _ctx.viewportHeight * 0.01f;
+			m_unit = Unit::Percent;
+			break;
 
-		case LengthUnit::Auto:
-		case LengthUnit::Initial:
-		case LengthUnit::None:
-		default:
-			return 0.f;
+		case LengthUnit::Pixel:
+		default: 
+			m_unit = Unit::Pixel;
+			break;
 		}
 	}
 
-	bool Length::isResolvable()
+	bool Length::isAuto() const
 	{
-		return m_unit == LengthUnit::Pixel
-			|| m_unit == LengthUnit::Percent
-			|| m_unit == LengthUnit::Em
-			|| m_unit == LengthUnit::Rem
-			|| m_unit == LengthUnit::Vw
-			|| m_unit == LengthUnit::Vh;
+		return m_unit == Unit::Auto;
 	}
 
-	Length Length::px(float _value)
+	bool Length::isNone() const
 	{
-		return Length(_value, LengthUnit::Pixel);
+		return m_unit == Unit::None;
 	}
 
-	Length Length::percent(float _value)
+	float Length::getValue() const
 	{
-		return Length(_value, LengthUnit::Percent);
+		return m_value;
 	}
 
-	Length Length::em(float _value)
+	void Length::setValue(float _value)
 	{
-		return Length(_value, LengthUnit::Em);
+		m_value = _value;
 	}
 
-	Length Length::rem(float _value)
+	LengthUnit Length::getUnit() const
 	{
-		return Length(_value, LengthUnit::Rem);
+		switch (m_unit)
+		{
+		case Unit::Pixel:
+			return LengthUnit::Pixel;
+		case Unit::Percent:
+			return LengthUnit::Percent;
+		default:
+			throw "Unknown unit";
+		}
 	}
 
-	Length Length::vw(float _value)
+	void Length::setUnit(LengthUnit _unit)
 	{
-		return Length(_value, LengthUnit::Vw);
+		switch (_unit)
+		{
+		case LengthUnit::Percent:
+			m_unit = Unit::Percent;
+			break;
+
+		case LengthUnit::Pixel:
+		default:
+			m_unit = Unit::Pixel;
+			break;
+		}
 	}
 
-	Length Length::vh(float _value)
+	Length Length::Pixels(float _value)
 	{
-		return Length(_value, LengthUnit::Vh);
+		return Length(_value, Unit::Pixel);
+	}
+
+	Length Length::Percent(float _value)
+	{
+		return Length(_value, Unit::Percent);
+	}
+
+	Length Length::Em(float _value)
+	{
+		return Length(_value, Unit::Em);
+	}
+
+	Length Length::Rem(float _value)
+	{
+		return Length(_value, Unit::Rem);
+	}
+
+	Length Length::Vw(float _value)
+	{
+		return Length(_value, Unit::Vw);
+	}
+
+	Length Length::Vh(float _value)
+	{
+		return Length(_value, Unit::Vh);
+	}
+
+	Length Length::Auto()
+	{
+		return Length(0.f, Unit::Auto);
+	}
+
+	Length Length::None()
+	{
+		return Length(0.f, Unit::None);
 	}
 
 }

@@ -7,60 +7,90 @@ namespace sfui
 	enum class LengthUnit : char
 	{
 		Pixel,
-		Percent,
-		Em,
-		Rem,
-		Vw,
-		Vh,
-		Auto,
-		Initial,
-		None
-	};
-
-	struct SFUIL_API LengthContext
-	{
-		float parentSize = 0.f; // Context for Percent
-		float fontSize = 16.0f; // Context for Em
-		float rootFontSize = 16.0f; // Context for Rem
-		float viewportWidth = 0.f; // Context for Vw
-		float viewportHeight = 0.f; // Context for Vh
+		Percent
 	};
 
 	class SFUIL_API Length
 	{
 	private:
-		float m_value = 0.f;
-		LengthUnit m_unit = LengthUnit::Pixel;
+		enum class Unit : char
+		{
+			Pixel,
+			Percent,
+			Em,
+			Rem,
+			Vw,
+			Vh,
+			Auto,
+			None
+		};
 
-		float m_defaultValue = 0.f;
-		LengthUnit m_defaultUnit = LengthUnit::Pixel;
+		float m_value;
+		Unit m_unit;
+
+		Length(float _value, Unit _unit);
 
 	public:
-		Length() = default;
+		Length();
 		~Length() = default;
+
+		Length(const Length& _other);
+		Length& operator=(const Length& _other);
+		Length(Length&& _other) noexcept;
+		Length& operator=(Length&& _other) noexcept;
 
 		Length(float _value);
 		Length(float _value, LengthUnit _unit);
 
-		Length(const Length& _other) = default;
-		Length& operator=(const Length& _other) = default;
-		Length(Length&& _other) = default;
-		Length& operator=(Length&& _other) = default;
+		bool isAuto() const;
+		bool isNone() const;
 
-		void set(float _value, LengthUnit _unit);
-		void setDefault(float _value, LengthUnit _unit);
+		float getValue() const;
+		void setValue(float _value);
 
-		float toPixels(const LengthContext& _ctx);
-
-		bool isResolvable();
+		LengthUnit getUnit() const;
+		void setUnit(LengthUnit _unit);
 
 	public:
-		static Length px(float _value);
-		static Length percent(float _value);
-		static Length em(float _value);
-		static Length rem(float _value);
-		static Length vw(float _value);
-		static Length vh(float _value);
+		static Length Pixels(float _value);
+		static Length Percent(float _value);
+		static Length Em(float _value);
+		static Length Rem(float _value);
+		static Length Vw(float _value);
+		static Length Vh(float _value);
+		static Length Auto();
+		static Length None();
 
 	};
+
+	inline Length operator""_px(long double _value)
+	{
+		return Length::Pixels(static_cast<float>(_value));
+	}
+
+	inline Length operator""_pct(long double _value)
+	{
+		return Length::Percent(static_cast<float>(_value));
+	}
+
+	inline Length operator""_em(long double _value)
+	{
+		return Length::Em(static_cast<float>(_value));
+	}
+
+	inline Length operator""_rem(long double _value)
+	{
+		return Length::Rem(static_cast<float>(_value));
+	}
+
+	inline Length operator""_vw(long double _value)
+	{
+		return Length::Vw(static_cast<float>(_value));
+	}
+
+	inline Length operator""_vh(long double _value)
+	{
+		return Length::Vh(static_cast<float>(_value));
+	}
+
 }
