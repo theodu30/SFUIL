@@ -27,8 +27,6 @@
     <ClInclude Include="Code\Headers\SFUIL\Containers\UIVisualContainer.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\PanelAnchor.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\Exports.hpp" />
-    <ClInclude Include="Code\Headers\SFUIL\System\PropertyValue.hpp" />
-    <ClInclude Include="Code\Headers\SFUIL\System\StyleProperty.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\UIPanel.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\UIElement.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\Graphics\RoundedRectangle.hpp" />
@@ -70,9 +68,6 @@
     <ClCompile Include="Code\Cpps\Properties\VisibilityProperty.cpp" />
     <ClCompile Include="Code\Cpps\XMLImport.cpp" />
     <ClCompile Include="Code\Cpps\Length.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Code\Headers\SFUIL\System\PropertyValue.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

@@ -96,12 +96,6 @@
     <ClInclude Include="Code\Headers\SFUIL\System\Length.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Code\Headers\SFUIL\System\StyleProperty.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\Headers\SFUIL\System\PropertyValue.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\Cpps\UIPanel.cpp">
@@ -170,8 +164,5 @@
     <ClCompile Include="Code\Cpps\Length.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Code\Headers\SFUIL\System\PropertyValue.inl" />
   </ItemGroup>
 </Project>
