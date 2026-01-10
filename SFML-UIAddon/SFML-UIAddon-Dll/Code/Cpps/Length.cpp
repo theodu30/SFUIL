@@ -2,21 +2,21 @@
 
 namespace sfui
 {
-	Length::Length(float _value, Unit _unit) : m_value(_value), m_unit(_unit)
+	constexpr Length::Length(float _value, Unit _unit) : m_value(_value), m_unit(_unit)
 	{
 	}
 
-	Length::Length() : m_value(0.f), m_unit(Unit::Pixel)
+	constexpr Length::Length() : m_value(0.f), m_unit(Unit::Pixel)
 	{
 	}
 
-	Length::Length(const Length& _other)
+	constexpr Length::Length(const Length& _other)
 	{
 		this->m_value = _other.m_value;
 		this->m_unit = _other.m_unit;
 	}
 
-	Length& Length::operator=(const Length& _other)
+	constexpr Length& Length::operator=(const Length& _other)
 	{
 		this->m_value = _other.m_value;
 		this->m_unit = _other.m_unit;
@@ -24,7 +24,7 @@ namespace sfui
 		return *this;
 	}
 
-	Length::Length(Length&& _other) noexcept
+	constexpr Length::Length(Length&& _other) noexcept
 	{
 		this->m_value = _other.m_value;
 		this->m_unit = _other.m_unit;
@@ -33,7 +33,7 @@ namespace sfui
 		_other.m_unit = Unit::Pixel;
 	}
 
-	Length& Length::operator=(Length&& _other) noexcept
+	constexpr Length& Length::operator=(Length&& _other) noexcept
 	{
 		this->m_value = _other.m_value;
 		this->m_unit = _other.m_unit;
@@ -44,11 +44,11 @@ namespace sfui
 		return *this;
 	}
 
-	Length::Length(float _value) : m_value(_value), m_unit(Unit::Pixel)
+	constexpr Length::Length(float _value) : m_value(_value), m_unit(Unit::Pixel)
 	{
 	}
 
-	Length::Length(float _value, LengthUnit _unit) : m_value(_value)
+	constexpr Length::Length(float _value, LengthUnit _unit) : m_value(_value)
 	{
 		switch (_unit)
 		{
@@ -111,44 +111,108 @@ namespace sfui
 		}
 	}
 
-	Length Length::Pixels(float _value)
+	constexpr Length Length::Pixels(float _value)
 	{
 		return Length(_value, Unit::Pixel);
 	}
 
-	Length Length::Percent(float _value)
+	constexpr Length Length::Percent(float _value)
 	{
 		return Length(_value, Unit::Percent);
 	}
 
-	Length Length::Em(float _value)
+	constexpr Length Length::Em(float _value)
 	{
 		return Length(_value, Unit::Em);
 	}
 
-	Length Length::Rem(float _value)
+	constexpr Length Length::Rem(float _value)
 	{
 		return Length(_value, Unit::Rem);
 	}
 
-	Length Length::Vw(float _value)
+	constexpr Length Length::Vw(float _value)
 	{
 		return Length(_value, Unit::Vw);
 	}
 
-	Length Length::Vh(float _value)
+	constexpr Length Length::Vh(float _value)
 	{
 		return Length(_value, Unit::Vh);
 	}
 
-	Length Length::Auto()
+	constexpr Length Length::Auto()
 	{
 		return Length(0.f, Unit::Auto);
 	}
 
-	Length Length::None()
+	constexpr Length Length::None()
 	{
 		return Length(0.f, Unit::None);
+	}
+
+	namespace Literals
+	{
+		constexpr sfui::Length operator""_px(long double _value)
+		{
+			return sfui::Length::Pixels(static_cast<float>(_value));
+		}
+
+		constexpr sfui::Length operator""_px(unsigned long long _value)
+		{
+			return sfui::Length::Pixels(static_cast<float>(_value));
+		}
+
+		constexpr sfui::Length operator""_pct(long double _value)
+		{
+			return sfui::Length::Percent(static_cast<float>(_value));
+		}
+
+		constexpr sfui::Length operator""_pct(unsigned long long _value)
+		{
+			return sfui::Length::Percent(static_cast<float>(_value));
+		}
+
+		constexpr sfui::Length operator""_em(long double _value)
+		{
+			return sfui::Length::Em(static_cast<float>(_value));
+		}
+
+		constexpr sfui::Length operator""_em(unsigned long long _value)
+		{
+			return sfui::Length::Em(static_cast<float>(_value));
+		}
+
+		constexpr sfui::Length operator""_rem(long double _value)
+		{
+			return sfui::Length::Rem(static_cast<float>(_value));
+		}
+
+		constexpr sfui::Length operator""_rem(unsigned long long _value)
+		{
+			return sfui::Length::Rem(static_cast<float>(_value));
+		}
+
+		constexpr sfui::Length operator""_vw(long double _value)
+		{
+			return sfui::Length::Vw(static_cast<float>(_value));
+		}
+
+		constexpr sfui::Length operator""_vw(unsigned long long _value)
+		{
+			return sfui::Length::Vw(static_cast<float>(_value));
+		}
+
+		constexpr sfui::Length operator""_vh(long double _value)
+		{
+			return sfui::Length::Vh(static_cast<float>(_value));
+		}
+
+		constexpr sfui::Length operator""_vh(unsigned long long _value)
+		{
+			return sfui::Length::Vh(static_cast<float>(_value));
+		}
+
 	}
 
 }
