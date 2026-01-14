@@ -96,6 +96,9 @@
     <ClInclude Include="Code\Headers\SFUIL\System\Length.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Code\Headers\SFUIL\System\StyleData\StylePropertyId.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\Cpps\UIPanel.cpp">

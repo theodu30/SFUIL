@@ -27,6 +27,7 @@
     <ClInclude Include="Code\Headers\SFUIL\Containers\UIVisualContainer.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\PanelAnchor.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\Exports.hpp" />
+    <ClInclude Include="Code\Headers\SFUIL\System\StyleData\StylePropertyId.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\UIPanel.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\UIElement.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\Graphics\RoundedRectangle.hpp" />
