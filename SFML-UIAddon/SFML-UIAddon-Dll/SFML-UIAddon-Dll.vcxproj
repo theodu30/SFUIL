@@ -27,8 +27,12 @@
     <ClInclude Include="Code\Headers\SFUIL\Containers\UIVisualContainer.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\PanelAnchor.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\Exports.hpp" />
+    <ClInclude Include="Code\Headers\SFUIL\System\StyleData\PropertyData\InheritedData.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\StyleData\PropertyData\LayoutData.hpp" />
+    <ClInclude Include="Code\Headers\SFUIL\System\StyleData\PropertyData\RareData.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\StyleData\PropertyData\StyleEnumList.hpp" />
+    <ClInclude Include="Code\Headers\SFUIL\System\StyleData\PropertyData\TransformData.hpp" />
+    <ClInclude Include="Code\Headers\SFUIL\System\StyleData\PropertyData\VisualData.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\StyleData\StyleKeyword.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\StyleData\StylePropertyId.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\StyleData\StyleValue.hpp" />

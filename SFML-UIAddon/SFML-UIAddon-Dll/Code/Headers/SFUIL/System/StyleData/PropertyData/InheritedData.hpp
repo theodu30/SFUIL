@@ -4,7 +4,7 @@
 
 namespace sfui
 {
-	class SFUIL_API LayoutData
+	class SFUIL_API InheritedData
 	{
 
 	};

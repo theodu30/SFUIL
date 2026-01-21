@@ -126,6 +126,18 @@
     <ClInclude Include="Code\Headers\SFUIL\System\StyleData\StyleValues\StyleInt.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Code\Headers\SFUIL\System\StyleData\PropertyData\InheritedData.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Headers\SFUIL\System\StyleData\PropertyData\RareData.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Headers\SFUIL\System\StyleData\PropertyData\TransformData.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Headers\SFUIL\System\StyleData\PropertyData\VisualData.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\Cpps\UIPanel.cpp">
