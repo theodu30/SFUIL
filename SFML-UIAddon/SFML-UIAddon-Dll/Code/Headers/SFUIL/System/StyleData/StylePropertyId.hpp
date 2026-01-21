@@ -1,8 +1,10 @@
 #pragma once
 
+#include "../Exports.hpp"
+
 namespace sfui
 {
-	enum class StylePropertyId
+	enum class SFUIL_API StylePropertyId
 	{
 		Unknown = 0,
 

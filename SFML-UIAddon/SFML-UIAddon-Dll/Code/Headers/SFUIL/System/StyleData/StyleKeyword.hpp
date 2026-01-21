@@ -1,8 +1,10 @@
 #pragma once
 
+#include "../Exports.hpp"
+
 namespace sfui
 {
-	enum class StyleKeyword : char
+	enum class SFUIL_API StyleKeyword : char
 	{
 		Undefined,
 		Null,

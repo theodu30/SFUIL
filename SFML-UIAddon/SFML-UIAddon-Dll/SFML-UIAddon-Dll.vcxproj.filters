@@ -105,7 +105,25 @@
     <ClInclude Include="Code\Headers\SFUIL\System\StyleData\PropertyData\LayoutData.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Code\Headers\SFUIL\System\StyleData\PropertyData\StyleEnums.hpp">
+    <ClInclude Include="Code\Headers\SFUIL\System\StyleData\PropertyData\StyleEnumList.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Headers\SFUIL\System\StyleData\StyleValue.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Headers\SFUIL\System\StyleData\StyleValues\StyleFloat.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Headers\SFUIL\System\StyleData\StyleValues\StyleEnum.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Headers\SFUIL\System\StyleData\StyleValues\StyleColor.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Headers\SFUIL\System\StyleData\StyleValues\StyleLength.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Headers\SFUIL\System\StyleData\StyleValues\StyleInt.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -174,6 +192,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Code\Cpps\Length.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Cpps\StyleFloat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Cpps\StyleColor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Cpps\StyleLength.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Cpps\StyleInt.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

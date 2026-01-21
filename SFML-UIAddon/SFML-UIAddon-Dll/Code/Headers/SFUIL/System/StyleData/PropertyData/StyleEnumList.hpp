@@ -1,26 +1,28 @@
 #pragma once
 
+#include "../../Exports.hpp"
+
 namespace sfui
 {
-	enum class DisplayEnum : char
+	enum class SFUIL_API DisplayEnum : char
 	{
 		Flex,
 		None
 	};
 
-	enum class VisibilityEnum : char
+	enum class SFUIL_API VisibilityEnum : char
 	{
 		Visible,
 		Hidden
 	};
 
-	enum class PositionEnum : char
+	enum class SFUIL_API PositionEnum : char
 	{
 		Relative,
 		Absolute
 	};
 
-	enum class FlexDirectionEnum : char
+	enum class SFUIL_API FlexDirectionEnum : char
 	{
 		Column,
 		ColumnReverse,
@@ -28,14 +30,14 @@ namespace sfui
 		RowReverse
 	};
 
-	enum class FlexWrapEnum : char
+	enum class SFUIL_API FlexWrapEnum : char
 	{
 		NoWrap,
 		Wrap,
 		WrapReverse
 	};
 
-	enum class AlignEnum : char
+	enum class SFUIL_API AlignEnum : char
 	{
 		Auto,
 		FlexStart,
@@ -44,7 +46,7 @@ namespace sfui
 		Stretch
 	};
 
-	enum class JustifyEnum : char
+	enum class SFUIL_API JustifyEnum : char
 	{
 		FlexStart,
 		Center,
@@ -54,7 +56,7 @@ namespace sfui
 		SpaceEvenly
 	};
 
-	enum class FontStyleEnum : char
+	enum class SFUIL_API FontStyleEnum : char
 	{
 		Normal,
 		Italic,
@@ -62,7 +64,7 @@ namespace sfui
 		ItalicBold
 	};
 
-	enum class TextAlignEnum : char
+	enum class SFUIL_API TextAlignEnum : char
 	{
 		UpperLeft,
 		UpperCenter,

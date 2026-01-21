@@ -28,9 +28,15 @@
     <ClInclude Include="Code\Headers\SFUIL\System\PanelAnchor.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\Exports.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\StyleData\PropertyData\LayoutData.hpp" />
-    <ClInclude Include="Code\Headers\SFUIL\System\StyleData\PropertyData\StyleEnums.hpp" />
+    <ClInclude Include="Code\Headers\SFUIL\System\StyleData\PropertyData\StyleEnumList.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\StyleData\StyleKeyword.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\StyleData\StylePropertyId.hpp" />
+    <ClInclude Include="Code\Headers\SFUIL\System\StyleData\StyleValue.hpp" />
+    <ClInclude Include="Code\Headers\SFUIL\System\StyleData\StyleValues\StyleColor.hpp" />
+    <ClInclude Include="Code\Headers\SFUIL\System\StyleData\StyleValues\StyleEnum.hpp" />
+    <ClInclude Include="Code\Headers\SFUIL\System\StyleData\StyleValues\StyleFloat.hpp" />
+    <ClInclude Include="Code\Headers\SFUIL\System\StyleData\StyleValues\StyleInt.hpp" />
+    <ClInclude Include="Code\Headers\SFUIL\System\StyleData\StyleValues\StyleLength.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\UIPanel.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\UIElement.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\Graphics\RoundedRectangle.hpp" />
@@ -54,6 +60,8 @@
     <ClCompile Include="Code\Cpps\Properties\BackgroundProperty.cpp" />
     <ClCompile Include="Code\Cpps\Properties\BorderProperty.cpp" />
     <ClCompile Include="Code\Cpps\PanelAnchor.cpp" />
+    <ClCompile Include="Code\Cpps\StyleColor.cpp" />
+    <ClCompile Include="Code\Cpps\StyleLength.cpp" />
     <ClCompile Include="Code\Cpps\XMLExport.cpp" />
     <ClCompile Include="Code\Cpps\UIImage.cpp" />
     <ClCompile Include="Code\Cpps\UIVisualContainer.cpp" />
@@ -72,6 +80,8 @@
     <ClCompile Include="Code\Cpps\Properties\VisibilityProperty.cpp" />
     <ClCompile Include="Code\Cpps\XMLImport.cpp" />
     <ClCompile Include="Code\Cpps\Length.cpp" />
+    <ClCompile Include="Code\Cpps\StyleFloat.cpp" />
+    <ClCompile Include="Code\Cpps\StyleInt.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
