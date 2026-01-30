@@ -19,6 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Code\Headers\SFUIL\System\Datas\BackgroundPosition.hpp" />
+    <ClInclude Include="Code\Headers\SFUIL\System\Datas\TransformOrigin.hpp" />
+    <ClInclude Include="Code\Headers\SFUIL\System\Datas\TransformTranslate.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\Length.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\Properties\BorderProperty.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\Properties\BackgroundProperty.hpp" />
@@ -29,10 +32,10 @@
     <ClInclude Include="Code\Headers\SFUIL\System\Exports.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\StyleData\PropertyData\InheritedData.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\StyleData\PropertyData\LayoutData.hpp" />
-    <ClInclude Include="Code\Headers\SFUIL\System\StyleData\PropertyData\RareData.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\StyleData\PropertyData\StyleEnumList.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\StyleData\PropertyData\TransformData.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\StyleData\PropertyData\VisualData.hpp" />
+    <ClInclude Include="Code\Headers\SFUIL\System\StyleData\StyleDataRef.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\StyleData\StyleKeyword.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\StyleData\StylePropertyId.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\StyleData\StyleValue.hpp" />
@@ -60,12 +63,14 @@
     <ClInclude Include="Code\Headers\SFUIL\XMLImport.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Code\Cpps\BackgroundPosition.cpp" />
     <ClCompile Include="Code\Cpps\Properties\AlignProperty.cpp" />
     <ClCompile Include="Code\Cpps\Properties\BackgroundProperty.cpp" />
     <ClCompile Include="Code\Cpps\Properties\BorderProperty.cpp" />
     <ClCompile Include="Code\Cpps\PanelAnchor.cpp" />
     <ClCompile Include="Code\Cpps\StyleColor.cpp" />
     <ClCompile Include="Code\Cpps\StyleLength.cpp" />
+    <ClCompile Include="Code\Cpps\TransformTranslate.cpp" />
     <ClCompile Include="Code\Cpps\XMLExport.cpp" />
     <ClCompile Include="Code\Cpps\UIImage.cpp" />
     <ClCompile Include="Code\Cpps\UIVisualContainer.cpp" />
@@ -86,6 +91,7 @@
     <ClCompile Include="Code\Cpps\Length.cpp" />
     <ClCompile Include="Code\Cpps\StyleFloat.cpp" />
     <ClCompile Include="Code\Cpps\StyleInt.cpp" />
+    <ClCompile Include="Code\Cpps\TransformOrigin.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

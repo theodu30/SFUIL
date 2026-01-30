@@ -129,13 +129,22 @@
     <ClInclude Include="Code\Headers\SFUIL\System\StyleData\PropertyData\InheritedData.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Code\Headers\SFUIL\System\StyleData\PropertyData\RareData.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Code\Headers\SFUIL\System\StyleData\PropertyData\TransformData.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Code\Headers\SFUIL\System\StyleData\PropertyData\VisualData.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Headers\SFUIL\System\StyleData\StyleDataRef.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Headers\SFUIL\System\Datas\TransformOrigin.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Headers\SFUIL\System\Datas\TransformTranslate.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Headers\SFUIL\System\Datas\BackgroundPosition.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -216,6 +225,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Code\Cpps\StyleInt.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Cpps\TransformOrigin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Cpps\TransformTranslate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Cpps\BackgroundPosition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
