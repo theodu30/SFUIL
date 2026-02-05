@@ -17,8 +17,8 @@ namespace sfui
 	class BackgroundPosition
 	{
 	private:
-		BackgroundPositionKeyword m_keyword;
 		Length m_offset;
+		BackgroundPositionKeyword m_keyword;
 
 	public:
 		BackgroundPosition(BackgroundPositionKeyword _keyword);

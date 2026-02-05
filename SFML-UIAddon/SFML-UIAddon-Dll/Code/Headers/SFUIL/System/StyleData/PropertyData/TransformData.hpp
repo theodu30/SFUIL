@@ -11,7 +11,7 @@ namespace sfui
 	class SFUIL_API TransformData
 	{
 	public:
-		TransformOrigin origin;
+		TransformOrigin transformOrigin;
 
 		TransformTranslate translate;
 

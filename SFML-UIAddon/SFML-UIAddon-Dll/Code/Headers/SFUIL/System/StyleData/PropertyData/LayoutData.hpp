@@ -44,5 +44,6 @@ namespace sfui
 		FlexDirectionEnum flexDirection = (FlexDirectionEnum)0;
 		FlexWrapEnum flexWrap = (FlexWrapEnum)0;
 		JustifyEnum justifyContent = (JustifyEnum)0;
+		PositionEnum position = (PositionEnum)0;
 	};
 }
