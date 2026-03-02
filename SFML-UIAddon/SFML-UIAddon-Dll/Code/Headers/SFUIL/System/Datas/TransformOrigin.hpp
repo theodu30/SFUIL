@@ -21,5 +21,7 @@ namespace sfui
 
 		void setX(Length _x);
 		void setY(Length _y);
+
+		static TransformOrigin Initial();
 	};
 }

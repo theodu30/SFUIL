@@ -30,4 +30,9 @@ namespace sfui
 		m_y = _y;
 	}
 
+	TransformTranslate TransformTranslate::Initial()
+	{
+		return TransformTranslate(0.f, 0.f);
+	}
+
 }

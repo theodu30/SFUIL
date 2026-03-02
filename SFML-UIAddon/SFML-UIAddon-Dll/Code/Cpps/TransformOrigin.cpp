@@ -30,4 +30,9 @@ namespace sfui
 		m_y = _y;
 	}
 
+	TransformOrigin TransformOrigin::Initial()
+	{
+		return TransformOrigin(Length::Percent(50.f), Length::Percent(50.f));
+	}
+
 }

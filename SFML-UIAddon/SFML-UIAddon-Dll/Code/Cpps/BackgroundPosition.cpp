@@ -30,4 +30,9 @@ namespace sfui
 		m_offset = _offset;
 	}
 
+	BackgroundPosition BackgroundPosition::Initial()
+	{
+		return BackgroundPosition(BackgroundPositionKeyword::Center);
+	}
+
 }

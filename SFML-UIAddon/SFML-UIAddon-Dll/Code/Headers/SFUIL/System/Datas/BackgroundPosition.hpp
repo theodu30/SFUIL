@@ -29,5 +29,7 @@ namespace sfui
 
 		Length getOffset() const;
 		void setOffset(Length _offset);
+
+		static BackgroundPosition Initial();
 	};
 }

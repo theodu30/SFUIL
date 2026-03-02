@@ -31,5 +31,7 @@ namespace sfui
 
 		BackgroundSizeType getType() const;
 		void setType(BackgroundSizeType _type);
+
+		static BackgroundSize Initial();
 	};
 }

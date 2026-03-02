@@ -300,269 +300,326 @@ namespace sfui
 		visualData.Release();
 	}
 
+	ComputedStyle InitialStyle::m_initialStyle;
+
+	InitialStyle::InitialStyle()
+	{
+		m_initialStyle = ComputedStyle::createInitial();
+		m_initialStyle.layoutData.Write().alignContent = AlignEnum::FlexStart;
+		m_initialStyle.layoutData.Write().alignItems = AlignEnum::Stretch;
+		m_initialStyle.layoutData.Write().alignSelf = AlignEnum::Auto;
+		m_initialStyle.visualData.Write().backgroundColor = sf::Color::Transparent;
+		m_initialStyle.visualData.Write().textureKey = std::string();
+		m_initialStyle.visualData.Write().backgroundPositionX = BackgroundPosition::Initial();
+		m_initialStyle.visualData.Write().backgroundPositionY = BackgroundPosition::Initial();
+		m_initialStyle.visualData.Write().backgroundRepeat = false;
+		m_initialStyle.visualData.Write().backgroundSize = BackgroundSize::Initial();
+		m_initialStyle.visualData.Write().borderColor = sf::Color::Transparent;
+		m_initialStyle.visualData.Write().borderRadius = 0.f;
+		m_initialStyle.layoutData.Write().borderWidth = 0.f;
+		m_initialStyle.layoutData.Write().bottom = Length::Auto();
+		m_initialStyle.inheritedData.Write().textColor = sf::Color::Black;
+		m_initialStyle.layoutData.Write().display = DisplayEnum::Flex;
+		m_initialStyle.layoutData.Write().flexBasis = Length::Auto();
+		m_initialStyle.layoutData.Write().flexDirection = FlexDirectionEnum::Column;
+		m_initialStyle.layoutData.Write().flexGrow = 0.f;
+		m_initialStyle.layoutData.Write().flexShrink = 1.f;
+		m_initialStyle.layoutData.Write().flexWrap = FlexWrapEnum::NoWrap;
+		m_initialStyle.inheritedData.Write().fontSize = 14.f;
+		m_initialStyle.layoutData.Write().height = Length::Auto();
+		m_initialStyle.layoutData.Write().justifyContent = JustifyEnum::FlexStart;
+		m_initialStyle.layoutData.Write().left = Length::Auto();
+		m_initialStyle.layoutData.Write().marginBottom = 0.f;
+		m_initialStyle.layoutData.Write().marginLeft = 0.f;
+		m_initialStyle.layoutData.Write().marginRight = 0.f;
+		m_initialStyle.layoutData.Write().marginTop = 0.f;
+		m_initialStyle.layoutData.Write().maxHeight = Length::None();
+		m_initialStyle.layoutData.Write().maxWidth = Length::None();
+		m_initialStyle.layoutData.Write().minHeight = Length::Auto();
+		m_initialStyle.layoutData.Write().minWidth = Length::Auto();
+		m_initialStyle.visualData.Write().opacity = 1.f;
+		m_initialStyle.layoutData.Write().paddingBottom = 0.f;
+		m_initialStyle.layoutData.Write().paddingLeft = 0.f;
+		m_initialStyle.layoutData.Write().paddingRight = 0.f;
+		m_initialStyle.layoutData.Write().paddingTop = 0.f;
+		m_initialStyle.layoutData.Write().position = PositionEnum::Relative;
+		m_initialStyle.layoutData.Write().right = Length::Auto();
+		m_initialStyle.transformData.Write().rotate = sf::degrees(0.f);
+		m_initialStyle.transformData.Write().scale = sf::Vector2f(0.f, 0.f);
+		m_initialStyle.layoutData.Write().top = Length::Auto();
+		m_initialStyle.transformData.Write().transformOrigin = TransformOrigin::Initial();
+		m_initialStyle.transformData.Write().translate = TransformTranslate::Initial();
+		m_initialStyle.visualData.Write().backgroundImageTint = sf::Color::White;
+		m_initialStyle.inheritedData.Write().textFont = sf::Font();
+		m_initialStyle.inheritedData.Write().fontStyle = FontStyleEnum::Normal;
+		m_initialStyle.inheritedData.Write().textAlign = TextAlignEnum::UpperLeft;
+		m_initialStyle.inheritedData.Write().visibility = VisibilityEnum::Visible;
+		m_initialStyle.layoutData.Write().width = Length::Auto();
+	}
+
 	AlignEnum InitialStyle::getAlignContent()
 	{
-		return;
+		return m_initialStyle.layoutData.Read().alignContent;
 	}
 
 	AlignEnum InitialStyle::getAlignItems()
 	{
-		return;
+		return m_initialStyle.layoutData.Read().alignItems;
 	}
 
 	AlignEnum InitialStyle::getAlignSelf()
 	{
-		return;
+		return m_initialStyle.layoutData.Read().alignSelf;
 	}
 
 	sf::Color InitialStyle::getBackgroundColor()
 	{
-		return;
+		return m_initialStyle.visualData.Read().backgroundColor;
 	}
 
 	std::string InitialStyle::getTextureKey()
 	{
-		return;
+		return m_initialStyle.visualData.Read().textureKey;
 	}
 
 	BackgroundPosition InitialStyle::getBackgroundPositionX()
 	{
-		return;
+		return m_initialStyle.visualData.Read().backgroundPositionX;
 	}
 
 	BackgroundPosition InitialStyle::getBackgroundPositionY()
 	{
-		return;
+		return m_initialStyle.visualData.Read().backgroundPositionY;
 	}
 
 	bool InitialStyle::getBackgroundRepeat()
 	{
-		return;
+		return m_initialStyle.visualData.Read().backgroundRepeat;
 	}
 
 	bool InitialStyle::getBackgroundSmooth()
 	{
-		return;
+		return m_initialStyle.visualData.Read().backgroundSmooth;
 	}
 
 	BackgroundSize InitialStyle::getBackgroundSize()
 	{
-		return;
+		return m_initialStyle.visualData.Read().backgroundSize;
 	}
 
 	sf::Color InitialStyle::getBorderColor()
 	{
-		return;
+		return m_initialStyle.visualData.Read().borderColor;
 	}
 
 	Length InitialStyle::getBorderRadius()
 	{
-		return;
+		return m_initialStyle.visualData.Read().borderRadius;
 	}
 
 	float InitialStyle::getBorderWidth()
 	{
-		return;
+		return m_initialStyle.layoutData.Read().borderWidth;
 	}
 
 	Length InitialStyle::getBottom()
 	{
-		return;
+		return m_initialStyle.layoutData.Read().bottom;
 	}
 
 	sf::Color InitialStyle::getColor()
 	{
-		return;
+		return m_initialStyle.inheritedData.Read().textColor;
 	}
 
 	DisplayEnum InitialStyle::getDisplay()
 	{
-		return;
+		return m_initialStyle.layoutData.Read().display;
 	}
 
 	Length InitialStyle::getFlexBasis()
 	{
-		return;
+		return m_initialStyle.layoutData.Read().flexBasis;
 	}
 
 	FlexDirectionEnum InitialStyle::getFlexDirection()
 	{
-		return;
+		return m_initialStyle.layoutData.Read().flexDirection;
 	}
 
 	float InitialStyle::getFlexGrow()
 	{
-		return;
+		return m_initialStyle.layoutData.Read().flexGrow;
 	}
 
 	float InitialStyle::getFlexShrink()
 	{
-		return;
+		return m_initialStyle.layoutData.Read().flexShrink;
 	}
 
 	FlexWrapEnum InitialStyle::getFlexWrap()
 	{
-		return;
+		return m_initialStyle.layoutData.Read().flexWrap;
 	}
 
 	Length InitialStyle::getFontSize()
 	{
-		return;
+		return m_initialStyle.inheritedData.Read().fontSize;
 	}
 
 	Length InitialStyle::getHeight()
 	{
-		return;
+		return m_initialStyle.layoutData.Read().height;
 	}
 
 	JustifyEnum InitialStyle::getJustifyContent()
 	{
-		return;
+		return m_initialStyle.layoutData.Read().justifyContent;
 	}
 
 	Length InitialStyle::getLeft()
 	{
-		return;
+		return m_initialStyle.layoutData.Read().left;
 	}
 
 	Length InitialStyle::getMarginBottom()
 	{
-		return;
+		return m_initialStyle.layoutData.Read().marginBottom;
 	}
 
 	Length InitialStyle::getMarginLeft()
 	{
-		return;
+		return m_initialStyle.layoutData.Read().marginLeft;
 	}
 
 	Length InitialStyle::getMarginRight()
 	{
-		return;
+		return m_initialStyle.layoutData.Read().marginRight;
 	}
 
 	Length InitialStyle::getMarginTop()
 	{
-		return;
+		return m_initialStyle.layoutData.Read().marginTop;
 	}
 
 	Length InitialStyle::getMaxHeight()
 	{
-		return;
+		return m_initialStyle.layoutData.Read().maxHeight;
 	}
 
 	Length InitialStyle::getMaxWidth()
 	{
-		return;
+		return m_initialStyle.layoutData.Read().maxWidth;
 	}
 
 	Length InitialStyle::getMinHeight()
 	{
-		return;
+		return m_initialStyle.layoutData.Read().minHeight;
 	}
 
 	Length InitialStyle::getMinWidth()
 	{
-		return;
+		return m_initialStyle.layoutData.Read().minWidth;
 	}
 
 	float InitialStyle::getOpacity()
 	{
-		return;
+		return m_initialStyle.visualData.Read().opacity;
 	}
 
 	Length InitialStyle::getPaddingBottom()
 	{
-		return;
+		return m_initialStyle.layoutData.Read().paddingBottom;
 	}
 
 	Length InitialStyle::getPaddingLeft()
 	{
-		return;
+		return m_initialStyle.layoutData.Read().paddingLeft;
 	}
 
 	Length InitialStyle::getPaddingRight()
 	{
-		return;
+		return m_initialStyle.layoutData.Read().paddingRight;
 	}
 
 	Length InitialStyle::getPaddingTop()
 	{
-		return;
+		return m_initialStyle.layoutData.Read().paddingTop;
 	}
 
 	PositionEnum InitialStyle::getPosition()
 	{
-		return;
+		return m_initialStyle.layoutData.Read().position;
 	}
 
 	Length InitialStyle::getRight()
 	{
-		return;
+		return m_initialStyle.layoutData.Read().right;
 	}
 
 	sf::Angle InitialStyle::getRotate()
 	{
-		return;
+		return m_initialStyle.transformData.Read().rotate;
 	}
 
 	sf::Vector2f InitialStyle::getScale()
 	{
-		return;
+		return m_initialStyle.transformData.Read().scale;
 	}
 
 	Length InitialStyle::getTop()
 	{
-		return;
+		return m_initialStyle.layoutData.Read().top;
 	}
 
 	TransformOrigin InitialStyle::getTransformOrigin()
 	{
-		return;
+		return m_initialStyle.transformData.Read().transformOrigin;
 	}
 
 	TransformTranslate InitialStyle::getTranslate()
 	{
-		return;
+		return m_initialStyle.transformData.Read().translate;
 	}
 
 	sf::Color InitialStyle::getBackgroundImageTint()
 	{
-		return;
+		return m_initialStyle.visualData.Read().backgroundImageTint;
 	}
 
 	sf::Font InitialStyle::getTextFont()
 	{
-		return;
+		return m_initialStyle.inheritedData.Read().textFont;
 	}
 
 	FontStyleEnum InitialStyle::getFontStyle()
 	{
-		return;
+		return m_initialStyle.inheritedData.Read().fontStyle;
 	}
 
 	TextAlignEnum InitialStyle::getTextAlign()
 	{
-		return;
+		return m_initialStyle.inheritedData.Read().textAlign;
 	}
 
 	VisibilityEnum InitialStyle::getVisibility()
 	{
-		return;
+		return m_initialStyle.inheritedData.Read().visibility;
 	}
 
 	Length InitialStyle::getWidth()
 	{
-		return;
+		return m_initialStyle.layoutData.Read().width;
 	}
 
 	ComputedStyle& InitialStyle::get()
 	{
-		return;
+		return m_initialStyle;
 	}
 
 	ComputedStyle InitialStyle::acquire()
 	{
-		return;
+		return m_initialStyle.acquire();
 	}
 
 }

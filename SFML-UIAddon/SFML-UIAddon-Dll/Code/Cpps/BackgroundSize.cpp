@@ -44,4 +44,9 @@ namespace sfui
 		m_y = 0.f;
 	}
 
+	BackgroundSize BackgroundSize::Initial()
+	{
+		return BackgroundSize(Length::Percent(100.f), Length::Percent(100.f));
+	}
+
 }
