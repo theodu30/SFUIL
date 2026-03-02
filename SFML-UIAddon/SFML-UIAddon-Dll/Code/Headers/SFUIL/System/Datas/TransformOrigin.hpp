@@ -13,6 +13,8 @@ namespace sfui
 		Length m_y;
 
 	public:
+		TransformOrigin();
+
 		TransformOrigin(Length _x, Length _y);
 		TransformOrigin(sf::Vector2f _v);
 

@@ -2,6 +2,11 @@
 
 namespace sfui
 {
+	TransformTranslate::TransformTranslate()
+	{
+		*this = Initial();
+	}
+
 	TransformTranslate::TransformTranslate(Length _x, Length _y) : m_x(_x), m_y(_y)
 	{
 	}

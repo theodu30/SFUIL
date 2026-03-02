@@ -21,6 +21,8 @@ namespace sfui
 		BackgroundPositionKeyword m_keyword;
 
 	public:
+		BackgroundPosition();
+
 		BackgroundPosition(BackgroundPositionKeyword _keyword);
 		BackgroundPosition(BackgroundPositionKeyword _keyword, Length _offset);
 

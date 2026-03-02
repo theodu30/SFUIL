@@ -20,6 +20,8 @@ namespace sfui
 		Length m_y;
 
 	public:
+		BackgroundSize();
+
 		BackgroundSize(BackgroundSizeType _type);
 		BackgroundSize(Length _x, Length _y);
 

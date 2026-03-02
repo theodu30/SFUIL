@@ -2,6 +2,11 @@
 
 namespace sfui
 {
+	TransformOrigin::TransformOrigin()
+	{
+		*this = Initial();
+	}
+
 	TransformOrigin::TransformOrigin(Length _x, Length _y) : m_x(_x), m_y(_y)
 	{
 	}

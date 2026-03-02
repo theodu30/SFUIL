@@ -13,6 +13,8 @@ namespace sfui
 		Length m_y;
 
 	public:
+		TransformTranslate();
+
 		TransformTranslate(Length _x, Length _y);
 		TransformTranslate(sf::Vector2f _v);
 

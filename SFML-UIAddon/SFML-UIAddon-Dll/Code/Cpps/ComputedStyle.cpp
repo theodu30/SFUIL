@@ -345,7 +345,7 @@ namespace sfui
 		m_initialStyle.layoutData.Write().position = PositionEnum::Relative;
 		m_initialStyle.layoutData.Write().right = Length::Auto();
 		m_initialStyle.transformData.Write().rotate = sf::degrees(0.f);
-		m_initialStyle.transformData.Write().scale = sf::Vector2f(0.f, 0.f);
+		m_initialStyle.transformData.Write().scale = sf::Vector2f(1.f, 1.f);
 		m_initialStyle.layoutData.Write().top = Length::Auto();
 		m_initialStyle.transformData.Write().transformOrigin = TransformOrigin::Initial();
 		m_initialStyle.transformData.Write().translate = TransformTranslate::Initial();

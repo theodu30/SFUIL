@@ -2,6 +2,11 @@
 
 namespace sfui
 {
+	BackgroundPosition::BackgroundPosition()
+	{
+		*this = Initial();
+	}
+
 	BackgroundPosition::BackgroundPosition(BackgroundPositionKeyword _keyword) : BackgroundPosition(_keyword, 0.f)
 	{
 	}

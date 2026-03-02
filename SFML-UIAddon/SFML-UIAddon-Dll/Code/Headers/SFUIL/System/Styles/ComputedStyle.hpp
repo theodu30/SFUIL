@@ -80,7 +80,7 @@ namespace sfui
 		void release();
 	};
 
-	static class SFUIL_API InitialStyle
+	class SFUIL_API InitialStyle
 	{
 	private:
 		static ComputedStyle m_initialStyle;

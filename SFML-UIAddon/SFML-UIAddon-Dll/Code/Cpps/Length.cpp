@@ -111,104 +111,104 @@ namespace sfui
 		}
 	}
 
-	constexpr Length Length::Pixels(float _value)
+	Length Length::Pixels(float _value)
 	{
 		return Length(_value, Unit::Pixel);
 	}
 
-	constexpr Length Length::Percent(float _value)
+	Length Length::Percent(float _value)
 	{
 		return Length(_value, Unit::Percent);
 	}
 
-	constexpr Length Length::Em(float _value)
+	Length Length::Em(float _value)
 	{
 		return Length(_value, Unit::Em);
 	}
 
-	constexpr Length Length::Rem(float _value)
+	Length Length::Rem(float _value)
 	{
 		return Length(_value, Unit::Rem);
 	}
 
-	constexpr Length Length::Vw(float _value)
+	Length Length::Vw(float _value)
 	{
 		return Length(_value, Unit::Vw);
 	}
 
-	constexpr Length Length::Vh(float _value)
+	Length Length::Vh(float _value)
 	{
 		return Length(_value, Unit::Vh);
 	}
 
-	constexpr Length Length::Auto()
+	Length Length::Auto()
 	{
 		return Length(0.f, Unit::Auto);
 	}
 
-	constexpr Length Length::None()
+	Length Length::None()
 	{
 		return Length(0.f, Unit::None);
 	}
 
 	namespace Literals
 	{
-		constexpr sfui::Length operator""_px(long double _value)
+		sfui::Length operator""_px(long double _value)
 		{
 			return sfui::Length::Pixels(static_cast<float>(_value));
 		}
 
-		constexpr sfui::Length operator""_px(unsigned long long _value)
+		sfui::Length operator""_px(unsigned long long _value)
 		{
 			return sfui::Length::Pixels(static_cast<float>(_value));
 		}
 
-		constexpr sfui::Length operator""_pct(long double _value)
+		sfui::Length operator""_pct(long double _value)
 		{
 			return sfui::Length::Percent(static_cast<float>(_value));
 		}
 
-		constexpr sfui::Length operator""_pct(unsigned long long _value)
+		sfui::Length operator""_pct(unsigned long long _value)
 		{
 			return sfui::Length::Percent(static_cast<float>(_value));
 		}
 
-		constexpr sfui::Length operator""_em(long double _value)
+		sfui::Length operator""_em(long double _value)
 		{
 			return sfui::Length::Em(static_cast<float>(_value));
 		}
 
-		constexpr sfui::Length operator""_em(unsigned long long _value)
+		sfui::Length operator""_em(unsigned long long _value)
 		{
 			return sfui::Length::Em(static_cast<float>(_value));
 		}
 
-		constexpr sfui::Length operator""_rem(long double _value)
+		sfui::Length operator""_rem(long double _value)
 		{
 			return sfui::Length::Rem(static_cast<float>(_value));
 		}
 
-		constexpr sfui::Length operator""_rem(unsigned long long _value)
+		sfui::Length operator""_rem(unsigned long long _value)
 		{
 			return sfui::Length::Rem(static_cast<float>(_value));
 		}
 
-		constexpr sfui::Length operator""_vw(long double _value)
+		sfui::Length operator""_vw(long double _value)
 		{
 			return sfui::Length::Vw(static_cast<float>(_value));
 		}
 
-		constexpr sfui::Length operator""_vw(unsigned long long _value)
+		sfui::Length operator""_vw(unsigned long long _value)
 		{
 			return sfui::Length::Vw(static_cast<float>(_value));
 		}
 
-		constexpr sfui::Length operator""_vh(long double _value)
+		sfui::Length operator""_vh(long double _value)
 		{
 			return sfui::Length::Vh(static_cast<float>(_value));
 		}
 
-		constexpr sfui::Length operator""_vh(unsigned long long _value)
+		sfui::Length operator""_vh(unsigned long long _value)
 		{
 			return sfui::Length::Vh(static_cast<float>(_value));
 		}

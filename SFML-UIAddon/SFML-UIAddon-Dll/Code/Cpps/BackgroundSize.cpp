@@ -2,6 +2,11 @@
 
 namespace sfui
 {
+	BackgroundSize::BackgroundSize()
+	{
+		*this = Initial();
+	}
+
 	BackgroundSize::BackgroundSize(BackgroundSizeType _type) : m_type(_type), m_x(0.f), m_y(0.f)
 	{
 	}
