@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Code\Headers\SFUIL\UIVisuelElement.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\Datas\BackgroundPosition.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\Datas\BackgroundSize.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\Datas\TransformOrigin.hpp" />
