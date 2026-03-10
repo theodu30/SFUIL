@@ -42,7 +42,7 @@ namespace sfui
 		int num = capacity / componentsCountPerChunk + 1;
 		if (num > chunkCount)
 		{
-			m_chunks = reinterpret_cast<Chunk*>(ResizeArray(m_chunks, chunkCount, num, sizeof(Chunk), alignof(Chunk)));
+			m_chunks = static_cast<Chunk*>(ResizeArray(m_chunks, chunkCount, num, sizeof(Chunk), alignof(Chunk)));
 			for (int i = 0; i < num; ++i)
 			{
 				m_chunks[i] = Chunk

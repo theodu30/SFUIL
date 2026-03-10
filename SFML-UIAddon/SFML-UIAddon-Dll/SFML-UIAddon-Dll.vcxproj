@@ -25,6 +25,7 @@
     <ClInclude Include="Code\Headers\SFUIL\System\Layout\LayoutDataStore.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\Layout\LayoutHandle.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\Layout\LayoutNode.hpp" />
+    <ClInclude Include="Code\Headers\SFUIL\System\Layout\LayoutNodeData.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\UIVisuelElement.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\Datas\BackgroundPosition.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\Datas\BackgroundSize.hpp" />

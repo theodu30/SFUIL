@@ -4,7 +4,7 @@ namespace sfui
 {
 	LayoutHandle LayoutHandle::Undefined(0, 0);
 
-	bool LayoutHandle::IsUndefined()
+	bool LayoutHandle::IsUndefined() const
 	{
 		return Equals(Undefined);
 	}
@@ -13,7 +13,7 @@ namespace sfui
 	{
 	}
 
-	bool LayoutHandle::Equals(LayoutHandle _other)
+	bool LayoutHandle::Equals(LayoutHandle _other) const
 	{
 		return index == _other.index && version == _other.version;
 	}

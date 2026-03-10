@@ -2,17 +2,17 @@
 
 namespace sfui
 {
-	const struct LayoutHandle
+	struct LayoutHandle
 	{
 		int index;
 		int version;
 
 		static LayoutHandle Undefined;
 
-		bool IsUndefined();
-
 		LayoutHandle(int _index, int _version);
 
-		bool Equals(LayoutHandle _other);
+		bool IsUndefined() const;
+
+		bool Equals(LayoutHandle _other) const;
 	};
 }
