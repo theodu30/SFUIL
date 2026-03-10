@@ -5,6 +5,7 @@
 #include "../Datas/ComponentType.hpp"
 #include "LayoutHandle.hpp"
 #include <cstdint>
+#include <span>
 
 namespace sfui
 {
@@ -57,13 +58,13 @@ namespace sfui
 		bool IsValid();
 		int Capacity();
 
-		LayoutDataStore(ComponentType _components[], int initialCapacity);
+		LayoutDataStore(std::span<const ComponentType> _components, int initialCapacity);
 
 		void Dispose() override;
 		bool Exists(const LayoutHandle& _handle);
 
-		const void* GetComponentDataPtr(int _index, int _componentIndex);
-		LayoutHandle Allocate(uint8_t** _data, int count);
+		const void* GetComponentDataPtr(int _index, int _componentIndex) const;
+		LayoutHandle Allocate(uint8_t** _data, int _count);
 		void Free(const LayoutHandle& _handle);
 
 		template <typename T0>
