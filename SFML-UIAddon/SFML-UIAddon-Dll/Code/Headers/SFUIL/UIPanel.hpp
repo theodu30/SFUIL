@@ -5,6 +5,7 @@
 
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Graphics/RenderTexture.hpp>
+#include <map>
 
 extern SFUIL_API const char* SFUIL_PANEL_ROOTELEMENT_NAME;
 
@@ -60,6 +61,9 @@ namespace sfui
 
 		void setRootElement(UIVisualContainer* _element);
 
+		sf::Texture* getOrRegisterTexture(std::string _path);
+		bool unregisterTexture(std::string _path);
+
 	private:
 		bool m_active = false;
 		Alignment m_alignment;
@@ -68,5 +72,7 @@ namespace sfui
 		sf::Vector2i m_offset = sf::Vector2i(0, 0);
 		sf::RenderTexture m_renderTexture;
 		UIVisualContainer* m_rootElement = nullptr;
+
+		std::map<std::string, std::pair<sf::Texture*, unsigned int>> m_textureCache;
 	};
 }

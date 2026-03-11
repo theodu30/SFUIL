@@ -5,6 +5,6 @@
 	</sfui:UIVisualContainer>
 	<sfui:UIVisualContainer style="">
 		<sfui:UIVisualContainer style="background-color: (0,0,255,127);"/>
-		<sfui:UIImage style="background-color: (255,255,255,127); image-path: 'circle.png'; image-scale-mode: scale-to-fit;"/>
+		<sfui:UIImage style="background-color: (255,255,255,127); image-path: 'kirbo_sunset_wallpaper.png'; image-scale-mode: scale-to-fit;"/>
 	</sfui:UIVisualContainer>
 </sfui:UIVisualContainer>

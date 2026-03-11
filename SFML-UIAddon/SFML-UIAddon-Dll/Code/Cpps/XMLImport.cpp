@@ -427,7 +427,6 @@ namespace sfui
 			else if (strcmp(propertyName.c_str(), "image-path") == 0)
 			{
 				_element->getProperty<ImageProperty>().setImagePathFromCStr(propertyValue.c_str());
-				_element->getProperty<ImageProperty>().loadImage();
 			}
 			else if (strcmp(propertyName.c_str(), "image-tint") == 0)
 			{
