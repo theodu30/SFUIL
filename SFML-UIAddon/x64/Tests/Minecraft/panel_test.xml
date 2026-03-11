@@ -1,0 +1,55 @@
+<sfui:UIVisualContainer name="__ROOT_ELEMENT__" style="position: absolute; width: 100%; height: 100%; flex-direction: column; ">
+	<sfui:UIImage name="hotbar" style="position: absolute; width: 364px; height: 44px; image-path: 'assets/textures/hotbar.png'; image-scale-mode: scale-to-fit; bottom: 0px; left: 138px;"/>
+	<sfui:UIImage name="experiencebar" style="position: absolute; width: 364px; height: 10px; image-path: 'assets/textures/experience_bar_background.png'; image-scale-mode: scale-to-fit; bottom: 45px; left: 138px;"/>
+	<sfui:UIVisualContainer name="healthbar" style="position:absolute; width: 160px; height: 18px; flex-direction: row; bottom: 56px; left: 138px;">
+		<sfui:UIImage style="image-path:'assets/textures/heart/container.png'; image-scale-mode: scale-and-crop;">
+			<sfui:UIImage style="image-path:'assets/textures/heart/full.png'; image-scale-mode: scale-and-crop;"/>
+		</sfui:UIImage>
+		<sfui:UIImage style="image-path:'assets/textures/heart/container.png'; image-scale-mode: scale-and-crop;">
+			<sfui:UIImage style="image-path:'assets/textures/heart/full.png'; image-scale-mode: scale-and-crop;"/>
+		</sfui:UIImage>
+		<sfui:UIImage style="image-path:'assets/textures/heart/container.png'; image-scale-mode: scale-and-crop;">
+			<sfui:UIImage style="image-path:'assets/textures/heart/full.png'; image-scale-mode: scale-and-crop;"/>
+		</sfui:UIImage>
+		<sfui:UIImage style="image-path:'assets/textures/heart/container.png'; image-scale-mode: scale-and-crop;">
+			<sfui:UIImage style="image-path:'assets/textures/heart/full.png'; image-scale-mode: scale-and-crop;"/>
+		</sfui:UIImage>
+		<sfui:UIImage style="image-path:'assets/textures/heart/container.png'; image-scale-mode: scale-and-crop;">
+			<sfui:UIImage style="image-path:'assets/textures/heart/full.png'; image-scale-mode: scale-and-crop;"/>
+		</sfui:UIImage>
+		<sfui:UIImage style="image-path:'assets/textures/heart/container.png'; image-scale-mode: scale-and-crop;">
+			<sfui:UIImage style="image-path:'assets/textures/heart/full.png'; image-scale-mode: scale-and-crop;"/>
+		</sfui:UIImage>
+		<sfui:UIImage style="image-path:'assets/textures/heart/container.png'; image-scale-mode: scale-and-crop;">
+			<sfui:UIImage style="image-path:'assets/textures/heart/half.png'; image-scale-mode: scale-and-crop;"/>
+		</sfui:UIImage>
+		<sfui:UIImage style="image-path:'assets/textures/heart/container.png'; image-scale-mode: scale-and-crop;"/>
+		<sfui:UIImage style="image-path:'assets/textures/heart/container.png'; image-scale-mode: scale-and-crop;"/>
+		<sfui:UIImage style="image-path:'assets/textures/heart/container.png'; image-scale-mode: scale-and-crop;"/>
+	</sfui:UIVisualContainer>
+	<sfui:UIVisualContainer name="foodbar" style="position:absolute; width: 160px; height: 18px; flex-direction: row; bottom: 56px; right: 138px;">
+		<sfui:UIImage style="image-path:'assets/textures/food_empty.png'; image-scale-mode: scale-and-crop;"/>
+		<sfui:UIImage style="image-path:'assets/textures/food_empty.png'; image-scale-mode: scale-and-crop;"/>
+		<sfui:UIImage style="image-path:'assets/textures/food_empty.png'; image-scale-mode: scale-and-crop;"/>
+		<sfui:UIImage style="image-path:'assets/textures/food_empty.png'; image-scale-mode: scale-and-crop;"/>
+		<sfui:UIImage style="image-path:'assets/textures/food_empty.png'; image-scale-mode: scale-and-crop;"/>
+		<sfui:UIImage style="image-path:'assets/textures/food_empty.png'; image-scale-mode: scale-and-crop;"/>
+		<sfui:UIImage style="image-path:'assets/textures/food_half.png'; image-scale-mode: scale-and-crop;"/>
+		<sfui:UIImage style="image-path:'assets/textures/food_full.png'; image-scale-mode: scale-and-crop;"/>
+		<sfui:UIImage style="image-path:'assets/textures/food_full.png'; image-scale-mode: scale-and-crop;"/>
+		<sfui:UIImage style="image-path:'assets/textures/food_full.png'; image-scale-mode: scale-and-crop;"/>
+	</sfui:UIVisualContainer>
+	<sfui:UIImage name="crosshair" style="position: absolute; width: 30px; height: 30px; image-path: 'assets/textures/crosshair.png'; image-scale-mode: scale-to-fit; top: 165px; left: 305px;"/>
+	<sfui:UIVisualContainer name="armorbar" style="position:absolute; width: 160px; height: 18px; flex-direction: row; bottom: 75px; left: 138px;">
+		<sfui:UIImage style="image-path:'assets/textures/armor_full.png'; image-scale-mode: scale-and-crop;"/>
+		<sfui:UIImage style="image-path:'assets/textures/armor_full.png'; image-scale-mode: scale-and-crop;"/>
+		<sfui:UIImage style="image-path:'assets/textures/armor_half.png'; image-scale-mode: scale-and-crop;"/>
+		<sfui:UIImage style="image-path:'assets/textures/armor_empty.png'; image-scale-mode: scale-and-crop;"/>
+		<sfui:UIImage style="image-path:'assets/textures/armor_empty.png'; image-scale-mode: scale-and-crop;"/>
+		<sfui:UIImage style="image-path:'assets/textures/armor_empty.png'; image-scale-mode: scale-and-crop;"/>
+		<sfui:UIImage style="image-path:'assets/textures/armor_empty.png'; image-scale-mode: scale-and-crop;"/>
+		<sfui:UIImage style="image-path:'assets/textures/armor_empty.png'; image-scale-mode: scale-and-crop;"/>
+		<sfui:UIImage style="image-path:'assets/textures/armor_empty.png'; image-scale-mode: scale-and-crop;"/>
+		<sfui:UIImage style="image-path:'assets/textures/armor_empty.png'; image-scale-mode: scale-and-crop;"/>
+	</sfui:UIVisualContainer>
+</sfui:UIVisualContainer>

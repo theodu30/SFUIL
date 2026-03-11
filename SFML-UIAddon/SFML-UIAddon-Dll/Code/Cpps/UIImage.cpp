@@ -41,7 +41,7 @@ namespace sfui
 		}
 
 		drawBackground(_target, targetSize);
-		renderImage(_target, targetSize);
+		renderImage(_target, getRenderSize());
 
 		for (auto& child : m_children)
 		{
