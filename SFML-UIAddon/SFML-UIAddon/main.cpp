@@ -11,7 +11,7 @@
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode({ 640, 360 }), "SFML works!");
+	sf::RenderWindow window(sf::VideoMode({ 960, 540 }), "SFML works!");
 	sf::CircleShape shape(100.f);
 	shape.setFillColor(sf::Color::Green);
 	shape.setPosition(sf::Vector2f(window.getSize()) * .5f);
