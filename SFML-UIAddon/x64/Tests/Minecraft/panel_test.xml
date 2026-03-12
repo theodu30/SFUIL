@@ -1,5 +1,5 @@
 <sfui:UIVisualContainer name="__ROOT_ELEMENT__" style="position: absolute; width: 100%; height: 100%; flex-direction: column; ">
-	<sfui:UIImage name="hotbar" style="position: absolute; width: 364px; height: 44px; image-path: 'assets/textures/hotbar.png'; image-scale-mode: scale-to-fit; bottom: 0px; left: 138px;"/>
+	<sfui:UIImage name="__ELEMENT_TO_ROTATE__" style="position: absolute; width: 364px; height: 44px; image-path: 'assets/textures/hotbar.png'; image-scale-mode: scale-to-fit; bottom: 0px; left: 138px; origin-x: 50%; origin-y: 50%;"/>
 	<sfui:UIImage name="experiencebar" style="position: absolute; width: 364px; height: 10px; image-path: 'assets/textures/experience_bar_background.png'; image-scale-mode: scale-to-fit; bottom: 45px; left: 138px;"/>
 	<sfui:UIVisualContainer name="healthbar" style="position:absolute; width: 160px; height: 18px; flex-direction: row; bottom: 56px; left: 138px;">
 		<sfui:UIImage style="image-path:'assets/textures/heart/container.png'; image-scale-mode: scale-and-crop;">
