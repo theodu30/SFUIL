@@ -26,6 +26,7 @@
     <ClInclude Include="Code\Headers\SFUIL\System\Layout\LayoutHandle.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\Layout\LayoutNode.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\Layout\LayoutNodeData.hpp" />
+    <ClInclude Include="Code\Headers\SFUIL\System\Layout\LayoutValue.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\UIVisuelElement.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\Datas\BackgroundPosition.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\Datas\BackgroundSize.hpp" />
@@ -77,6 +78,7 @@
     <ClCompile Include="Code\Cpps\BackgroundSize.cpp" />
     <ClCompile Include="Code\Cpps\ComputedStyle.cpp" />
     <ClCompile Include="Code\Cpps\LayoutHandle.cpp" />
+    <ClCompile Include="Code\Cpps\LayoutValue.cpp" />
     <ClCompile Include="Code\Cpps\Properties\AlignProperty.cpp" />
     <ClCompile Include="Code\Cpps\Properties\BackgroundProperty.cpp" />
     <ClCompile Include="Code\Cpps\Properties\BorderProperty.cpp" />

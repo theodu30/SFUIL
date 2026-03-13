@@ -177,6 +177,9 @@
     <ClInclude Include="Code\Headers\SFUIL\System\Layout\LayoutNodeData.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Code\Headers\SFUIL\System\Layout\LayoutValue.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\Cpps\UIPanel.cpp">
@@ -276,6 +279,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Code\Cpps\LayoutHandle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Cpps\LayoutValue.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
