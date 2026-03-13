@@ -2,6 +2,7 @@
 
 #include "../Exports.hpp"
 #include "LayoutDataStore.hpp"
+#include "LayoutNodeData.hpp"
 
 namespace sfui
 {
