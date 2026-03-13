@@ -113,6 +113,10 @@ namespace sfui
 		float scaleX = std::sqrt(m[0] * m[0] + m[1] * m[1]);
 		float scaleY = std::sqrt(m[4] * m[4] + m[5] * m[5]);
 		_transformable.setScale({ scaleX, scaleY });
+
+		float originX = -m[2] / scaleX;
+		float originY = -m[5] / scaleY;
+		_transformable.setOrigin({ originX, originY });
 	}
 
 	void UIPropUtils::normalizeAngle(TransformProperty& _prop)

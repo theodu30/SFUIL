@@ -140,5 +140,79 @@ namespace sfui
 			delete m_rootElement;
 		}
 		m_rootElement = _element;
+
+		_element->AttachToPanel(this);
+	}
+
+	sf::Texture* UIPanel::getOrRegisterTexture(std::string _path)
+	{
+		if (_path.empty())
+		{
+			std::cerr << "Attempted to register texture with empty path." << std::endl;
+			return nullptr;
+		}
+
+		if (m_textureCache.empty())
+		{
+			sf::Texture* texture = new sf::Texture();
+			if (!texture->loadFromFile(_path))
+			{
+				std::cerr << "Failed to load texture from file: " << _path << std::endl;
+				delete texture;
+				return nullptr;
+			}
+			m_textureCache[_path] = std::make_pair(texture, 1);
+			return m_textureCache[_path].first;
+		}
+
+		if (m_textureCache.contains(_path))
+		{
+			m_textureCache[_path].second++;
+			return m_textureCache[_path].first;
+		}
+		else
+		{
+			sf::Texture* texture = new sf::Texture();
+			if (!texture->loadFromFile(_path))
+			{
+				std::cerr << "Failed to load texture from file: " << _path << std::endl;
+				delete texture;
+				return nullptr;
+			}
+			m_textureCache[_path] = std::make_pair(texture, 1);
+			return m_textureCache[_path].first;
+		}
+	}
+
+	bool UIPanel::unregisterTexture(std::string _path)
+	{
+		if (_path.empty())
+		{
+			std::cerr << "Attempted to unregister texture with empty path." << std::endl;
+			return false;
+		}
+
+		if (m_textureCache.contains(_path))
+		{
+			if (m_textureCache[_path].second > 0)
+			{
+				m_textureCache[_path].second--;
+				if (m_textureCache[_path].second == 0)
+				{
+					m_textureCache.erase(_path);
+				}
+				return true;
+			}
+			else
+			{
+				std::cerr << "Attempted to unregister texture that has no references: " << _path << std::endl;
+				return false;
+			}
+		}
+		else
+		{
+			std::cerr << "Attempted to unregister texture that is not registered: " << _path << std::endl;
+			return false;
+		}
 	}
 }

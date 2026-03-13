@@ -13,6 +13,7 @@ extern SFUIL_API const char* SFUIL_UIELEMENT_NAME;
 
 namespace sfui
 {
+	class UIPanel;
 	class UIElement;
 
 	template<typename T>
@@ -33,6 +34,9 @@ namespace sfui
 		UIElement();
 		UIElement(const char* _name);
 		virtual ~UIElement();
+
+		void AttachToPanel(UIPanel* _panel);
+		void RemoveFromPanel();
 
 		virtual void drawToTarget(sf::RenderTexture& _target) = 0;
 
@@ -268,6 +272,7 @@ namespace sfui
 		char* m_name;
 		std::vector<UIElement*> m_children;
 		UIElement* m_parent = nullptr;
+		UIPanel* m_attachedPanel = nullptr;
 		bool m_dirty = true;
 
 		sf::Vector2f m_renderSize;

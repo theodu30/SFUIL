@@ -284,20 +284,6 @@ namespace sfui
 		}
 	}
 
-	const sf::Image& ImageProperty::getImage() const
-	{
-		return m_image;
-	}
-
-	bool ImageProperty::loadImage()
-	{
-		if (m_imagePath != nullptr)
-		{
-			return m_image.loadFromFile(m_imagePath);
-		}
-		return false;
-	}
-
 	float ImageProperty::SizeValue::resolveToPixels(float _relativeTo) const
 	{
 		switch (type)

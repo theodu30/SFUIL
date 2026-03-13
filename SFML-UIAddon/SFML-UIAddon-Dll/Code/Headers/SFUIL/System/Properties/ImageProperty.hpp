@@ -44,9 +44,6 @@ namespace sfui
 		void resetTintColor();
 		void setTintColorFromCStr(const char* _value);
 
-		[[nodiscard]] const sf::Image& getImage() const;
-		bool loadImage();
-
 		enum class SizeType : char
 		{
 			Pixels,
@@ -156,7 +153,6 @@ namespace sfui
 	private:
 		char* m_imagePath = nullptr;
 		bool m_imagePathDirty = false;
-		sf::Image m_image;
 		sf::Color m_tintColor = sf::Color::White;
 		bool m_tintColorDirty = false;
 		Repeat m_repeat = Repeat::NoRepeat;

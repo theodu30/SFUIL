@@ -1,5 +1,6 @@
 #include "../Headers/SFUIL/Containers/UIImage.hpp"
 #include "../Headers/SFUIL/System/UIPropUtils.hpp"
+#include "../Headers/SFUIL/UIPanel.hpp"
 #include <iostream>
 
 const char* SFUIL_UIIMAGE_NAME = "UIImage";
@@ -18,6 +19,10 @@ namespace sfui
 
 	UIImage::~UIImage()
 	{
+		if (m_attachedPanel)
+		{
+			m_attachedPanel->unregisterTexture(m_image.getImagePath());
+		}
 	}
 
 	void UIImage::drawToTarget(sf::RenderTexture& _target)
@@ -36,7 +41,7 @@ namespace sfui
 		}
 
 		drawBackground(_target, targetSize);
-		renderImage(_target, targetSize);
+		renderImage(_target, getRenderSize());
 
 		for (auto& child : m_children)
 		{
@@ -63,24 +68,29 @@ namespace sfui
 		float imageWidth = m_image.getSize().width.resolveToPixels(_targetSize.x);
 		float imageHeight = m_image.getSize().height.resolveToPixels(_targetSize.y);
 
-		sf::Image img = m_image.getImage();
-		if (img.getSize().x == 0 || img.getSize().y == 0)
+		sf::Texture* texture = nullptr;
+
+		if (m_image.getImagePath() != nullptr)
 		{
-			return;
+			texture = m_attachedPanel->getOrRegisterTexture(m_image.getImagePath());
 		}
 
-		sf::Texture texture;
-		if (texture.loadFromImage(img))
+		if (texture)
 		{
-			texture.setRepeated(m_image.getRepeat() == ImageProperty::Repeat::Repeat);
-			texture.setSmooth(m_image.getSmooth() == ImageProperty::Smooth::Smooth);
+			if (texture->getSize().x == 0 || texture->getSize().y == 0)
+			{
+				return;
+			}
 
-			sf::Sprite sprite(texture);
+			texture->setRepeated(m_image.getRepeat() == ImageProperty::Repeat::Repeat);
+			texture->setSmooth(m_image.getSmooth() == ImageProperty::Smooth::Smooth);
+
+			sf::Sprite sprite(*texture);
 			sprite.setColor(m_image.getTintColor());
 
 			sf::Vector2f renderScale;
-			float xScale = imageWidth / static_cast<float>(img.getSize().x);
-			float yScale = imageHeight / static_cast<float>(img.getSize().y);
+			float xScale = imageWidth / static_cast<float>(texture->getSize().x);
+			float yScale = imageHeight / static_cast<float>(texture->getSize().y);
 
 			if (UIPropUtils::isPositionRelative(m_position))
 			{

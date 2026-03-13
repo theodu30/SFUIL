@@ -26,6 +26,26 @@ namespace sfui
 		{
 			delete[] m_name;
 		}
+
+		m_attachedPanel = nullptr;
+	}
+
+	void UIElement::AttachToPanel(UIPanel* _panel)
+	{
+		m_attachedPanel = _panel;
+
+		if (m_children.size() > 0)
+		{
+			for (auto& child : m_children)
+			{
+				child->AttachToPanel(_panel);
+			}
+		}
+	}
+
+	void UIElement::RemoveFromPanel()
+	{
+		m_attachedPanel = nullptr;
 	}
 
 	void UIElement::setName(const char* _name)
@@ -57,6 +77,7 @@ namespace sfui
 		}
 		_child->m_parent = this;
 		m_children.push_back(_child);
+		_child->m_attachedPanel = m_attachedPanel;
 		return true;
 	}
 
@@ -73,6 +94,7 @@ namespace sfui
 				return true;
 			}
 		}
+		RemoveFromPanel();
 		return false;
 	}
 
@@ -89,6 +111,7 @@ namespace sfui
 			child->removeFromHierarchy();
 		}
 		m_children.clear();
+		RemoveFromPanel();
 		return true;
 	}
 
