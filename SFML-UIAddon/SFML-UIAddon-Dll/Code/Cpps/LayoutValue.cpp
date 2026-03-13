@@ -67,20 +67,34 @@ namespace sfui
 
 	LayoutValue::LayoutValue(const LayoutValue& _other)
 	{
+		m_unit = _other.m_unit;
+		m_value = _other.m_value;
 	}
 
 	LayoutValue& LayoutValue::operator=(const LayoutValue& _other)
 	{
-		// TODO: insert return statement here
+		this->m_unit = _other.m_unit;
+		this->m_value = _other.m_value;
+
+		return *this;
 	}
 
 	LayoutValue::LayoutValue(LayoutValue&& _other) noexcept
 	{
+		m_unit = _other.m_unit;
+		m_value = _other.m_value;
+
+		_other = LayoutValue();
 	}
 
 	LayoutValue& LayoutValue::operator=(LayoutValue&& _other) noexcept
 	{
-		// TODO: insert return statement here
+		this->m_unit = _other.m_unit;
+		this->m_value = _other.m_value;
+
+		_other = LayoutValue();
+
+		return *this;
 	}
 
 }
