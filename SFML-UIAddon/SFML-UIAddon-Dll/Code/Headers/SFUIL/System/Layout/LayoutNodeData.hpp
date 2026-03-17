@@ -1,9 +1,13 @@
 #pragma once
 
+#include "../Datas/FixedBuffer.hpp"
+#include "LayoutValue.hpp"
+
 namespace sfui
 {
-	struct LayoutNodeData
+	class LayoutNodeData
 	{
+	private:
 		enum class FlexStatus
 		{
 			IsDirty = 1,
@@ -15,5 +19,16 @@ namespace sfui
 			MinViolation = 0x10,
 			MaxViolation = 0x20
 		};
+
+		float m_targetSize;
+
+	public:
+		FixedBuffer<LayoutValue, 2> resolvedDimensions;
+		int managedOwnerIndex;
+		int lineIndex;
+		LayoutHandle config;
+		LayoutHandle parent;
+		LayoutHandle nextChild;
+
 	};
 }

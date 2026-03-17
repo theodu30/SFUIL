@@ -9,7 +9,7 @@
 
 namespace sfui
 {
-	class SFUIL_API LayoutDataStore : IDisposable
+	class SFUIL_API LayoutDataStore : public IDisposable
 	{
 	private:
 		struct Chunk
@@ -17,7 +17,7 @@ namespace sfui
 			uint8_t* buffer;
 		};
 
-		class ComponentDataStore : IDisposable
+		class ComponentDataStore : public IDisposable
 		{
 		private:
 			Chunk* m_chunks = nullptr;

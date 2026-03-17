@@ -8,5 +8,6 @@ namespace sfui
 	{
 	public:
 		virtual void Dispose() = 0;
+		virtual ~IDisposable() = default;
 	};
 }
