@@ -9,6 +9,7 @@ namespace sfui
 
 		static LayoutHandle Undefined;
 
+		LayoutHandle();
 		LayoutHandle(int _index, int _version);
 
 		bool IsUndefined() const;

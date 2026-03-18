@@ -23,12 +23,16 @@
     <ClInclude Include="Code\Headers\SFUIL\System\Datas\FixedBuffer.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\Interfaces\IDisposable.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\Interfaces\IEnumerator.hpp" />
+    <ClInclude Include="Code\Headers\SFUIL\System\Layout\LayoutCachedMeasurement.hpp" />
+    <ClInclude Include="Code\Headers\SFUIL\System\Layout\LayoutComputedData.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\Layout\LayoutDataAccess.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\Layout\LayoutDataStore.hpp" />
+    <ClInclude Include="Code\Headers\SFUIL\System\Layout\LayoutDefaults.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\Layout\LayoutHandle.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\Layout\LayoutList.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\Layout\LayoutNode.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\Layout\LayoutNodeData.hpp" />
+    <ClInclude Include="Code\Headers\SFUIL\System\Layout\LayoutStyleData.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\Layout\LayoutValue.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\UIVisuelElement.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\Datas\BackgroundPosition.hpp" />
@@ -80,7 +84,11 @@
     <ClCompile Include="Code\Cpps\BackgroundPosition.cpp" />
     <ClCompile Include="Code\Cpps\BackgroundSize.cpp" />
     <ClCompile Include="Code\Cpps\ComputedStyle.cpp" />
+    <ClCompile Include="Code\Cpps\LayoutCacheData.cpp" />
+    <ClCompile Include="Code\Cpps\LayoutConfigData.cpp" />
+    <ClCompile Include="Code\Cpps\LayoutDataAccess.cpp" />
     <ClCompile Include="Code\Cpps\LayoutHandle.cpp" />
+    <ClCompile Include="Code\Cpps\LayoutStyleData.cpp" />
     <ClCompile Include="Code\Cpps\LayoutValue.cpp" />
     <ClCompile Include="Code\Cpps\Properties\AlignProperty.cpp" />
     <ClCompile Include="Code\Cpps\Properties\BackgroundProperty.cpp" />
@@ -111,6 +119,13 @@
     <ClCompile Include="Code\Cpps\StyleInt.cpp" />
     <ClCompile Include="Code\Cpps\TransformOrigin.cpp" />
     <ClCompile Include="Code\Cpps\LayoutDataStore.cpp" />
+    <ClCompile Include="Code\Cpps\LayoutNodeData.cpp" />
+    <ClCompile Include="Code\Cpps\LayoutDefaults.cpp" />
+    <ClCompile Include="Code\Cpps\LayoutComputedData.cpp" />
+    <ClCompile Include="Code\Headers\SFUIL\System\Layout\LayoutCacheData.hpp" />
+    <ClCompile Include="Code\Cpps\LayoutCachedMeasurement.cpp" />
+    <ClCompile Include="Code\Headers\SFUIL\System\Layout\LayoutConfigData.hpp" />
+    <ClCompile Include="Code\Headers\SFUIL\System\Layout\LayoutEnums.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

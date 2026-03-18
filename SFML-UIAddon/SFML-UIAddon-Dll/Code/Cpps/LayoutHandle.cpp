@@ -9,6 +9,11 @@ namespace sfui
 		return Equals(Undefined);
 	}
 
+	LayoutHandle::LayoutHandle()
+	{
+		*this = Undefined;
+	}
+
 	LayoutHandle::LayoutHandle(int _index, int _version) : index(_index), version(_version)
 	{
 	}

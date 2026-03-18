@@ -189,6 +189,18 @@
     <ClInclude Include="Code\Headers\SFUIL\System\Interfaces\IEnumerator.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Code\Headers\SFUIL\System\Layout\LayoutStyleData.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Headers\SFUIL\System\Layout\LayoutDefaults.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Headers\SFUIL\System\Layout\LayoutComputedData.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Headers\SFUIL\System\Layout\LayoutCachedMeasurement.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\Cpps\UIPanel.cpp">
@@ -291,6 +303,39 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Code\Cpps\LayoutValue.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Cpps\LayoutNodeData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Cpps\LayoutStyleData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Cpps\LayoutDefaults.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Cpps\LayoutDataAccess.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Headers\SFUIL\System\Layout\LayoutEnums.hpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Cpps\LayoutComputedData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Headers\SFUIL\System\Layout\LayoutCacheData.hpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Cpps\LayoutCachedMeasurement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Cpps\LayoutCacheData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Headers\SFUIL\System\Layout\LayoutConfigData.hpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Cpps\LayoutConfigData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

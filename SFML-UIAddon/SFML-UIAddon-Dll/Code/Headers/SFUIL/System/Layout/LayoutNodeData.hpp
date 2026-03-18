@@ -2,6 +2,8 @@
 
 #include "../Datas/FixedBuffer.hpp"
 #include "LayoutValue.hpp"
+#include "LayoutHandle.hpp"
+#include "LayoutList.hpp"
 
 namespace sfui
 {
@@ -21,6 +23,11 @@ namespace sfui
 		};
 
 		float m_targetSize;
+		FlexStatus m_status;
+
+		friend FlexStatus operator|(FlexStatus a, FlexStatus b);
+		friend FlexStatus operator&(FlexStatus a, FlexStatus b);
+		friend FlexStatus operator~(FlexStatus a);
 
 	public:
 		FixedBuffer<LayoutValue, 2> resolvedDimensions;
@@ -29,6 +36,19 @@ namespace sfui
 		LayoutHandle config;
 		LayoutHandle parent;
 		LayoutHandle nextChild;
+		LayoutList<LayoutHandle> children;
+
+		bool GetHasNewLayout() const;
+		void SetHasNewLayout(bool _value);
+
+		bool IsDirty() const;
+		void SetDirty(bool _value);
+
+		bool GetUsesMeasure() const;
+		void SetUsesMeasure(bool _value);
+
+		bool GetUsesBaseLine() const;
+		void SetUsesBaseLine(bool _value);
 
 	};
 }

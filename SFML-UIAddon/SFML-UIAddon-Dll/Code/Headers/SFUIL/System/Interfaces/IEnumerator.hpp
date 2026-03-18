@@ -6,8 +6,9 @@
 namespace sfui
 {
 	template <typename T>
-	class SFUIL_API IEnumerator : public IDisposable
+	class IEnumerator : public IDisposable
 	{
+	public:
 		virtual T Current() const = 0;
 		virtual bool MoveNext() = 0;
 		virtual void Reset() = 0;

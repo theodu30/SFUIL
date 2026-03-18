@@ -55,15 +55,15 @@ namespace sfui
 		static void* ResizeArray(void* _fromPtr, long _fromCount, long _toCount, long _size, int _align);
 
 	public:
-		bool IsValid();
-		int Capacity();
+		bool IsValid() const;
+		int Capacity() const;
 
 		LayoutDataStore(std::span<const ComponentType> _components, int initialCapacity);
 
 		void Dispose() override;
 		bool Exists(const LayoutHandle& _handle);
 
-		const void* GetComponentDataPtr(int _index, int _componentIndex) const;
+		void* GetComponentDataPtr(int _index, int _componentIndex) const;
 		LayoutHandle Allocate(uint8_t** _data, int _count);
 		void Free(const LayoutHandle& _handle);
 

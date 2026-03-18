@@ -20,8 +20,16 @@ namespace sfui
 
 		Data* m_data;
 
+		void IncreaseCapacity();
+
+		void EnsureCapacity(int _capacity);
+
+		void ResizeCapacity(int _capacity);
+
+		static void* ResizeArray(void* _fromPtr, long _fromCount, long _toCount, long _size, int _align);
+
 	public:
-		class Enumerator : public IEnumerator<T>, public IDisposable
+		class Enumerator : public IEnumerator<T>
 		{
 		private:
 			LayoutList<T> m_list;
@@ -53,7 +61,56 @@ namespace sfui
 		void Dispose() override;
 
 		void Insert(int _index, T _value);
+
+		int IndexOf(T _value);
+
+		void RemoveAt(int _index);
+
+		void Clear();
+
+		Enumerator GetEnumerator();
 	};
+
+	template<typename T>
+	inline void LayoutList<T>::IncreaseCapacity()
+	{
+		EnsureCapacity(m_data->capacity * 2);
+	}
+
+	template<typename T>
+	inline void LayoutList<T>::EnsureCapacity(int _capacity)
+	{
+		if (_capacity > m_data->capacity)
+		{
+			ResizeCapacity(_capacity);
+		}
+	}
+
+	template<typename T>
+	inline void LayoutList<T>::ResizeCapacity(int _capacity)
+	{
+		assert(_capacity > 0);
+		m_data->values = reinterpret_cast<T*>(ResizeArray(m_data->values, m_data->capacity, _capacity, sizeof(T), 16));
+		m_data->capacity = _capacity;
+	}
+
+	template<typename T>
+	void* LayoutList<T>::ResizeArray(void* _fromPtr, long _fromCount, long _toCount, long _size, int _align)
+	{
+		assert(_toCount > 0);
+		void* ptr = _aligned_malloc(_size * _toCount, _align);
+		assert(ptr != nullptr);
+		if (_fromCount <= 0)
+		{
+			return ptr;
+		}
+
+		long num = ((_toCount < _fromCount) ? _toCount : _fromCount);
+		long size2 = num * _size;
+		memcpy(ptr, _fromPtr, size2);
+		_aligned_free(_fromPtr);
+		return ptr;
+	}
 
 	template<typename T>
 	inline T LayoutList<T>::Enumerator::Current() const
@@ -115,9 +172,9 @@ namespace sfui
 	template<typename T>
 	T& LayoutList<T>::operator[](int _index)
 	{
-		if (_index >= m_data->count)
+		if (static_cast<unsigned int>(_index) >= static_cast<unsigned int>(m_data->count))
 		{
-			throw std::out_of_range();
+			throw std::out_of_range("index");
 		}
 		return m_data->values[_index];
 	}
@@ -131,7 +188,7 @@ namespace sfui
 	template<typename T>
 	inline LayoutList<T>::LayoutList(int _initialCapacity)
 	{
-		m_data = _aligned_malloc(sizeof(Data), 16);
+		m_data = reinterpret_cast<Data*>(_aligned_malloc(sizeof(Data), 16));
 		assert(m_data != nullptr);
 		*m_data = Data{};
 		ResizeCapacity(_initialCapacity);
@@ -155,9 +212,9 @@ namespace sfui
 	template<typename T>
 	inline void LayoutList<T>::Insert(int _index, T _value)
 	{
-		if (_index >= m_data->count)
+		if (static_cast<unsigned int>(_index) >= static_cast<unsigned int>(m_data->count))
 		{
-			throw std::out_of_range();
+			throw std::out_of_range("index");
 		}
 
 		if (m_data->capacity == m_data->count)
@@ -167,8 +224,53 @@ namespace sfui
 
 		if (_index < m_data->count)
 		{
-			memmove(m_data->values + _index + 1, m_data->values + _index), sizeof(T)* (m_data->count - _index));
+			memmove(m_data->values + _index + 1, m_data->values + _index, sizeof(T)* (m_data->count - _index));
 		}
+	}
+
+	template<typename T>
+	inline int LayoutList<T>::IndexOf(T _value)
+	{
+		int count = m_data->count;
+		T* ptr = &_value;
+		T* ptr2 = m_data->values;
+		int num = sizeof(T);
+		for (int num2 = 0; num2 < count; ++num2)
+		{
+			if (memcmp(ptr2, ptr, num) == 0)
+			{
+				return num2;
+			}
+
+			ptr2++;
+		}
+
+		return -1;
+	}
+
+	template<typename T>
+	inline void LayoutList<T>::RemoveAt(int _index)
+	{
+		if (static_cast<unsigned int>(_index) >= static_cast<unsigned int>(m_data->count))
+		{
+			throw std::out_of_range("index");
+		}
+
+		m_data->count--;
+		memmove(m_data->values + _index, m_data->values + _index + 1, sizeof(T) * (m_data->count - _index));
+		m_data->values[m_data->count] = T{};
+	}
+
+	template<typename T>
+	inline void LayoutList<T>::Clear()
+	{
+		m_data->count = 0;
+	}
+
+	template<typename T>
+	inline LayoutList<T>::Enumerator LayoutList<T>::GetEnumerator()
+	{
+		return Enumerator(*this);
 	}
 
 }

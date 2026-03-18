@@ -117,12 +117,12 @@ namespace sfui
 		return ptr;
 	}
 
-	bool LayoutDataStore::IsValid()
+	bool LayoutDataStore::IsValid() const
 	{
 		return m_data != nullptr;
 	}
 
-	int LayoutDataStore::Capacity()
+	int LayoutDataStore::Capacity() const
 	{
 		return m_data->capacity;
 	}
@@ -134,7 +134,7 @@ namespace sfui
 		m_data = static_cast<Data*>(_aligned_malloc(sizeof(Data), alignof(Data)));
 		assert(m_data != nullptr);
 		memset(m_data, 0, sizeof(Data));
-		m_data->componentCount = _components.size();
+		m_data->componentCount = static_cast<int>(_components.size());
 		m_data->components = static_cast<ComponentDataStore*>(_aligned_malloc(sizeof(ComponentDataStore) * _components.size(), alignof(ComponentDataStore)));
 
 		for (int i = 0; i < _components.size(); ++i)
@@ -160,7 +160,7 @@ namespace sfui
 
 	bool LayoutDataStore::Exists(const LayoutHandle& _handle)
 	{
-		if (static_cast<uint32_t>(_handle.index) >= m_data->capacity)
+		if (static_cast<uint32_t>(_handle.index) >= static_cast<uint32_t>(m_data->capacity))
 		{
 			return false;
 		}
@@ -168,7 +168,7 @@ namespace sfui
 		return m_data->versions[_handle.index] == _handle.version;
 	}
 
-	const void* LayoutDataStore::GetComponentDataPtr(int _index, int _componentIndex) const
+	void* LayoutDataStore::GetComponentDataPtr(int _index, int _componentIndex) const
 	{
 		return m_data->components[_componentIndex].GetComponentDataPtr(_index);
 	}

@@ -84,7 +84,8 @@ namespace sfui
 		m_unit = _other.m_unit;
 		m_value = _other.m_value;
 
-		_other = LayoutValue();
+		_other.m_value = 0.f;
+		_other.m_unit = LayoutUnit::Undefined;
 	}
 
 	LayoutValue& LayoutValue::operator=(LayoutValue&& _other) noexcept
@@ -92,7 +93,8 @@ namespace sfui
 		this->m_unit = _other.m_unit;
 		this->m_value = _other.m_value;
 
-		_other = LayoutValue();
+		_other.m_value = 0.f;
+		_other.m_unit = LayoutUnit::Undefined;
 
 		return *this;
 	}

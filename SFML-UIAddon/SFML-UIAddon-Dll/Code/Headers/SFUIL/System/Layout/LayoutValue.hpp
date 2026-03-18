@@ -16,9 +16,8 @@ namespace sfui
 		float m_value;
 		LayoutUnit m_unit;
 
-		LayoutValue();
-
 	public:
+		LayoutValue();
 		LayoutValue(float _value);
 
 		LayoutUnit getUnit() const;

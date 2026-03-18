@@ -19,7 +19,7 @@ namespace sfui
 			return m_data[_index];
 		}
 
-		const T& operator[](int _index)
+		const T& operator[](int _index) const
 		{
 			if (_index < 0 || _index >= N)
 			{

@@ -3,6 +3,10 @@
 #include "../Exports.hpp"
 #include "LayoutDataStore.hpp"
 #include "LayoutNodeData.hpp"
+#include "LayoutStyleData.hpp"
+#include "LayoutComputedData.hpp"
+#include "LayoutCacheData.hpp"
+#include "LayoutConfigData.hpp"
 
 namespace sfui
 {
@@ -29,20 +33,28 @@ namespace sfui
 		template <typename T>
 		T& GetTypedNodeDataRef(LayoutHandle _handle, LayoutNodeDataType _type)
 		{
-			return *static_cast<const T*>(m_nodes.GetComponentDataPtr(_handle.index, static_cast<int>(_type));
+			return *static_cast<T*>(m_nodes.GetComponentDataPtr(_handle.index, static_cast<int>(_type)));
 		}
 
 		template <typename T>
 		T& GetTypedConfigDataRef(LayoutHandle _handle, LayoutConfigDataType _type)
 		{
-			return *static_cast<const T*>(m_configs.GetComponentDataPtr(_handle.index, static_cast<int>(_type));
+			return *static_cast<T*>(m_configs.GetComponentDataPtr(_handle.index, static_cast<int>(_type)));
 		}
 
 	public:
-		bool IsValid();
+		bool IsValid() const;
 
 		LayoutDataAccess(int _manager, LayoutDataStore _nodes, LayoutDataStore _configs);
 
 		LayoutNodeData& GetNodeData(LayoutHandle _handle);
+
+		LayoutStyleData& GetStyleData(LayoutHandle _handle);
+
+		LayoutComputedData& GetComputedData(LayoutHandle _handle);
+
+		LayoutCacheData& GetCacheData(LayoutHandle _handle);
+
+		LayoutConfigData& GetConfigData(LayoutHandle _handle);
 	};
 }
