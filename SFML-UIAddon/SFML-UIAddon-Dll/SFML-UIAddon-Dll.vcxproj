@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\Headers\SFUIL\System\Datas\ComponentType.hpp" />
+    <ClInclude Include="Code\Headers\SFUIL\System\Datas\Delegates.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\Datas\FixedBuffer.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\Interfaces\IDisposable.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\Interfaces\IEnumerator.hpp" />
@@ -30,6 +31,7 @@
     <ClInclude Include="Code\Headers\SFUIL\System\Layout\LayoutDefaults.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\Layout\LayoutHandle.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\Layout\LayoutList.hpp" />
+    <ClInclude Include="Code\Headers\SFUIL\System\Layout\LayoutManager.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\Layout\LayoutNode.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\Layout\LayoutNodeData.hpp" />
     <ClInclude Include="Code\Headers\SFUIL\System\Layout\LayoutStyleData.hpp" />

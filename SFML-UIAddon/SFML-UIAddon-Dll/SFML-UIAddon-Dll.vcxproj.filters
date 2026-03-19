@@ -201,6 +201,12 @@
     <ClInclude Include="Code\Headers\SFUIL\System\Layout\LayoutCachedMeasurement.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Code\Headers\SFUIL\System\Datas\Delegates.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Headers\SFUIL\System\Layout\LayoutManager.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\Cpps\UIPanel.cpp">

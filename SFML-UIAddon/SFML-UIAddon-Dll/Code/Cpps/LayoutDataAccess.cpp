@@ -36,4 +36,9 @@ namespace sfui
 		return GetTypedConfigDataRef<LayoutConfigData>(_handle, LayoutConfigDataType::Config);
 	}
 
+	LayoutMeasureFunction LayoutDataAccess::GetMeasureFonction(LayoutHandle _handle)
+	{
+		return LayoutManager::GetManager(m_manager).GetMeasureFunction(_handle);
+	}
+
 }

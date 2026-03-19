@@ -7,6 +7,7 @@
 #include "LayoutComputedData.hpp"
 #include "LayoutCacheData.hpp"
 #include "LayoutConfigData.hpp"
+#include "../Datas/Delegates.hpp"
 
 namespace sfui
 {
@@ -56,5 +57,7 @@ namespace sfui
 		LayoutCacheData& GetCacheData(LayoutHandle _handle);
 
 		LayoutConfigData& GetConfigData(LayoutHandle _handle);
+
+		LayoutMeasureFunction GetMeasureFonction(LayoutHandle _handle);
 	};
 }
